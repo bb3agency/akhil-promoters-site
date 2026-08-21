@@ -13,7 +13,7 @@ const fadeUp = {
 };
 
 export const Home = () => {
-  const [activeTab, setActiveTab] = useState<'ALL' | 'KANURU' | 'AYODHYA_NAGAR'>('ALL');
+  const [activeTab, setActiveTab] = useState<'ALL' | 'KANURU' | 'AYODHYA_NAGAR' | 'PORANKI'>('ALL');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalProject, setModalProject] = useState('Blueberry');
 
@@ -25,6 +25,7 @@ export const Home = () => {
   const filteredProjects = Object.values(projectData).filter((p) => {
     if (activeTab === 'KANURU') return p.area.toLowerCase().includes('kanuru');
     if (activeTab === 'AYODHYA_NAGAR') return p.area.toLowerCase().includes('ayodhya');
+    if (activeTab === 'PORANKI') return p.area.toLowerCase().includes('poranki') || p.location.toLowerCase().includes('tadigadapa');
     return true;
   });
 
@@ -181,7 +182,7 @@ export const Home = () => {
 
             {/* Filter tabs */}
             <div className="flex items-center border border-[#DDD9D1] divide-x divide-[#DDD9D1]">
-              {(['ALL', 'AYODHYA_NAGAR', 'KANURU'] as const).map((tab) => (
+              {(['ALL', 'AYODHYA_NAGAR', 'KANURU', 'PORANKI'] as const).map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
@@ -191,7 +192,7 @@ export const Home = () => {
                       : 'text-[#8A8580] hover:text-[#181714] bg-transparent'
                   }`}
                 >
-                  {tab === 'ALL' ? 'All' : tab === 'AYODHYA_NAGAR' ? 'Ayodhya Nagar' : 'Kanuru'}
+                  {tab === 'ALL' ? 'All' : tab === 'AYODHYA_NAGAR' ? 'Ayodhya Nagar' : tab === 'KANURU' ? 'Kanuru' : 'Poranki'}
                 </button>
               ))}
             </div>

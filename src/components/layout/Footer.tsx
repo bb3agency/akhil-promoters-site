@@ -28,9 +28,9 @@ export const Footer = () => {
             {/* Brand column */}
             <div className="lg:col-span-4">
               <img
-                src="/images/logo-light.svg"
+                src="/images/logo-light.png"
                 alt="Akhil Promoters"
-                className="h-11 w-auto mb-6"
+                className="h-11 w-auto object-contain mb-6"
               />
               <p
                 className="text-white/50 text-sm leading-[1.8] mb-8 max-w-xs"

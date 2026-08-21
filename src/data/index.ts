@@ -40,6 +40,8 @@ export interface Project {
   overview: string;
   exteriorImage: string;
   isometricImage?: string;
+  floorPlanImage?: string;
+  locationMapImage?: string;
   locationHighlights: string[];
   floorPlans: FloorPlan[];
   specifications: Record<string, string>;
@@ -65,8 +67,9 @@ export const projectData: Record<string, Project> = {
     city: "Vijayawada",
     status: "ONGOING",
     category: "Apartments",
-    heroImage: "/images/projects/blueberry.jpg",
-    exteriorImage: "/images/projects/blueberry.jpg",
+    heroImage: "/images/projects/blueberry-elevation.jpg",
+    exteriorImage: "/images/projects/blueberry-elevation.jpg",
+    floorPlanImage: "/images/projects/blueberry-floorplan.jpg",
     tagline: "3 BHK Premium Flats @ Lotus Land Mark",
     configurations: ["3 BHK (1930 SFT)", "3 BHK (2020 SFT)"],
     siteArea: "Sector-3, Ayodhya Nagar",
@@ -86,6 +89,7 @@ export const projectData: Record<string, Project> = {
         bedrooms: 3,
         bathrooms: 3,
         balconies: 2,
+        image: "/images/projects/blueberry-floorplan.jpg",
         dimensions: {
           masterBedroom: "14'6\" x 12'0\"",
           guestBedroom: "13'10½\" x 11'3\"",
@@ -102,6 +106,7 @@ export const projectData: Record<string, Project> = {
         bedrooms: 3,
         bathrooms: 3,
         balconies: 2,
+        image: "/images/projects/blueberry-floorplan.jpg",
         dimensions: {
           masterBedroom: "15'4½\" x 12'0\"",
           guestBedroom: "11'4½\" x 13'3\"",
@@ -124,8 +129,9 @@ export const projectData: Record<string, Project> = {
       "Generator": "Power backup generator for lift, water motor, common lighting, and interior points."
     },
     gallery: [
-      { id: "g1", title: "Elevation Render", category: "Exterior", image: "/images/projects/blueberry.jpg" },
-      { id: "g2", title: "Modern Living Area", category: "Interior", image: "/images/projects/blueberry.jpg" }
+      { id: "g1", title: "Architectural Elevation", category: "Exterior", image: "/images/projects/blueberry-elevation.jpg" },
+      { id: "g2", title: "Floor Plan Layout", category: "Floor Plan", image: "/images/projects/blueberry-floorplan.jpg" },
+      { id: "g3", title: "Elevation Concept Sketch", category: "Design", image: "/images/projects/blueberry-sketch.jpg" }
     ],
     highlights: ["100% Vaastu Compliant", "Johnson 6-Passenger Lift", "Teak Wood Main Doors", "Power Backup Generator", "Granite Common Area"],
     amenities: ["Intercom System", "Dedicated Car Parking", "Earthquake Resistant RCC", "Smooth Emulsion Wall Finish", "24/7 Water & Power Backup"],
@@ -147,8 +153,10 @@ export const projectData: Record<string, Project> = {
     city: "Vijayawada",
     status: "ONGOING",
     category: "Apartments",
-    heroImage: "/images/projects/apple.jpg",
-    exteriorImage: "/images/projects/apple.jpg",
+    heroImage: "/images/projects/apple-elevation.jpg",
+    exteriorImage: "/images/projects/apple-elevation.jpg",
+    floorPlanImage: "/images/projects/apple-floorplan.jpg",
+    isometricImage: "/images/projects/apple-isometric.jpg",
     tagline: "3 BHK Luxury Flats @ Mahadevpuram Colony",
     configurations: ["3 BHK (1445 SFT)"],
     siteArea: "1st Lane, Manikya Nagar",
@@ -168,6 +176,7 @@ export const projectData: Record<string, Project> = {
         bedrooms: 3,
         bathrooms: 3,
         balconies: 2,
+        image: "/images/projects/apple-floorplan.jpg",
         dimensions: {
           masterBedroom: "14'6\" x 10'10\"",
           guestBedroom: "10'1½\" x 11'0\"",
@@ -184,6 +193,7 @@ export const projectData: Record<string, Project> = {
         bedrooms: 3,
         bathrooms: 3,
         balconies: 2,
+        image: "/images/projects/apple-floorplan.jpg",
         dimensions: {
           masterBedroom: "10'10\" x 14'10\"",
           guestBedroom: "10'9\" x 10'6\"",
@@ -205,7 +215,9 @@ export const projectData: Record<string, Project> = {
       "Generator": "Generator backup for lift, common lighting, and essential flat points."
     },
     gallery: [
-      { id: "g1", title: "Elevation View", category: "Exterior", image: "/images/projects/apple.jpg" }
+      { id: "g1", title: "Elevation View", category: "Exterior", image: "/images/projects/apple-elevation.jpg" },
+      { id: "g2", title: "3D Isometric Interior View", category: "Interior", image: "/images/projects/apple-isometric.jpg" },
+      { id: "g3", title: "2D Floor Plan Layout", category: "Floor Plan", image: "/images/projects/apple-floorplan.jpg" }
     ],
     highlights: ["3D Isometric Floor Layouts", "Near Bandar Road", "Johnson Elevator", "Clear Title", "Vaastu Designed"],
     amenities: ["Intercom System", "Power Backup", "Covered Car Parking", "Granite Corridors"],
@@ -226,8 +238,9 @@ export const projectData: Record<string, Project> = {
     city: "Vijayawada",
     status: "COMPLETED",
     category: "Apartments",
-    heroImage: "/images/projects/cherry.jpg",
-    exteriorImage: "/images/projects/cherry.jpg",
+    heroImage: "/images/projects/cherry-elevation.jpg",
+    exteriorImage: "/images/projects/cherry-elevation.jpg",
+    floorPlanImage: "/images/projects/cherry-floorplan.jpg",
     tagline: "1625 SFT 3 BHK Luxury Residences @ Kanuru",
     configurations: ["3 BHK (1625 SFT)"],
     siteArea: "Varalakshmi Puram",
@@ -247,6 +260,7 @@ export const projectData: Record<string, Project> = {
         bedrooms: 3,
         bathrooms: 3,
         balconies: 2,
+        image: "/images/projects/cherry-floorplan.jpg",
         dimensions: {
           masterBedroom: "14'7\" x 11'0\"",
           guestBedroom: "14'2\" x 10'6\"",
@@ -258,15 +272,17 @@ export const projectData: Record<string, Project> = {
       }
     ],
     specifications: {
-      "Structure": "RCC framed structure.",
-      "Flooring": "800x800mm Vitrified tiles of reputed make.",
-      "Doors": "Melamine polished teak wood main door.",
-      "Windows": "UPVC Windows with mosquito mesh track.",
+      "Structure": "RCC framed structure to withstand wind and seismic loads.",
+      "Super Structure": "Lightweight clay brick masonry in cement mortar.",
+      "Flooring": "800x800mm Vitrified tiles of reputed make. Granite in corridors & staircase.",
+      "Doors": "Melamine polished teak wood main door with designer hardware.",
+      "Windows": "UPVC Windows with mosquito mesh track and MS safety grill.",
       "Lifts": "Six passenger lift with vitrified/granite cladding.",
       "Generator": "Backup for lift, water motor, common lighting & 6 points inside flat."
     },
     gallery: [
-      { id: "g1", title: "Cherry Elevation", category: "Exterior", image: "/images/projects/cherry.jpg" }
+      { id: "g1", title: "Cherry Building Elevation", category: "Exterior", image: "/images/projects/cherry-elevation.jpg" },
+      { id: "g2", title: "Floor Plan Layout", category: "Floor Plan", image: "/images/projects/cherry-floorplan.jpg" }
     ],
     highlights: ["800x800mm Premium Tiles", "UPVC Mosquito Mesh Windows", "Near Benz Circle", "Completed Project"],
     amenities: ["Intercom", "Generator Backup", "Lift with Granite Cladding", "Car Parking"],
@@ -278,71 +294,90 @@ export const projectData: Record<string, Project> = {
     siteAddress: "Varalakshmi Puram, Kanuru, Vijayawada"
   },
 
-  "akhil-signature": {
-    id: "akhil-signature",
-    slug: "akhil-signature",
-    name: "Akhil Signature",
-    location: "Banjara Hills / VIP Zone",
-    area: "VIP Zone",
+  "daffodils": {
+    id: "daffodils",
+    slug: "daffodils",
+    name: "Daffodils",
+    location: "Tadigadapa 100ft Road, Poranki",
+    area: "Poranki",
     city: "Vijayawada",
-    status: "UPCOMING",
-    category: "Villas",
-    heroImage: "/images/projects/apple.jpg",
-    exteriorImage: "/images/projects/apple.jpg",
-    tagline: "Signature Ultra-Luxury 4 & 5 BHK Villas",
-    configurations: ["4 BHK Villas", "5 BHK Villas"],
-    siteArea: "Gated Community",
-    unitCount: "Exclusive Villa Enclave",
-    overview: "Akhil Signature represents the pinnacle of luxury villa living, featuring individual private gardens, terrace club lounges, smart automation, and architectural grandiosity.",
-    locationHighlights: [
-      "Prime VIP Residential Zone",
-      "Serene Landscaping & Gated Security",
-      "Close to Premier International Schools & Shopping Centers"
-    ],
-    floorPlans: [],
-    specifications: {
-      "Structure": "Ultra-heavy RCC frame with smart home automation conduit.",
-      "Flooring": "Italian Marble & Hardwood Flooring in Master Suite."
-    },
-    gallery: [],
-    highlights: ["Private Terrace Lounges", "Smart Villa Automation", "CREDAI Accredited", "100% Vaastu"],
-    amenities: ["Clubhouse", "Swimming Pool", "24/7 Gated Security", "Solar Power Grid"],
-    locationDetails: "VIP Zone, Vijayawada",
-    architects: { design: "Clark Lloyd International" },
-    siteAddress: "VIP Zone, Vijayawada"
-  },
-
-  "akhil-heights": {
-    id: "akhil-heights",
-    slug: "akhil-heights",
-    name: "Akhil Heights",
-    location: "Pinnamaneni Colony, Kanuru",
-    area: "Kanuru",
-    city: "Vijayawada",
-    status: "ONGOING",
+    status: "COMPLETED",
     category: "Apartments",
-    heroImage: "/images/projects/blueberry.jpg",
-    exteriorImage: "/images/projects/blueberry.jpg",
-    tagline: "Premium High-Rise Living in Kanuru",
-    configurations: ["3 BHK", "4 BHK Luxury Apartments"],
-    siteArea: "Kanuru High Growth Corridor",
-    unitCount: "High-Rise Residential Towers",
-    overview: "Akhil Heights brings futuristic high-rise residential towers to Kanuru with expansive balconies, multi-tier security, and state-of-the-art community club amenities.",
+    heroImage: "/images/projects/daffodils-elevation.jpg",
+    exteriorImage: "/images/projects/daffodils-elevation.jpg",
+    floorPlanImage: "/images/projects/daffodils-floorplan.jpg",
+    locationMapImage: "/images/projects/daffodils-map.jpg",
+    tagline: "1700 & 1730 SFT 3 BHK Premium Residences @ Tadigadapa",
+    configurations: ["3 BHK East Facing (1700 SFT)", "3 BHK North Facing (1730 SFT)"],
+    siteArea: "Tadigadapa 100ft Road, Poranki",
+    unitCount: "5 Floors | 3 BHK Luxury Apartments",
+    overview: "Daffodils by Akhil Promoters offers premium 3 BHK residential apartments strategically located on Tadigadapa 100 Feet Road, Poranki. Designed with 100% Vaastu compliance, spacious east- and north-facing layouts, premium vitrified tile flooring, and excellent proximity to Kamineni Hospital and top schools.",
     locationHighlights: [
-      "Walking distance from Akhil Promoters Head Office",
-      "Proximity to Pinnamaneni Teachers Colony",
-      "Direct access to Bandar Road"
+      "Prime location on Tadigadapa 100 Feet Road",
+      "1 Km from Kamineni Hospital",
+      "4 Kms from Shamrock School & Chaitanya College",
+      "8 Kms from Benz Circle",
+      "12 Kms from Gannavaram Airport & Railway Station",
+      "2 Kms from D-Mart & Best Price"
     ],
-    floorPlans: [],
+    floorPlans: [
+      {
+        title: "3 BHK East Facing",
+        size: "1700 SFT",
+        type: "3 BHK Flat",
+        bedrooms: 3,
+        bathrooms: 3,
+        balconies: 2,
+        image: "/images/projects/daffodils-floorplan.jpg",
+        dimensions: {
+          masterBedroom: "12'6\" x 10'0\"",
+          guestBedroom: "11'1\" x 10'0\"",
+          childrenBedroom: "12'0\" x 14'3\"",
+          drawingHall: "15'9\" x 11'0\"",
+          dining: "15'6\" x 10'6\"",
+          kitchen: "10'9\" x 8'9\""
+        }
+      },
+      {
+        title: "3 BHK North Facing",
+        size: "1730 SFT",
+        type: "3 BHK Flat",
+        bedrooms: 3,
+        bathrooms: 3,
+        balconies: 2,
+        image: "/images/projects/daffodils-floorplan.jpg",
+        dimensions: {
+          masterBedroom: "11'6\" x 15'3\"",
+          guestBedroom: "11'1\" x 11'0\"",
+          childrenBedroom: "11'1\" x 13'0\"",
+          drawingHall: "15'6\" x 24'9\" (Hall & Dining)",
+          dining: "15'6\" x 24'9\"",
+          kitchen: "11'6\" x 9'0\""
+        }
+      }
+    ],
     specifications: {
-      "Structure": "Seismic Zone compliant high-rise RCC design.",
-      "Joinery": "Teak doors and double-glazed soundproof UPVC windows."
+      "Structure": "RCC framed structure designed to withstand wind and seismic loads.",
+      "Super Structure": "Lightweight clay brick masonry in cement mortar for internal and external walls.",
+      "Plastering": "Internal: Single coat smooth finished plastering. External: Double coat smooth finished plastering.",
+      "Joinery": "Melamine polished teak wood main door. Teak wood frames with waterproof flush door shutters for internal doors. UPVC windows with mosquito mesh.",
+      "Flooring": "800x800mm Vitrified tiles of reputed make in living, dining, and bedrooms. Granite in corridors and staircase.",
+      "Electrical": "Concealed copper wiring of reputed make. Power plug for AC in all bedrooms and living room.",
+      "Lifts": "Six passenger lift of reputed make with vitrified tile/granite cladding.",
+      "Generator": "Generator backup for lift, water motor, common lighting, and six points inside each flat."
     },
-    gallery: [],
-    highlights: ["High-rise Views", "Multi-tier Security", "Children Play Zone", "EV Charging Point"],
-    amenities: ["Automatic Elevators", "High Speed Fiber Internet", "Power Backup", "Gym & Yoga Deck"],
-    locationDetails: "Kanuru, Vijayawada",
-    architects: { design: "D+D Architecture" },
-    siteAddress: "Kanuru, Vijayawada"
+    gallery: [
+      { id: "g1", title: "Daffodils Elevation", category: "Exterior", image: "/images/projects/daffodils-elevation.jpg" },
+      { id: "g2", title: "Floor Plan Layouts", category: "Floor Plan", image: "/images/projects/daffodils-floorplan.jpg" },
+      { id: "g3", title: "Location Map", category: "Location", image: "/images/projects/daffodils-map.jpg" }
+    ],
+    highlights: ["800x800mm Vitrified Tiles", "Tadigadapa 100ft Road Access", "100% Vaastu Compliant", "Six Passenger Lift", "Full Generator Backup"],
+    amenities: ["Intercom Facility", "Dedicated Covered Parking", "Rainwater Harvesting", "24/7 Security & Power Backup"],
+    locationDetails: "Tadigadapa 100ft Road, Poranki, Vijayawada",
+    architects: {
+      design: "Anne Raghuram (Vijayawada)",
+      interiors: "K. Ramesh (Visakhapatnam)"
+    },
+    siteAddress: "Tadigadapa 100ft Road, Poranki, Vijayawada"
   }
 };

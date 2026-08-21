@@ -100,7 +100,7 @@ export const GlobalHeader = () => {
   };
 
   const isLight = !isScrolled;
-  const logoSrc = isScrolled ? '/images/logo.svg' : '/images/logo-light.svg';
+  const logoSrc = isScrolled ? '/images/logo.png' : '/images/logo-light.png';
 
   return (
     <>
@@ -119,7 +119,7 @@ export const GlobalHeader = () => {
               <img
                 src={logoSrc}
                 alt="Akhil Promoters"
-                className="h-[42px] w-auto object-contain"
+                className="h-10 md:h-12 w-auto object-contain transition-all duration-200"
               />
             </Link>
 
@@ -221,7 +221,7 @@ export const GlobalHeader = () => {
           >
             {/* Mobile header */}
             <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-              <img src="/images/logo-light.svg" alt="Akhil Promoters" className="h-10 w-auto" />
+              <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-10 w-auto object-contain" />
               <button onClick={() => setMobileOpen(false)} className="p-2 text-white/60 hover:text-white">
                 <X size={22} />
               </button>

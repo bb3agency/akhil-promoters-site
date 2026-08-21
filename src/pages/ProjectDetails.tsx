@@ -179,14 +179,69 @@ export const ProjectDetails = () => {
               </div>
 
               {/* Elevation Render */}
-              <div className="bg-white p-4 rounded-2xl border border-akhil-border overflow-hidden">
-                <h4 className="text-sm font-bold text-akhil-charcoal mb-3">Elevation & Render View</h4>
-                <img
-                  src={project.heroImage}
-                  alt={project.name}
-                  className="w-full rounded-xl object-cover aspect-[16/9]"
-                />
+              <div className="bg-white p-6 rounded-2xl border border-akhil-border overflow-hidden">
+                <div className="flex items-center justify-between mb-4">
+                  <div>
+                    <span className="text-[10px] font-bold text-akhil-red uppercase tracking-wider block">Architectural Render</span>
+                    <h4 className="text-lg font-serif text-akhil-charcoal font-bold">{project.name} Elevation</h4>
+                  </div>
+                  <button
+                    onClick={openBrochureModal}
+                    className="px-4 py-2 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold uppercase rounded-lg transition-colors inline-flex items-center gap-1.5"
+                  >
+                    <Download size={13} /> Brochure
+                  </button>
+                </div>
+                <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2">
+                  <img
+                    src={project.exteriorImage || project.heroImage}
+                    alt={project.name}
+                    className="max-h-[600px] w-auto object-contain rounded-lg shadow-sm"
+                  />
+                </div>
               </div>
+
+              {/* 3D Isometric Layout View (If available) */}
+              {project.isometricImage && (
+                <div className="bg-white p-6 rounded-2xl border border-akhil-border overflow-hidden">
+                  <div className="mb-4">
+                    <span className="text-[10px] font-bold text-akhil-red uppercase tracking-wider block">3D Interior Cutaway</span>
+                    <h4 className="text-lg font-serif text-akhil-charcoal font-bold">Isometric Layout Perspective</h4>
+                  </div>
+                  <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2">
+                    <img
+                      src={project.isometricImage}
+                      alt={`${project.name} Isometric View`}
+                      className="max-h-[600px] w-auto object-contain rounded-lg shadow-sm"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {/* Project Gallery */}
+              {project.gallery && project.gallery.length > 0 && (
+                <div className="bg-white p-8 rounded-2xl border border-akhil-border">
+                  <div className="mb-6">
+                    <span className="text-[10px] font-bold text-akhil-red uppercase tracking-wider block">Visual Assets</span>
+                    <h4 className="text-xl font-serif text-akhil-charcoal font-bold">Project Gallery</h4>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {project.gallery.map((g) => (
+                      <div key={g.id} className="group relative rounded-xl overflow-hidden border border-gray-100 bg-gray-50 aspect-square flex flex-col">
+                        <img
+                          src={g.image}
+                          alt={g.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-3 opacity-90 group-hover:opacity-100 transition-opacity">
+                          <span className="text-[9px] font-bold text-akhil-red uppercase tracking-wider">{g.category}</span>
+                          <span className="text-xs font-medium text-white">{g.title}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Architects & Engineers */}
               {project.architects && (
@@ -289,26 +344,45 @@ export const ProjectDetails = () => {
 
             {/* Selected Plan Details */}
             {project.floorPlans[selectedFloorPlanIndex] && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div className="lg:col-span-7 bg-akhil-off-white p-6 rounded-2xl border border-akhil-border text-center">
-                  <span className="text-xs font-bold text-akhil-red uppercase block mb-2">
-                    Floor Plan Layout & Room Dimensions
-                  </span>
-                  <div className="p-8 bg-white rounded-xl shadow-inner border border-gray-200">
-                    <Layers size={48} className="mx-auto text-akhil-red opacity-80 mb-4" />
-                    <h4 className="text-xl font-serif text-akhil-charcoal font-bold mb-2">
-                      {project.floorPlans[selectedFloorPlanIndex].title}
-                    </h4>
-                    <p className="text-xs text-akhil-gray mb-6">
-                      Total Area: <strong>{project.floorPlans[selectedFloorPlanIndex].size}</strong>
-                    </p>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div className="lg:col-span-7 bg-akhil-off-white p-6 rounded-2xl border border-akhil-border">
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <span className="text-xs font-bold text-akhil-red uppercase block">
+                        Architectural Layout Diagram
+                      </span>
+                      <h4 className="text-xl font-serif text-akhil-charcoal font-bold">
+                        {project.floorPlans[selectedFloorPlanIndex].title} ({project.floorPlans[selectedFloorPlanIndex].size})
+                      </h4>
+                    </div>
                     <button
                       onClick={openBrochureModal}
-                      className="px-6 py-3 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold uppercase rounded-xl transition-colors inline-flex items-center gap-2"
+                      className="px-4 py-2 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold uppercase rounded-xl transition-colors inline-flex items-center gap-1.5"
                     >
-                      <Download size={14} /> Request HD 2D/3D Floor Plan PDF
+                      <Download size={13} /> Request PDF
                     </button>
                   </div>
+                  
+                  {/* Floor plan visual image */}
+                  {(project.floorPlans[selectedFloorPlanIndex].image || project.floorPlanImage) ? (
+                    <div className="p-3 bg-white rounded-xl shadow-inner border border-gray-200 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={project.floorPlans[selectedFloorPlanIndex].image || project.floorPlanImage}
+                        alt={`${project.name} ${project.floorPlans[selectedFloorPlanIndex].title}`}
+                        className="max-h-[600px] w-auto object-contain rounded-lg hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  ) : (
+                    <div className="p-8 bg-white rounded-xl shadow-inner border border-gray-200 text-center">
+                      <Layers size={48} className="mx-auto text-akhil-red opacity-80 mb-4" />
+                      <h4 className="text-xl font-serif text-akhil-charcoal font-bold mb-2">
+                        {project.floorPlans[selectedFloorPlanIndex].title}
+                      </h4>
+                      <p className="text-xs text-akhil-gray mb-6">
+                        Total Area: <strong>{project.floorPlans[selectedFloorPlanIndex].size}</strong>
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Room Dimensions Table */}
@@ -374,6 +448,19 @@ export const ProjectDetails = () => {
               <h3 className="text-2xl font-serif text-akhil-charcoal mb-2">Location Map & Surroundings</h3>
               <p className="text-xs text-akhil-gray mb-6">{project.siteAddress}</p>
             </div>
+
+            {project.locationMapImage && (
+              <div className="p-4 bg-akhil-off-white rounded-2xl border border-akhil-border overflow-hidden">
+                <h4 className="text-xs font-bold uppercase text-akhil-red mb-3">Architectural Location Map</h4>
+                <div className="rounded-xl overflow-hidden bg-white p-3 border border-gray-100 flex items-center justify-center">
+                  <img
+                    src={project.locationMapImage}
+                    alt={`${project.name} Location Map`}
+                    className="max-h-[500px] w-auto object-contain rounded-lg"
+                  />
+                </div>
+              </div>
+            )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.locationHighlights.map((highlight, idx) => (
