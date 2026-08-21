@@ -102,16 +102,26 @@ export const GlobalHeader = () => {
     dropdownTimer.current = setTimeout(() => setActiveDropdown(null), 120);
   };
 
-  const isLight = !isScrolled;
-  const logoSrc = isScrolled ? '/images/logo.png' : '/images/logo-light.png';
+  const isHomePage = location.pathname === '/';
+  const isTransparentDarkHeader = isHomePage && !isScrolled;
+  const logoSrc = isTransparentDarkHeader ? '/images/logo-light.png' : '/images/logo.png';
+
+  const isItemActive = (item: { name: string; href?: string; dropdown?: any[] }) => {
+    if (item.href === '/') return location.pathname === '/';
+    if (item.href) return location.pathname === item.href || location.pathname.startsWith(item.href + '/');
+    if (item.dropdown) {
+      return item.dropdown.some(sub => sub.href && (location.pathname === sub.href || location.pathname.startsWith(sub.href + '/')));
+    }
+    return false;
+  };
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'header-glass border-b border-[#DDD9D1]/70 shadow-[0_1px_12px_rgba(0,0,0,0.06)]'
-            : 'bg-transparent'
+          isTransparentDarkHeader
+            ? 'bg-transparent'
+            : 'header-glass border-b border-[#DDD9D1]/70 shadow-[0_1px_12px_rgba(0,0,0,0.06)]'
         }`}
       >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
@@ -128,65 +138,74 @@ export const GlobalHeader = () => {
 
             {/* ── Desktop Navigation ── */}
             <nav className="hidden lg:flex flex-1 items-center gap-1 xl:gap-2">
-              {navigation.map((item) => (
-                <div
-                  key={item.name}
-                  className="relative"
-                  onMouseEnter={() => item.dropdown && openDropdown(item.name)}
-                  onMouseLeave={() => item.dropdown && closeDropdown()}
-                >
-                  <Link
-                    to={item.href || '#'}
-                    className={`type-nav flex items-center gap-1 px-3 py-2 rounded transition-colors ${
-                      location.pathname === item.href
-                        ? 'text-[#C8102E]'
-                        : isLight
-                        ? 'text-white/90 hover:text-white'
-                        : 'text-[#181714] hover:text-[#C8102E]'
-                    }`}
+              {navigation.map((item) => {
+                const active = isItemActive(item);
+                return (
+                  <div
+                    key={item.name}
+                    className="relative"
+                    onMouseEnter={() => item.dropdown && openDropdown(item.name)}
+                    onMouseLeave={() => item.dropdown && closeDropdown()}
                   >
-                    {item.name}
-                    {item.dropdown && (
-                      <ChevronDown
-                        size={11}
-                        className={`transition-transform duration-200 opacity-60 ${
-                          activeDropdown === item.name ? 'rotate-180 text-[#C8102E]' : ''
-                        }`}
-                      />
-                    )}
-                  </Link>
+                    <Link
+                      to={item.href || '#'}
+                      className={`type-nav flex items-center gap-1 px-3 py-2 rounded transition-colors ${
+                        active
+                          ? 'text-[#C8102E] font-semibold'
+                          : isTransparentDarkHeader
+                          ? 'text-white/90 hover:text-white'
+                          : 'text-[#181714] hover:text-[#C8102E]'
+                      }`}
+                    >
+                      {item.name}
+                      {item.dropdown && (
+                        <ChevronDown
+                          size={11}
+                          className={`transition-transform duration-200 opacity-60 ${
+                            activeDropdown === item.name ? 'rotate-180 text-[#C8102E]' : ''
+                          }`}
+                        />
+                      )}
+                    </Link>
 
-                  {/* Dropdown Menu */}
-                  <AnimatePresence>
-                    {item.dropdown && activeDropdown === item.name && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 4 }}
-                        transition={{ duration: 0.16 }}
-                        className="absolute top-full left-0 mt-2 w-56 bg-white border border-[#DDD9D1] shadow-xl py-2 z-50 rounded-sm"
-                        onMouseEnter={() => openDropdown(item.name)}
-                        onMouseLeave={closeDropdown}
-                      >
-                        {item.dropdown.map((sub, idx) =>
-                          'divider' in sub && sub.divider ? (
-                            <div key={`div-${idx}`} className="mx-4 my-1 h-px bg-[#E8E4DC]" />
-                          ) : (
-                            <Link
-                              key={sub.name}
-                              to={sub.href || '#'}
-                              className="group flex items-center justify-between px-5 py-3 text-[11px] font-[500] tracking-wide text-[#2C2926] hover:text-[#C8102E] hover:bg-[#F7F5F0] transition-colors relative"
-                            >
-                              <span>{sub.name}</span>
-                              <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0.5 h-0 bg-[#C8102E] group-hover:h-full transition-all duration-200" />
-                            </Link>
-                          )
-                        )}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              ))}
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                      {item.dropdown && activeDropdown === item.name && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 6 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 4 }}
+                          transition={{ duration: 0.16 }}
+                          className="absolute top-full left-0 mt-2 w-56 bg-white border border-[#DDD9D1] shadow-xl py-2 z-50 rounded-sm"
+                          onMouseEnter={() => openDropdown(item.name)}
+                          onMouseLeave={closeDropdown}
+                        >
+                          {item.dropdown.map((sub, idx) =>
+                            'divider' in sub && sub.divider ? (
+                              <div key={`div-${idx}`} className="mx-4 my-1 h-px bg-[#E8E4DC]" />
+                            ) : (
+                              <Link
+                                key={sub.name}
+                                to={sub.href || '#'}
+                                className={`group flex items-center justify-between px-5 py-3 text-[11px] font-[500] tracking-wide transition-colors relative ${
+                                  location.pathname === sub.href
+                                    ? 'text-[#C8102E] bg-[#F7F5F0]'
+                                    : 'text-[#2C2926] hover:text-[#C8102E] hover:bg-[#F7F5F0]'
+                                }`}
+                              >
+                                <span>{sub.name}</span>
+                                <span className={`absolute left-0 top-1/2 -translate-y-1/2 w-0.5 transition-all duration-200 ${
+                                  location.pathname === sub.href ? 'h-full bg-[#C8102E]' : 'h-0 bg-[#C8102E] group-hover:h-full'
+                                }`} />
+                              </Link>
+                            )
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
             </nav>
 
             {/* ── Desktop CTA ── */}
@@ -202,7 +221,9 @@ export const GlobalHeader = () => {
             {/* ── Mobile Hamburger ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-2.5 rounded-lg transition-colors ${isLight ? 'text-white hover:bg-white/10' : 'text-[#181714] hover:bg-black/5'}`}
+              className={`lg:hidden p-2.5 rounded-lg transition-colors ${
+                isTransparentDarkHeader ? 'text-white hover:bg-white/10' : 'text-[#181714] hover:bg-black/5'
+              }`}
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
