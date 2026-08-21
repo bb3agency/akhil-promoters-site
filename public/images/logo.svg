@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 90" fill="none">
+  <!-- Pentagon / House Icon -->
+  <g transform="translate(0, 0)">
+    <!-- Main red pentagon house shape -->
+    <path d="M42 4 L78 26 L78 68 L6 68 L6 26 Z" fill="#C8102E"/>
+    <!-- Grey accent block bottom-right of pentagon -->
+    <path d="M62 68 L78 68 L78 52 Z" fill="#5A5A5A"/>
+    <!-- White inner house outline (small house silhouette inside) -->
+    <path d="M42 18 L60 30 L60 52 L24 52 L24 30 Z" fill="none" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="35" y="37" width="14" height="15" fill="white"/>
+  </g>
+
+  <!-- AKHIL text -->
+  <text x="90" y="44"
+    font-family="'Arial Black', 'Arial', sans-serif"
+    font-weight="900"
+    font-size="26"
+    letter-spacing="1"
+    fill="#C8102E">AKHIL</text>
+
+  <!-- PROMOTERS text -->
+  <text x="90" y="64"
+    font-family="'Arial', sans-serif"
+    font-weight="600"
+    font-size="14"
+    letter-spacing="3"
+    fill="#C8102E">PROMOTERS</text>
+</svg>
