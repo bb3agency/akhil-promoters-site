@@ -40,12 +40,6 @@ const navigation = [
   {
     name: 'Who We Are',
     href: '/who-we-are',
-    dropdown: [
-      { name: 'Company Profile', href: '/who-we-are/company-profile' },
-      { name: 'Vision & Mission', href: '/who-we-are/vision-mission' },
-      { name: 'Values', href: '/who-we-are/values' },
-      { name: 'Partners', href: '/who-we-are/partners' },
-    ],
   },
   {
     name: 'Contact',

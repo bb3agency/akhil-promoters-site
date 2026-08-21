@@ -97,11 +97,11 @@ export const Footer = () => {
               <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Company</p>
               <ul className="space-y-2.5 sm:space-y-3">
                 {[
-                  { name: 'Company Profile', href: '/who-we-are/company-profile' },
-                  { name: 'Our Story', href: '/who-we-are/story' },
-                  { name: 'Leadership', href: '/who-we-are/leadership' },
-                  { name: 'Vision & Mission', href: '/who-we-are/vision-mission' },
-                  { name: 'Values', href: '/who-we-are/values' },
+                  { name: 'Who We Are', href: '/who-we-are' },
+                  { name: 'Our Projects', href: '/projects' },
+                  { name: 'Buyers Guide', href: '/buyers-guide' },
+                  { name: 'Support & Tools', href: '/support-services' },
+                  { name: 'Contact Us', href: '/contact' },
                 ].map((l) => (
                   <li key={l.name}>
                     <Link
