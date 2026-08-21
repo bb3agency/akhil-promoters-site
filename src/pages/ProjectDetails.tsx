@@ -30,40 +30,38 @@ export const ProjectDetails = () => {
 
   return (
     <div className="bg-akhil-off-white min-h-screen pt-24 pb-20">
-      {/* 1. HERO BANNER */}
-      <section className="relative bg-akhil-dark text-white py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-30 pointer-events-none">
-          <img src={project.heroImage} alt={project.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-akhil-dark via-akhil-dark/80 to-transparent" />
+      {/* 1. HERO SECTION */}
+      <section className="relative min-h-[420px] sm:min-h-[500px] flex items-end pb-12 sm:pb-16 pt-28 sm:pt-36 overflow-hidden bg-akhil-dark">
+        {/* Background Image & Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={project.heroImage}
+            alt={project.name}
+            className="w-full h-full object-cover opacity-35"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-akhil-dark via-akhil-dark/70 to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2 text-xs font-bold text-akhil-gray hover:text-white uppercase tracking-widest mb-6 transition-colors"
-          >
-            <ArrowLeft size={16} /> Back to Projects
-          </Link>
-
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="px-3 py-1 bg-akhil-red text-white text-[10px] font-bold uppercase tracking-widest rounded-md">
+              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                <span className="px-2.5 sm:px-3 py-1 bg-akhil-red text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-md">
                   {project.status}
                 </span>
-                <span className="px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest rounded-md border border-white/20">
+                <span className="px-2.5 sm:px-3 py-1 bg-white/10 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-md border border-white/20">
                   {project.category}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-serif font-bold text-white mb-2">{project.name}</h1>
-              <p className="text-akhil-red text-sm font-semibold flex items-center gap-2 mb-4">
-                <MapPin size={16} /> {project.locationDetails}
+              <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-2">{project.name}</h1>
+              <p className="text-akhil-red text-xs sm:text-sm font-semibold flex items-center gap-2 mb-3 sm:mb-4">
+                <MapPin size={15} /> {project.locationDetails}
               </p>
-              <p className="text-gray-300 text-base max-w-2xl font-light">{project.tagline}</p>
+              <p className="text-gray-300 text-sm sm:text-base max-w-2xl font-light leading-relaxed">{project.tagline}</p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <button
                 onClick={openVisitModal}
                 className="px-6 py-3.5 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-lg flex items-center justify-center gap-2"
@@ -82,41 +80,41 @@ export const ProjectDetails = () => {
       </section>
 
       {/* 2. SPECIFICATION QUICK BAR */}
-      <section className="bg-white border-b border-akhil-border py-6 shadow-sm sticky top-20 z-30">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="flex flex-wrap items-center justify-between gap-6 text-xs text-akhil-charcoal">
-            <div>
-              <span className="text-[10px] text-akhil-gray block uppercase font-bold">Configurations</span>
-              <strong className="text-sm font-serif">{project.configurations.join(', ')}</strong>
+      <section className="bg-white border-b border-akhil-border py-4 sm:py-5 shadow-sm sticky top-[64px] sm:top-[68px] z-30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-akhil-charcoal">
+            <div className="border-r border-gray-100 pr-2 last:border-0 md:border-r">
+              <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Configurations</span>
+              <strong className="text-xs sm:text-sm font-serif line-clamp-1">{project.configurations.join(', ')}</strong>
             </div>
 
-            <div>
-              <span className="text-[10px] text-akhil-gray block uppercase font-bold">Compliance</span>
-              <strong className="text-sm font-serif text-emerald-700 flex items-center gap-1">
-                <Compass size={14} /> 100% Vaastu Compliant
+            <div className="border-r-0 md:border-r border-gray-100 pr-2">
+              <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Compliance</span>
+              <strong className="text-xs sm:text-sm font-serif text-emerald-700 flex items-center gap-1">
+                <Compass size={13} /> 100% Vaastu
               </strong>
             </div>
 
-            <div>
-              <span className="text-[10px] text-akhil-gray block uppercase font-bold">Location</span>
-              <strong className="text-sm font-serif">{project.area}, Vijayawada</strong>
+            <div className="border-r border-gray-100 pr-2">
+              <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Location</span>
+              <strong className="text-xs sm:text-sm font-serif line-clamp-1">{project.area}</strong>
             </div>
 
             <div>
-              <span className="text-[10px] text-akhil-gray block uppercase font-bold">Builder</span>
-              <strong className="text-sm font-serif text-akhil-red">Akhil Promoters (CREDAI)</strong>
+              <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Builder</span>
+              <strong className="text-xs sm:text-sm font-serif text-akhil-red">CREDAI Member</strong>
             </div>
           </div>
         </div>
       </section>
 
       {/* 3. MAIN NAVIGATION TABS & CONTENT */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12">
         {/* Navigation Tabs */}
-        <div className="flex items-center gap-4 border-b border-akhil-border mb-10 overflow-x-auto">
+        <div className="flex items-center gap-2 sm:gap-4 border-b border-akhil-border mb-8 sm:mb-10 overflow-x-auto no-scrollbar pb-1">
           <button
             onClick={() => setActiveTab('overview')}
-            className={`pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 ${
+            className={`pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
               activeTab === 'overview'
                 ? 'border-akhil-red text-akhil-red'
                 : 'border-transparent text-akhil-gray hover:text-akhil-charcoal'
@@ -127,7 +125,7 @@ export const ProjectDetails = () => {
           {project.floorPlans.length > 0 && (
             <button
               onClick={() => setActiveTab('floorplans')}
-              className={`pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 ${
+              className={`pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
                 activeTab === 'floorplans'
                   ? 'border-akhil-red text-akhil-red'
                   : 'border-transparent text-akhil-gray hover:text-akhil-charcoal'
@@ -138,23 +136,23 @@ export const ProjectDetails = () => {
           )}
           <button
             onClick={() => setActiveTab('specs')}
-            className={`pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 ${
+            className={`pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
               activeTab === 'specs'
                 ? 'border-akhil-red text-akhil-red'
                 : 'border-transparent text-akhil-gray hover:text-akhil-charcoal'
             }`}
           >
-            Construction Specifications
+            Specifications
           </button>
           <button
             onClick={() => setActiveTab('location')}
-            className={`pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 ${
+            className={`pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
               activeTab === 'location'
                 ? 'border-akhil-red text-akhil-red'
                 : 'border-transparent text-akhil-gray hover:text-akhil-charcoal'
             }`}
           >
-            Location Map & Highlights
+            Location & Map
           </button>
         </div>
 

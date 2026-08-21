@@ -47,10 +47,17 @@
    BASE STYLES
 ───────────────────────────────────────────── */
 @layer base {
-  html {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100%;
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  html {
     background-color: var(--color-paper);
     color: var(--color-ink);
     font-family: var(--font-sans);
@@ -83,6 +90,15 @@
     outline: 2px solid var(--color-brand);
     outline-offset: 3px;
   }
+}
+
+/* Utilities for mobile horizontal scrolling tabs */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* ─────────────────────────────────────────────

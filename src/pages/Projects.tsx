@@ -32,45 +32,41 @@ export const Projects = () => {
   };
 
   return (
-    <div className="bg-akhil-off-white min-h-screen pt-28 pb-20">
+    <div className="bg-akhil-off-white min-h-screen pt-24 sm:pt-28 pb-16 sm:pb-20">
       {/* Header Banner */}
-      <section className="bg-akhil-dark text-white py-16 mb-12 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <section className="bg-akhil-dark text-white py-12 sm:py-16 mb-8 sm:mb-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <span className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-3 block">
             AKHIL PROMOTERS PORTFOLIO
           </span>
-          <h1 className="text-4xl md:text-6xl font-serif mb-4">Residential & Landmark Developments</h1>
-          <p className="text-gray-400 text-sm md:text-base max-w-2xl font-light">
-            Explore 3 BHK luxury flats and signature developments across Vijayawada’s premier locations including Ayodhya Nagar, Kanuru, and Lotus Land Mark.
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif mb-3 sm:mb-4">Residential & Landmark Developments</h1>
+          <p className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl font-light leading-relaxed">
+            Explore 3 BHK luxury flats and signature developments across Vijayawada’s premier locations including Ayodhya Nagar, Kanuru, and Poranki.
           </p>
         </div>
       </section>
 
       {/* Filter & Search Bar */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-12">
-        <div className="bg-white p-6 rounded-2xl border border-akhil-border shadow-sm flex flex-col lg:flex-row items-center gap-4 justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-12">
+        <div className="bg-white p-4 sm:p-6 rounded-2xl border border-akhil-border shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center gap-3 sm:gap-4 justify-between">
           {/* Search Input */}
           <div className="relative w-full lg:w-96">
             <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="text"
-              placeholder="Search by project name, location or flat size..."
+              placeholder="Search project, location, flat size..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-sm focus:outline-none focus:border-akhil-red"
+              className="w-full pl-11 pr-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-akhil-red"
             />
           </div>
 
           {/* Category & Status Filters */}
-          <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase text-akhil-gray">
-              <Filter size={14} /> Filter:
-            </div>
-
+          <div className="flex items-center gap-2 sm:gap-3 w-full lg:w-auto overflow-x-auto no-scrollbar">
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="px-4 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none"
+              className="flex-1 lg:flex-none px-3.5 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none"
             >
               <option value="ALL">All Categories</option>
               <option value="Apartments">Apartments</option>
@@ -80,7 +76,7 @@ export const Projects = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="px-4 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none"
+              className="flex-1 lg:flex-none px-3.5 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none"
             >
               <option value="ALL">All Statuses</option>
               <option value="ONGOING">Ongoing</option>
@@ -92,7 +88,7 @@ export const Projects = () => {
       </div>
 
       {/* Projects Grid */}
-      <main className="max-w-7xl mx-auto px-6 md:px-12">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20 bg-white rounded-2xl border border-akhil-border">
             <h3 className="text-2xl font-serif text-akhil-charcoal mb-2">No developments match your criteria</h3>

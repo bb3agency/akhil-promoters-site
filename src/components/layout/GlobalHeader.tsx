@@ -84,11 +84,22 @@ export const GlobalHeader = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  /* Close on route change */
+  /* Close on route change & lock body scroll on mobile open */
   useEffect(() => {
     setMobileOpen(false);
     setActiveDropdown(null);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileOpen]);
 
   /* Dropdown handlers with delay to prevent flicker */
   const openDropdown = (name: string) => {
@@ -111,15 +122,15 @@ export const GlobalHeader = () => {
             : 'bg-transparent'
         }`}
       >
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-10">
-          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[68px]' : 'h-[80px]'}`}>
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+          <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[64px] sm:h-[68px]' : 'h-[72px] sm:h-[80px]'}`}>
 
             {/* ── Logo ── */}
-            <Link to="/" className="flex-shrink-0 mr-10 lg:mr-16">
+            <Link to="/" className="flex-shrink-0 mr-4 sm:mr-10 lg:mr-16">
               <img
                 src={logoSrc}
                 alt="Akhil Promoters"
-                className="h-10 md:h-12 w-auto object-contain transition-all duration-200"
+                className="h-9 sm:h-11 md:h-12 w-auto object-contain transition-all duration-200"
               />
             </Link>
 
@@ -138,32 +149,31 @@ export const GlobalHeader = () => {
                       location.pathname === item.href
                         ? 'text-[#C8102E]'
                         : isLight
-                          ? 'text-white/90 hover:text-white'
-                          : 'text-[#2C2926] hover:text-[#C8102E]'
+                        ? 'text-white/90 hover:text-white'
+                        : 'text-[#181714] hover:text-[#C8102E]'
                     }`}
                   >
                     {item.name}
                     {item.dropdown && (
                       <ChevronDown
-                        size={12}
-                        className={`flex-shrink-0 transition-transform duration-200 ${activeDropdown === item.name ? 'rotate-180' : ''}`}
+                        size={11}
+                        className={`transition-transform duration-200 opacity-60 ${
+                          activeDropdown === item.name ? 'rotate-180 text-[#C8102E]' : ''
+                        }`}
                       />
                     )}
                   </Link>
 
-                  {/* Dropdown */}
+                  {/* Dropdown Menu */}
                   <AnimatePresence>
                     {item.dropdown && activeDropdown === item.name && (
                       <motion.div
                         initial={{ opacity: 0, y: 6 }}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 6 }}
-                        transition={{ duration: 0.15, ease: 'easeOut' }}
-                        className="absolute top-full left-0 mt-1 min-w-[220px] bg-white border border-[#E8E4DC] shadow-[0_8px_32px_rgba(0,0,0,0.10)] z-50 overflow-hidden"
-                        onMouseEnter={() => {
-                          if (dropdownTimer.current) clearTimeout(dropdownTimer.current);
-                          setActiveDropdown(item.name);
-                        }}
+                        exit={{ opacity: 0, y: 4 }}
+                        transition={{ duration: 0.16 }}
+                        className="absolute top-full left-0 mt-2 w-56 bg-white border border-[#DDD9D1] shadow-xl py-2 z-50 rounded-sm"
+                        onMouseEnter={() => openDropdown(item.name)}
                         onMouseLeave={closeDropdown}
                       >
                         {item.dropdown.map((sub, idx) =>
@@ -200,10 +210,10 @@ export const GlobalHeader = () => {
             {/* ── Mobile Hamburger ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-2 transition-colors ${isLight ? 'text-white' : 'text-[#181714]'}`}
+              className={`lg:hidden p-2.5 rounded-lg transition-colors ${isLight ? 'text-white hover:bg-white/10' : 'text-[#181714] hover:bg-black/5'}`}
               aria-label="Toggle menu"
             >
-              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -220,32 +230,33 @@ export const GlobalHeader = () => {
             className="fixed inset-0 z-50 bg-[#181714] text-white flex flex-col overflow-y-auto"
           >
             {/* Mobile header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-              <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-10 w-auto object-contain" />
-              <button onClick={() => setMobileOpen(false)} className="p-2 text-white/60 hover:text-white">
-                <X size={22} />
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
+              <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-9 w-auto object-contain" />
+              <button onClick={() => setMobileOpen(false)} className="p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/10" aria-label="Close menu">
+                <X size={24} />
               </button>
             </div>
 
             {/* Mobile nav links */}
-            <div className="flex-1 px-6 py-8 space-y-1">
+            <div className="flex-1 px-6 py-6 space-y-1 overflow-y-auto">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     to={item.href || '#'}
-                    className="block py-3 text-xl font-[Cormorant_Garamond,Georgia,serif] font-[500] text-white/90 hover:text-[#C8102E] transition-colors border-b border-white/5"
-                    style={{ fontFamily: 'Cormorant Garamond, Georgia, serif' }}
+                    onClick={() => setMobileOpen(false)}
+                    className="block py-3 text-lg font-serif font-medium text-white/90 hover:text-[#C8102E] transition-colors border-b border-white/5 active:bg-white/5"
                   >
                     {item.name}
                   </Link>
                   {item.dropdown && (
-                    <div className="pl-4 mb-2 space-y-1 border-l border-[#C8102E]/30 mt-1">
+                    <div className="pl-4 mb-2 space-y-1 border-l border-[#C8102E]/30 mt-2">
                       {item.dropdown.map((sub, idx) =>
                         'divider' in sub && sub.divider ? null : (
                           <Link
                             key={sub.name}
                             to={sub.href || '#'}
-                            className="block py-1.5 text-sm text-white/50 hover:text-white/90 transition-colors"
+                            onClick={() => setMobileOpen(false)}
+                            className="block py-2 text-xs font-medium text-white/60 hover:text-white active:text-[#C8102E] transition-colors"
                           >
                             {sub.name}
                           </Link>
@@ -258,10 +269,10 @@ export const GlobalHeader = () => {
             </div>
 
             {/* Mobile CTAs */}
-            <div className="px-6 pb-8 space-y-3 border-t border-white/10 pt-6">
+            <div className="p-6 space-y-3 border-t border-white/10 bg-[#181714]/95">
               <button
                 onClick={() => { setMobileOpen(false); setIsInquiryOpen(true); }}
-                className="w-full py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white type-label transition-colors"
+                className="w-full py-3.5 bg-[#C8102E] hover:bg-[#A50D24] text-white type-label transition-colors flex items-center justify-center font-bold tracking-wider uppercase text-xs rounded-none shadow-md"
               >
                 Schedule Site Visit
               </button>
@@ -269,9 +280,9 @@ export const GlobalHeader = () => {
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-4 border border-white/20 text-white/80 type-label flex items-center justify-center gap-2 hover:border-white/40 hover:text-white transition-colors"
+                className="w-full py-3.5 border border-white/20 text-white/90 type-label flex items-center justify-center gap-2 hover:border-white/40 hover:text-white transition-colors text-xs font-bold tracking-wider uppercase"
               >
-                <MessageSquare size={14} /> WhatsApp
+                <MessageSquare size={15} /> WhatsApp Advisory
               </a>
             </div>
           </motion.div>

@@ -52,56 +52,57 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-md overflow-y-auto">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-lg overflow-hidden bg-white shadow-2xl rounded-2xl border border-gray-100"
+          className="relative w-full max-w-lg overflow-hidden bg-white shadow-2xl rounded-2xl border border-gray-100 max-h-[92vh] flex flex-col"
         >
           {/* Header Banner */}
-          <div className="bg-akhil-dark text-white p-6 md:p-8 relative overflow-hidden">
+          <div className="bg-akhil-dark text-white p-5 sm:p-7 relative overflow-hidden shrink-0">
             <div className="absolute right-0 top-0 w-48 h-48 bg-akhil-red/10 rounded-full blur-2xl -mr-12 -mt-12 pointer-events-none" />
             <button
               onClick={onClose}
-              className="absolute top-5 right-5 text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
+              aria-label="Close modal"
             >
               <X size={20} />
             </button>
 
-            <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.2em] text-akhil-red uppercase mb-2">
+            <span className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-akhil-red uppercase mb-1.5 sm:mb-2">
               <ShieldCheck size={14} /> CREDAI ACCREDITED BUILDER
             </span>
-            <h3 className="text-2xl md:text-3xl font-serif text-white">{titles[modalType]}</h3>
-            <p className="text-xs md:text-sm text-gray-400 font-light mt-1">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white">{titles[modalType]}</h3>
+            <p className="text-xs sm:text-sm text-gray-400 font-light mt-1">
               Connect directly with Akhil Promoters' project advisory team.
             </p>
           </div>
 
           {/* Form Content */}
-          <div className="p-6 md:p-8 bg-akhil-off-white">
+          <div className="p-5 sm:p-7 bg-akhil-off-white overflow-y-auto flex-1">
             {submitted ? (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="py-10 text-center flex flex-col items-center"
+                className="py-8 text-center flex flex-col items-center"
               >
-                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
-                  <CheckCircle size={36} />
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
+                  <CheckCircle size={32} />
                 </div>
-                <h4 className="text-2xl font-serif text-akhil-charcoal mb-2">Inquiry Received!</h4>
-                <p className="text-sm text-akhil-gray max-w-xs leading-relaxed mb-6">
+                <h4 className="text-xl sm:text-2xl font-serif text-akhil-charcoal mb-2">Inquiry Received!</h4>
+                <p className="text-xs sm:text-sm text-akhil-gray max-w-xs leading-relaxed mb-6">
                   Thank you for reaching out. Our Vijayawada team will contact you shortly on <strong>{formData.phone}</strong>.
                 </p>
                 <button
                   onClick={handleWhatsApp}
-                  className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold tracking-wider uppercase rounded-xl transition-colors flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold tracking-wider uppercase rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   <MessageSquare size={16} /> Instant WhatsApp Response
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
+              <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1">
                     Select Project
@@ -109,17 +110,18 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   <select
                     value={formData.project}
                     onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                    className="w-full px-4 py-3 bg-white border border-akhil-border rounded-xl text-sm font-medium text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
+                    className="w-full px-4 py-3 bg-white border border-akhil-border rounded-xl text-base sm:text-sm font-medium text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
                   >
                     <option value="Blueberry">Blueberry (3 BHK - Ayodhya Nagar)</option>
                     <option value="Apple">Apple (3 BHK - Kanuru)</option>
                     <option value="Cherry">Cherry (3 BHK - Kanuru)</option>
+                    <option value="Daffodils">Daffodils (3 BHK - Poranki / Tadigadapa)</option>
                     <option value="Akhil Signature">Akhil Signature (Villas)</option>
                     <option value="Akhil Heights">Akhil Heights (Kanuru)</option>
                   </select>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1">
                       Full Name *
@@ -130,7 +132,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                       placeholder="e.g. Rajesh Kumar"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border border-akhil-border rounded-xl text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red"
+                      className="w-full px-4 py-3 bg-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red"
                     />
                   </div>
                   <div>
@@ -143,7 +145,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                       placeholder="+91 98765 43210"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-4 py-3 bg-white border border-akhil-border rounded-xl text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red"
+                      className="w-full px-4 py-3 bg-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red"
                     />
                   </div>
                 </div>
