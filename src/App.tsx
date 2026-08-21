@@ -8,7 +8,6 @@ import { Layout } from './components/layout/Layout';
 import { Home } from './pages/Home';
 import { Projects } from './pages/Projects';
 import { ProjectDetails } from './pages/ProjectDetails';
-import { Branches } from './pages/Branches';
 import { BuyersGuide } from './pages/BuyersGuide';
 import { SupportServices } from './pages/SupportServices';
 import { WhoWeAre } from './pages/WhoWeAre';
@@ -18,7 +17,6 @@ import { Values } from './pages/WhoWeAre/Values';
 import { Partners } from './pages/WhoWeAre/Partners';
 import { Story } from './pages/WhoWeAre/Story';
 import { Leadership } from './pages/WhoWeAre/Leadership';
-import { Careers } from './pages/Careers';
 import { ComingSoon } from './pages/ComingSoon';
 import { Contact } from './pages/Contact';
 
@@ -30,7 +28,6 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
           <Route path="projects/:slug" element={<ProjectDetails />} />
-          <Route path="branches" element={<Branches />} />
           <Route path="buyers-guide" element={<BuyersGuide />} />
           <Route path="support-services" element={<SupportServices />} />
           <Route path="who-we-are" element={<WhoWeAre />} />
@@ -40,7 +37,6 @@ export default function App() {
           <Route path="who-we-are/partners" element={<Partners />} />
           <Route path="who-we-are/story" element={<Story />} />
           <Route path="who-we-are/leadership" element={<Leadership />} />
-          <Route path="careers" element={<Careers />} />
           <Route path="contact" element={<Contact />} />
           <Route path="*" element={<ComingSoon />} />
         </Route>

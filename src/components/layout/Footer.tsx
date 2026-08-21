@@ -61,7 +61,6 @@ export const Footer = () => {
                   { name: 'Projects', href: '/projects' },
                   { name: 'Buyers Guide', href: '/buyers-guide' },
                   { name: 'Support & Tools', href: '/support-services' },
-                  { name: 'Branches', href: '/branches' },
                   { name: 'Contact', href: '/contact' },
                 ].map((l) => (
                   <li key={l.name}>
@@ -102,7 +101,7 @@ export const Footer = () => {
                   { name: 'Our Story', href: '/who-we-are/story' },
                   { name: 'Leadership', href: '/who-we-are/leadership' },
                   { name: 'Vision & Mission', href: '/who-we-are/vision-mission' },
-                  { name: 'Careers', href: '/careers' },
+                  { name: 'Values', href: '/who-we-are/values' },
                 ].map((l) => (
                   <li key={l.name}>
                     <Link
