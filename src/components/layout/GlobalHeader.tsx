@@ -122,7 +122,8 @@ export const GlobalHeader = () => {
           <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-[64px] sm:h-[68px]' : 'h-[72px] sm:h-[80px]'}`}>
 
             {/* ── Logo ── */}
-            <Link to="/" className="flex-shrink-0 mr-4 sm:mr-10 lg:mr-16">
+            {/* Side columns share a min-width so the centred nav lands on the true page centre */}
+            <Link to="/" className="flex-shrink-0 mr-4 xl:min-w-[170px]">
               <img
                 src={logoSrc}
                 alt="Akhil Promoters"
@@ -131,7 +132,7 @@ export const GlobalHeader = () => {
             </Link>
 
             {/* ── Desktop Navigation ── */}
-            <nav className="hidden lg:flex flex-1 items-center gap-1 xl:gap-2">
+            <nav className="hidden lg:flex flex-1 items-center justify-center gap-1 xl:gap-2">
               {navigation.map((item) => {
                 const active = isItemActive(item);
                 return (
@@ -203,7 +204,7 @@ export const GlobalHeader = () => {
             </nav>
 
             {/* ── Desktop CTA ── */}
-            <div className="hidden lg:flex items-center ml-4">
+            <div className="hidden lg:flex items-center justify-end ml-4 xl:min-w-[170px]">
               <button
                 onClick={() => setIsInquiryOpen(true)}
                 className="type-label px-5 py-[10px] bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors duration-200"
