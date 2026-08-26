@@ -34,7 +34,7 @@ export const Footer = () => {
               />
               <p
                 className="text-white/55 text-xs sm:text-sm leading-[1.8] mb-6 sm:mb-8 max-w-sm"
-                style={{ fontFamily: 'Inter, sans-serif', fontWeight: 300 }}
+                style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}
               >
                 Premium residences in Vijayawada. CREDAI member. Every home built with full legal title and uncompromised material quality.
               </p>
@@ -67,7 +67,7 @@ export const Footer = () => {
                     <Link
                       to={l.href}
                       className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-0.5"
-                      style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
+                      style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
                     </Link>
@@ -84,7 +84,7 @@ export const Footer = () => {
                     <Link
                       to={`/projects/${p.slug}`}
                       className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-0.5"
-                      style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
+                      style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {p.name}
                     </Link>
@@ -107,7 +107,7 @@ export const Footer = () => {
                     <Link
                       to={l.href}
                       className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-0.5"
-                      style={{ fontFamily: 'Inter, sans-serif', fontWeight: 400 }}
+                      style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
                     </Link>
@@ -122,20 +122,20 @@ export const Footer = () => {
               <div className="space-y-3">
                 <div className="flex items-start gap-2.5">
                   <MapPin size={14} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
-                  <p className="text-xs sm:text-sm text-white/55 leading-relaxed" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 300 }}>
+                  <p className="text-xs sm:text-sm text-white/55 leading-relaxed" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
                     {OFFICE_ADDRESS}
                   </p>
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Phone size={14} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
                   <div className="space-y-0.5">
-                    <a href={`tel:${OFFICE_PHONE_1}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'Inter, sans-serif' }}>{OFFICE_PHONE_1}</a>
-                    <a href={`tel:${OFFICE_PHONE_2}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'Inter, sans-serif' }}>{OFFICE_PHONE_2}</a>
+                    <a href={`tel:${OFFICE_PHONE_1}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_1}</a>
+                    <a href={`tel:${OFFICE_PHONE_2}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_2}</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail size={14} className="text-[#C8102E] flex-shrink-0" />
-                  <a href={`mailto:${OFFICE_EMAIL}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  <a href={`mailto:${OFFICE_EMAIL}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>
                     {OFFICE_EMAIL}
                   </a>
                 </div>
@@ -145,7 +145,7 @@ export const Footer = () => {
 
           {/* ── Bottom bar ──────────────────────────────── */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-[11px] text-white/30" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <p className="text-[11px] text-white/30" style={{ fontFamily: 'var(--font-sans)' }}>
               © {new Date().getFullYear()} Akhil Promoters Private Limited. CREDAI Member.
             </p>
             <button

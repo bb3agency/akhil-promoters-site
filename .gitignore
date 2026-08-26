@@ -32,6 +32,8 @@ bun.lock
 
 # Large binary files in repo root (kept locally, not in GitHub)
 *.pdf
+# ...except the brochures the site serves for download
+!public/brochures/*.pdf
 /akhil-promoters-logo.png
 
 # AI Studio artifacts

@@ -160,13 +160,24 @@ export const Projects = () => {
                     >
                       View Specs <ArrowRight size={14} />
                     </Link>
-                    <button
-                      onClick={() => handleOpenBrochureModal(project.name)}
-                      className="py-3 px-3 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors"
-                      title="Request Brochure"
-                    >
-                      <Download size={16} />
-                    </button>
+                    {project.brochureUrl ? (
+                      <a
+                        href={project.brochureUrl}
+                        download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
+                        className="py-3 px-3 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors"
+                        title={`Download ${project.name} brochure`}
+                      >
+                        <Download size={16} />
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => handleOpenBrochureModal(project.name)}
+                        className="py-3 px-3 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors"
+                        title="Request Brochure"
+                      >
+                        <Download size={16} />
+                      </button>
+                    )}
                   </div>
                 </div>
               </motion.div>

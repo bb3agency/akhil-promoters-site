@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { WHATSAPP_NUMBER } from '../../data';
-import { InquiryModal } from '../ui/InquiryModal';
 
 /* ─── Navigation Data ─────────────────────────── */
 const navigation = [
@@ -59,7 +58,6 @@ export const GlobalHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
   const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const location = useLocation();
 
@@ -203,15 +201,8 @@ export const GlobalHeader = () => {
               })}
             </nav>
 
-            {/* ── Desktop CTA ── */}
-            <div className="hidden lg:flex items-center justify-end ml-4 xl:min-w-[170px]">
-              <button
-                onClick={() => setIsInquiryOpen(true)}
-                className="type-label px-5 py-[10px] bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors duration-200"
-              >
-                Schedule Visit
-              </button>
-            </div>
+            {/* ── Spacer: mirrors the logo column so the centred nav stays on the true page centre ── */}
+            <div aria-hidden="true" className="hidden lg:block ml-4 xl:min-w-[170px]" />
 
             {/* ── Mobile Hamburger ── */}
             <button
@@ -278,12 +269,6 @@ export const GlobalHeader = () => {
 
             {/* Mobile CTAs */}
             <div className="p-6 space-y-3 border-t border-white/10 bg-[#181714]/95">
-              <button
-                onClick={() => { setMobileOpen(false); setIsInquiryOpen(true); }}
-                className="w-full py-3.5 bg-[#C8102E] hover:bg-[#A50D24] text-white type-label transition-colors flex items-center justify-center font-bold tracking-wider uppercase text-xs rounded-none shadow-md"
-              >
-                Schedule Site Visit
-              </button>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
@@ -297,12 +282,6 @@ export const GlobalHeader = () => {
         )}
       </AnimatePresence>
 
-      {/* ── Inquiry Modal ── */}
-      <InquiryModal
-        isOpen={isInquiryOpen}
-        onClose={() => setIsInquiryOpen(false)}
-        modalType="visit"
-      />
     </>
   );
 };

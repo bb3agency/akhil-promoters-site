@@ -21,7 +21,6 @@ import {
   Lightbulb,
   TrendingUp
 } from 'lucide-react';
-import { InquiryModal } from '../../components/ui/InquiryModal';
 import { OFFICE_ADDRESS, OFFICE_PHONE_1, WHATSAPP_NUMBER } from '../../data';
 
 const fadeUp = {
@@ -32,7 +31,6 @@ const fadeUp = {
 };
 
 export const WhoWeAre = () => {
-  const [isInquiryOpen, setIsInquiryOpen] = useState(false);
 
   return (
     <div className="bg-[#F7F5F0] min-h-screen pt-20 pb-20">
@@ -71,18 +69,12 @@ export const WhoWeAre = () => {
 
           <p
             className="text-white/60 text-sm sm:text-base max-w-2xl font-light leading-relaxed mb-8"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            style={{ fontFamily: 'var(--font-sans)' }}
           >
             Akhil Promoters Private Limited is one of Vijayawada's premier residential real estate developers — dedicated to creating enduring 3 BHK residences and signature communities with 100% Vaastu compliance, legal clarity, and world-class craftsmanship.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <button
-              onClick={() => setIsInquiryOpen(true)}
-              className="type-label px-6 py-3.5 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors text-xs inline-flex items-center gap-2"
-            >
-              <Calendar size={14} /> Schedule Site Visit
-            </button>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
@@ -156,7 +148,7 @@ export const WhoWeAre = () => {
               <p className="type-label text-[#C8102E] text-[10px] uppercase mb-5 tracking-widest">
                 Official Entity Details
               </p>
-              <div className="space-y-4 text-xs sm:text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
+              <div className="space-y-4 text-xs sm:text-sm" style={{ fontFamily: 'var(--font-sans)' }}>
                 <div className="border-b border-white/10 pb-3">
                   <span className="text-white/40 block text-[10px] type-label mb-1">Corporate Name</span>
                   <span className="text-white font-medium">Akhil Promoters Private Limited</span>
@@ -476,15 +468,9 @@ export const WhoWeAre = () => {
             Experience the Akhil Promoters Difference
           </h2>
           <p className="text-xs sm:text-sm text-white/50 max-w-lg mx-auto font-light leading-relaxed mb-8">
-            Schedule a personalized site visit to inspect Blueberry, Apple, or Cherry in person. Our advisory team is ready to assist you.
+            Explore Blueberry, Apple, Cherry and Daffodils in detail. Our advisory team is ready to assist you.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button
-              onClick={() => setIsInquiryOpen(true)}
-              className="w-full sm:w-auto px-8 py-3.5 bg-[#C8102E] hover:bg-[#A50D24] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
-            >
-              Book Site Visit
-            </button>
             <Link
               to="/projects"
               className="w-full sm:w-auto px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-widest border border-white/20 transition-colors"
@@ -495,12 +481,6 @@ export const WhoWeAre = () => {
         </div>
       </section>
 
-      {/* Inquiry Modal */}
-      <InquiryModal
-        isOpen={isInquiryOpen}
-        onClose={() => setIsInquiryOpen(false)}
-        modalType="visit"
-      />
     </div>
   );
 };

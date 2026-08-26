@@ -42,6 +42,7 @@ export interface Project {
   isometricImage?: string;
   floorPlanImage?: string;
   locationMapImage?: string;
+  brochureUrl?: string;
   locationHighlights: string[];
   floorPlans: FloorPlan[];
   specifications: Record<string, string>;
@@ -61,6 +62,7 @@ export const projectData: Record<string, Project> = {
   "blueberry": {
     id: "blueberry",
     slug: "blueberry",
+    brochureUrl: "/brochures/akhil-promoters-blueberry-brochure.pdf",
     name: "Blueberry",
     location: "Lotus Land Mark, Ayodhya Nagar",
     area: "Ayodhya Nagar",
@@ -147,6 +149,7 @@ export const projectData: Record<string, Project> = {
   "apple": {
     id: "apple",
     slug: "apple",
+    brochureUrl: "/brochures/akhil-promoters-apple-brochure.pdf",
     name: "Apple",
     location: "Mahadevpuram Colony, Kanuru",
     area: "Kanuru",
@@ -232,6 +235,7 @@ export const projectData: Record<string, Project> = {
   "cherry": {
     id: "cherry",
     slug: "cherry",
+    brochureUrl: "/brochures/akhil-promoters-cherry-brochure.pdf",
     name: "Cherry",
     location: "Varalakshmi Puram, Kanuru",
     area: "Kanuru",
@@ -297,6 +301,7 @@ export const projectData: Record<string, Project> = {
   "daffodils": {
     id: "daffodils",
     slug: "daffodils",
+    brochureUrl: "/brochures/akhil-promoters-daffodils-brochure.pdf",
     name: "Daffodils",
     location: "Tadigadapa 100ft Road, Poranki",
     area: "Poranki",

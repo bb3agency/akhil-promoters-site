@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, MapPin, MessageSquare, CheckCircle } from 'lucide-react';
-import { projectData, WHATSAPP_NUMBER, OFFICE_PHONE_1 } from '../data';
-import { InquiryModal } from '../components/ui/InquiryModal';
+import { ArrowRight, MessageSquare, CheckCircle } from 'lucide-react';
+import { WHATSAPP_NUMBER } from '../data';
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -13,22 +12,6 @@ const fadeUp = {
 };
 
 export const Home = () => {
-  const [activeTab, setActiveTab] = useState<'ALL' | 'KANURU' | 'AYODHYA_NAGAR' | 'PORANKI'>('ALL');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalProject, setModalProject] = useState('Blueberry');
-
-  const openModal = (project: string) => {
-    setModalProject(project);
-    setIsModalOpen(true);
-  };
-
-  const filteredProjects = Object.values(projectData).filter((p) => {
-    if (activeTab === 'KANURU') return p.area.toLowerCase().includes('kanuru');
-    if (activeTab === 'AYODHYA_NAGAR') return p.area.toLowerCase().includes('ayodhya');
-    if (activeTab === 'PORANKI') return p.area.toLowerCase().includes('poranki') || p.location.toLowerCase().includes('tadigadapa');
-    return true;
-  });
-
   return (
     <div className="bg-[#F7F5F0] text-[#181714]">
 
@@ -79,7 +62,7 @@ export const Home = () => {
 
             {/* Sub-copy */}
             <p className="text-white/75 text-sm sm:text-base md:text-lg font-[300] leading-[1.7] mb-8 sm:mb-12 max-w-[480px]"
-               style={{ fontFamily: 'Inter, sans-serif' }}>
+               style={{ fontFamily: 'var(--font-sans)' }}>
               Thoughtfully designed 3 BHK residences in Kanuru, Ayodhya Nagar & Poranki — where architecture meets everyday life.
             </p>
 
@@ -92,12 +75,6 @@ export const Home = () => {
                 View Residences
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
-              <button
-                onClick={() => openModal('Blueberry')}
-                className="type-label inline-flex items-center justify-center gap-3 px-8 py-4 border border-white/30 text-white/90 hover:border-white/60 hover:text-white transition-colors duration-200 text-center"
-              >
-                Schedule a Visit
-              </button>
             </div>
           </motion.div>
         </div>
@@ -159,122 +136,6 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* ─── PROJECTS SHOWCASE ──────────────────────────── */}
-      <section className="py-16 md:py-24 border-t border-[#E8E4DC]">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
-
-          {/* Section header */}
-          <motion.div {...fadeUp} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-16">
-            <div>
-              <p className="type-label text-[#C8102E] brand-rule mb-3 sm:mb-4">Current Developments</p>
-              <h2
-                className="text-[#181714]"
-                style={{
-                  fontFamily: 'Cormorant Garamond, Georgia, serif',
-                  fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
-                  fontWeight: 500,
-                  lineHeight: 1.1,
-                }}
-              >
-                Ongoing & Completed Projects
-              </h2>
-            </div>
-
-            {/* Filter tabs — mobile horizontally scrollable without breaking */}
-            <div className="flex items-center border border-[#DDD9D1] divide-x divide-[#DDD9D1] overflow-x-auto no-scrollbar max-w-full">
-              {(['ALL', 'AYODHYA_NAGAR', 'KANURU', 'PORANKI'] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`type-label px-3.5 sm:px-4 py-2.5 text-[10px] sm:text-[11px] whitespace-nowrap transition-colors flex-shrink-0 ${
-                    activeTab === tab
-                      ? 'bg-[#C8102E] text-white'
-                      : 'text-[#8A8580] hover:text-[#181714] bg-transparent'
-                  }`}
-                >
-                  {tab === 'ALL' ? 'All' : tab === 'AYODHYA_NAGAR' ? 'Ayodhya Nagar' : tab === 'KANURU' ? 'Kanuru' : 'Poranki'}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Project grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#DDD9D1]">
-            {filteredProjects.map((project, i) => (
-              <motion.article
-                key={project.id}
-                {...fadeUp}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
-                className="bg-[#F7F5F0] flex flex-col group"
-              >
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-[#E8E4DC]">
-                  <img
-                    src={project.heroImage}
-                    alt={project.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-104"
-                  />
-                  {/* Status badge */}
-                  <span
-                    className="absolute top-4 left-4 type-label text-[9px] px-2.5 py-1 bg-[#181714]/85 text-white backdrop-blur-sm"
-                  >
-                    {project.status}
-                  </span>
-                </div>
-
-                {/* Body */}
-                <div className="flex flex-col flex-1 p-5 sm:p-6 border-t border-[#DDD9D1]/60">
-                  <p className="type-label text-[#C8102E] text-[9px] flex items-center gap-1.5 mb-2">
-                    <MapPin size={10} />
-                    {project.location}
-                  </p>
-                  <h3
-                    className="text-[#181714] mb-2 sm:mb-3 group-hover:text-[#C8102E] transition-colors"
-                    style={{
-                      fontFamily: 'Cormorant Garamond, Georgia, serif',
-                      fontSize: '1.4rem',
-                      fontWeight: 500,
-                      lineHeight: 1.2,
-                    }}
-                  >
-                    {project.name}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-[#8A8580] leading-relaxed line-clamp-2 mb-4 flex-1" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 300 }}>
-                    {project.configurations.join(' · ')}
-                    {project.configurations.length > 0 && ' · Vijayawada'}
-                  </p>
-
-                  {/* Card actions */}
-                  <div className="flex items-center gap-2 sm:gap-3 pt-4 border-t border-[#E8E4DC]">
-                    <Link
-                      to={`/projects/${project.slug}`}
-                      className="type-label text-[10px] flex-1 py-2.5 text-center bg-[#181714] hover:bg-[#C8102E] text-white transition-colors duration-200"
-                    >
-                      View Details
-                    </Link>
-                    <button
-                      onClick={() => openModal(project.name)}
-                      className="type-label text-[10px] px-3.5 sm:px-4 py-2.5 border border-[#DDD9D1] text-[#8A8580] hover:text-[#181714] hover:border-[#181714] transition-colors whitespace-nowrap"
-                    >
-                      Enquire
-                    </button>
-                  </div>
-                </div>
-              </motion.article>
-            ))}
-          </div>
-
-          <div className="mt-10 sm:mt-12 text-center">
-            <Link
-              to="/projects"
-              className="type-label inline-flex items-center gap-3 px-8 py-4 border border-[#DDD9D1] text-[#181714] hover:border-[#181714] hover:text-[#C8102E] transition-colors"
-            >
-              All Developments <ArrowRight size={12} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* ─── QUALITY COMMITMENT ─────────────────────────── */}
       <section className="py-16 md:py-28 bg-[#181714] text-white">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
@@ -303,7 +164,7 @@ export const Home = () => {
               >
                 No shortcuts.<br />No substitutions.
               </h2>
-              <p className="text-white/60 text-sm leading-[1.8] mb-8 sm:mb-10" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 300 }}>
+              <p className="text-white/60 text-sm leading-[1.8] mb-8 sm:mb-10" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
                 Seismic-resistant RCC frames, teak wood main doors, Finolex copper wiring, Jaquar fittings, and vitrified flooring — specified once and delivered without compromise.
               </p>
 
@@ -314,7 +175,7 @@ export const Home = () => {
                   'Johnson 6-passenger automatic elevator',
                   'Generator backup — lift, motors & flat points',
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-xs sm:text-sm text-white/70" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  <div key={item} className="flex items-start gap-3 text-xs sm:text-sm text-white/70" style={{ fontFamily: 'var(--font-sans)' }}>
                     <CheckCircle size={16} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
                     {item}
                   </div>
@@ -353,18 +214,12 @@ export const Home = () => {
                 maxWidth: '560px',
               }}
             >
-              Come see the difference in person.
+              Talk to our advisory team.
             </h2>
-            <p className="text-[#8A8580] text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-8 sm:mb-10" style={{ fontFamily: 'Inter, sans-serif', fontWeight: 300 }}>
-              Our team will arrange a private walk-through of the site at your convenience.
+            <p className="text-[#8A8580] text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-8 sm:mb-10" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
+              Our Vijayawada team is on hand to answer questions about any development.
             </p>
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto sm:max-w-none">
-              <button
-                onClick={() => openModal('Blueberry')}
-                className="type-label px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors text-center"
-              >
-                Request a Visit
-              </button>
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
@@ -377,12 +232,6 @@ export const Home = () => {
           </motion.div>
         </div>
       </section>
-
-      <InquiryModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        defaultProject={modalProject}
-      />
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const ProjectDetails = () => {
   const [activeTab, setActiveTab] = useState<'overview' | 'floorplans' | 'specs' | 'location'>('overview');
   const [selectedFloorPlanIndex, setSelectedFloorPlanIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalType, setModalType] = useState<'visit' | 'brochure'>('visit');
+  const [modalType] = useState<'brochure'>('brochure');
 
   const project = slug ? projectData[slug] : null;
 
@@ -19,14 +19,24 @@ export const ProjectDetails = () => {
   }
 
   const openBrochureModal = () => {
-    setModalType('brochure');
     setIsModalOpen(true);
   };
 
-  const openVisitModal = () => {
-    setModalType('visit');
-    setIsModalOpen(true);
-  };
+  /* Downloads the real brochure PDF when one exists; falls back to the enquiry form. */
+  const BrochureAction = ({ className, iconSize, label }: { className: string; iconSize: number; label: string }) =>
+    project.brochureUrl ? (
+      <a
+        href={project.brochureUrl}
+        download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
+        className={className}
+      >
+        <Download size={iconSize} /> {label}
+      </a>
+    ) : (
+      <button onClick={openBrochureModal} className={className}>
+        <Download size={iconSize} /> {label}
+      </button>
+    );
 
   return (
     <div className="bg-akhil-off-white min-h-screen pt-24 pb-20">
@@ -62,18 +72,11 @@ export const ProjectDetails = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-              <button
-                onClick={openVisitModal}
-                className="px-6 py-3.5 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-lg flex items-center justify-center gap-2"
-              >
-                <Calendar size={16} /> Book Site Visit
-              </button>
-              <button
-                onClick={openBrochureModal}
+              <BrochureAction
+                iconSize={16}
+                label="Brochure PDF"
                 className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all border border-white/20 flex items-center justify-center gap-2"
-              >
-                <Download size={16} /> Brochure PDF
-              </button>
+              />
             </div>
           </div>
         </div>
@@ -183,12 +186,11 @@ export const ProjectDetails = () => {
                     <span className="text-[10px] font-bold text-akhil-red uppercase tracking-wider block">Architectural Render</span>
                     <h4 className="text-lg font-serif text-akhil-charcoal font-bold">{project.name} Elevation</h4>
                   </div>
-                  <button
-                    onClick={openBrochureModal}
+                  <BrochureAction
+                    iconSize={13}
+                    label="Brochure"
                     className="px-4 py-2 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold uppercase rounded-lg transition-colors inline-flex items-center gap-1.5"
-                  >
-                    <Download size={13} /> Brochure
-                  </button>
+                  />
                 </div>
                 <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2">
                   <img
@@ -266,16 +268,10 @@ export const ProjectDetails = () => {
                 </span>
                 <h4 className="text-2xl font-serif mb-4">Interested in {project.name}?</h4>
                 <p className="text-xs text-gray-400 font-light mb-6">
-                  Schedule a private walk-through or request complete floor plan dimensions and pricing details.
+                  Request complete floor plan dimensions and pricing details from our advisory team.
                 </p>
 
                 <div className="space-y-3">
-                  <button
-                    onClick={openVisitModal}
-                    className="w-full py-3.5 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
-                  >
-                    <Calendar size={16} /> Book Site Tour
-                  </button>
                   <a
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Akhil%20Promoters,%20I%20want%20details%20and%20pricing%20for%20${project.name}`}
                     target="_blank"
@@ -328,12 +324,11 @@ export const ProjectDetails = () => {
                         {project.floorPlans[selectedFloorPlanIndex].title} ({project.floorPlans[selectedFloorPlanIndex].size})
                       </h4>
                     </div>
-                    <button
-                      onClick={openBrochureModal}
+                    <BrochureAction
+                      iconSize={13}
+                      label="Download PDF"
                       className="px-4 py-2 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold uppercase rounded-xl transition-colors inline-flex items-center gap-1.5"
-                    >
-                      <Download size={13} /> Request PDF
-                    </button>
+                    />
                   </div>
                   
                   {/* Floor plan visual image */}
