@@ -18,17 +18,21 @@ export const Home = () => {
       {/* ─── HERO ─────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#181714]">
 
-        {/* Background — video placeholder with fallback image */}
+        {/* Background — video with fallback poster */}
         <div className="absolute inset-0">
-          <img
-            src="/images/projects/blueberry.jpg"
-            alt=""
-            aria-hidden
-            className="w-full h-full object-cover opacity-35"
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/projects/blueberry.jpg"
+            className="w-full h-full object-cover opacity-60"
+          >
+            <source src="/hero-bg.mp4" type="video/mp4" />
+          </video>
           {/* Cinematic gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#181714]/60 via-[#181714]/30 to-[#181714]/75" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#181714]/40 via-[#181714]/20 to-[#181714]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/40 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 w-full pt-28 sm:pt-36 pb-16 sm:pb-24">
