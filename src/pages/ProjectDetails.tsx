@@ -4,6 +4,12 @@ import { motion } from 'motion/react';
 import { MapPin, Building, ShieldCheck, CheckCircle, Download, Calendar, Phone, MessageSquare, ArrowLeft, Layers, Compass, UserCheck } from 'lucide-react';
 import { projectData, WHATSAPP_NUMBER, OFFICE_PHONE_1 } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
+import {
+  staggerContainer,
+  fadeInUp,
+  itemFadeUp,
+  viewportConfig,
+} from '../utils/motion';
 
 export const ProjectDetails = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -53,68 +59,87 @@ export const ProjectDetails = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+          <motion.div
+            variants={staggerContainer(0.12)}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col lg:flex-row lg:items-end justify-between gap-6"
+          >
             <div>
-              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+              <motion.div variants={itemFadeUp} className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                 <span className="px-2.5 sm:px-3 py-1 bg-akhil-red text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-md">
                   {project.status}
                 </span>
                 <span className="px-2.5 sm:px-3 py-1 bg-white/10 text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-widest rounded-md border border-white/20">
                   {project.category}
                 </span>
-              </div>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-2">{project.name}</h1>
-              <p className="text-akhil-red text-xs sm:text-sm font-semibold flex items-center gap-2 mb-3 sm:mb-4">
+              </motion.div>
+              <motion.h1 variants={itemFadeUp} className="text-3xl sm:text-5xl md:text-6xl font-serif font-bold text-white mb-2">
+                {project.name}
+              </motion.h1>
+              <motion.p variants={itemFadeUp} className="text-akhil-red text-xs sm:text-sm font-semibold flex items-center gap-2 mb-3 sm:mb-4">
                 <MapPin size={15} /> {project.locationDetails}
-              </p>
-              <p className="text-gray-300 text-sm sm:text-base max-w-2xl font-light leading-relaxed">{project.tagline}</p>
+              </motion.p>
+              <motion.p variants={itemFadeUp} className="text-gray-300 text-sm sm:text-base max-w-2xl font-light leading-relaxed">
+                {project.tagline}
+              </motion.p>
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <motion.div variants={itemFadeUp} className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <BrochureAction
                 iconSize={16}
                 label="Brochure PDF"
                 className="px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all border border-white/20 flex items-center justify-center gap-2"
               />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* 2. SPECIFICATION QUICK BAR */}
       <section className="bg-white border-b border-akhil-border py-4 sm:py-5 shadow-sm sticky top-[64px] sm:top-[68px] z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-akhil-charcoal">
-            <div className="border-r border-gray-100 pr-2 last:border-0 md:border-r">
+          <motion.div
+            variants={staggerContainer(0.08, 0.2)}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-akhil-charcoal"
+          >
+            <motion.div variants={itemFadeUp} className="border-r border-gray-100 pr-2 last:border-0 md:border-r">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Configurations</span>
               <strong className="text-xs sm:text-sm font-serif line-clamp-1">{project.configurations.join(', ')}</strong>
-            </div>
+            </motion.div>
 
-            <div className="border-r-0 md:border-r border-gray-100 pr-2">
+            <motion.div variants={itemFadeUp} className="border-r-0 md:border-r border-gray-100 pr-2">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Compliance</span>
               <strong className="text-xs sm:text-sm font-serif text-emerald-700 flex items-center gap-1">
                 <Compass size={13} /> 100% Vaastu
               </strong>
-            </div>
+            </motion.div>
 
-            <div className="border-r border-gray-100 pr-2">
+            <motion.div variants={itemFadeUp} className="border-r border-gray-100 pr-2">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Location</span>
               <strong className="text-xs sm:text-sm font-serif line-clamp-1">{project.area}</strong>
-            </div>
+            </motion.div>
 
-            <div>
+            <motion.div variants={itemFadeUp}>
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Builder</span>
               <strong className="text-xs sm:text-sm font-serif text-akhil-red">CREDAI Member</strong>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
       {/* 3. MAIN NAVIGATION TABS & CONTENT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12">
         {/* Navigation Tabs */}
-        <div className="flex items-center gap-2 sm:gap-4 border-b border-akhil-border mb-8 sm:mb-10 overflow-x-auto no-scrollbar pb-1">
+        <motion.div
+          variants={fadeInUp(0.5, 0.25)}
+          initial="hidden"
+          animate="visible"
+          className="flex items-center gap-2 sm:gap-4 border-b border-akhil-border mb-8 sm:mb-10 overflow-x-auto no-scrollbar pb-1"
+        >
           <button
             onClick={() => setActiveTab('overview')}
             className={`pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
@@ -157,30 +182,55 @@ export const ProjectDetails = () => {
           >
             Location & Map
           </button>
-        </div>
+        </motion.div>
 
         {/* TAB 1: OVERVIEW */}
         {activeTab === 'overview' && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <motion.div
+            key="overview"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+          >
             <div className="lg:col-span-8 space-y-10">
               {/* Project Description */}
-              <div className="bg-white p-8 rounded-2xl border border-akhil-border">
+              <motion.div
+                variants={fadeInUp(0.6)}
+                initial="hidden"
+                animate="visible"
+                className="bg-white p-8 rounded-2xl border border-akhil-border"
+              >
                 <h3 className="text-2xl font-serif text-akhil-charcoal mb-4">About {project.name}</h3>
                 <p className="text-akhil-gray text-sm md:text-base leading-relaxed font-light mb-6">
                   {project.overview}
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <motion.div
+                  variants={staggerContainer(0.06)}
+                  initial="hidden"
+                  animate="visible"
+                  className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                >
                   {project.highlights.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 p-3 bg-akhil-off-white rounded-xl border border-gray-100">
+                    <motion.div
+                      key={idx}
+                      variants={itemFadeUp}
+                      className="flex items-center gap-3 p-3 bg-akhil-off-white rounded-xl border border-gray-100 hover:border-[#C8102E]/20 transition-colors"
+                    >
                       <CheckCircle size={18} className="text-akhil-red flex-shrink-0" />
                       <span className="text-xs font-bold text-akhil-charcoal">{item}</span>
-                    </div>
+                    </motion.div>
                   ))}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               {/* Elevation Render */}
-              <div className="bg-white p-6 rounded-2xl border border-akhil-border overflow-hidden">
+              <motion.div
+                variants={fadeInUp(0.6, 0.1)}
+                initial="hidden"
+                animate="visible"
+                className="bg-white p-6 rounded-2xl border border-akhil-border overflow-hidden"
+              >
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <span className="text-[10px] font-bold text-akhil-red uppercase tracking-wider block">Architectural Render</span>
@@ -192,77 +242,97 @@ export const ProjectDetails = () => {
                     className="px-4 py-2 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold uppercase rounded-lg transition-colors inline-flex items-center gap-1.5"
                   />
                 </div>
-                <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2">
+                <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2 group">
                   <img
                     src={project.exteriorImage || project.heroImage}
                     alt={project.name}
-                    className="max-h-[600px] w-auto object-contain rounded-lg shadow-sm"
+                    className="max-h-[600px] w-auto object-contain rounded-lg shadow-sm group-hover:scale-[1.02] transition-transform duration-500"
                   />
                 </div>
-              </div>
+              </motion.div>
 
               {/* 3D Isometric Layout View (If available) */}
               {project.isometricImage && (
-                <div className="bg-white p-6 rounded-2xl border border-akhil-border overflow-hidden">
+                <motion.div
+                  variants={fadeInUp(0.6, 0.15)}
+                  initial="hidden"
+                  animate="visible"
+                  className="bg-white p-6 rounded-2xl border border-akhil-border overflow-hidden"
+                >
                   <div className="mb-4">
                     <span className="text-[10px] font-bold text-akhil-red uppercase tracking-wider block">3D Interior Cutaway</span>
                     <h4 className="text-lg font-serif text-akhil-charcoal font-bold">Isometric Layout Perspective</h4>
                   </div>
-                  <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2">
+                  <div className="rounded-xl overflow-hidden bg-gray-50 border border-gray-100 flex items-center justify-center p-2 group">
                     <img
                       src={project.isometricImage}
                       alt={`${project.name} Isometric View`}
-                      className="max-h-[600px] w-auto object-contain rounded-lg shadow-sm"
+                      className="max-h-[600px] w-auto object-contain rounded-lg shadow-sm group-hover:scale-[1.02] transition-transform duration-500"
                     />
                   </div>
-                </div>
+                </motion.div>
               )}
 
               {/* Architects & Engineers */}
               {project.architects && (
-                <div className="bg-white p-8 rounded-2xl border border-akhil-border">
+                <motion.div
+                  variants={fadeInUp(0.6, 0.2)}
+                  initial="hidden"
+                  animate="visible"
+                  className="bg-white p-8 rounded-2xl border border-akhil-border"
+                >
                   <h4 className="text-xs font-bold uppercase tracking-wider text-akhil-red mb-6">
-                    Architectural & Engineering Panel
+                    Architectural &amp; Engineering Panel
                   </h4>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <motion.div
+                    variants={staggerContainer(0.08)}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-1 md:grid-cols-3 gap-6"
+                  >
                     {project.architects.design && (
-                      <div className="p-4 bg-akhil-off-white rounded-xl border border-gray-100">
+                      <motion.div variants={itemFadeUp} className="p-4 bg-akhil-off-white rounded-xl border border-gray-100">
                         <span className="text-[10px] font-bold uppercase text-akhil-gray block mb-1">
                           Design Architects
                         </span>
                         <strong className="text-xs font-serif text-akhil-charcoal block">
                           {project.architects.design}
                         </strong>
-                      </div>
+                      </motion.div>
                     )}
                     {project.architects.structural && (
-                      <div className="p-4 bg-akhil-off-white rounded-xl border border-gray-100">
+                      <motion.div variants={itemFadeUp} className="p-4 bg-akhil-off-white rounded-xl border border-gray-100">
                         <span className="text-[10px] font-bold uppercase text-akhil-gray block mb-1">
                           Structural Engineers
                         </span>
                         <strong className="text-xs font-serif text-akhil-charcoal block">
                           {project.architects.structural}
                         </strong>
-                      </div>
+                      </motion.div>
                     )}
                     {project.architects.interiors && (
-                      <div className="p-4 bg-akhil-off-white rounded-xl border border-gray-100">
+                      <motion.div variants={itemFadeUp} className="p-4 bg-akhil-off-white rounded-xl border border-gray-100">
                         <span className="text-[10px] font-bold uppercase text-akhil-gray block mb-1">
-                          Elevations & Interiors
+                          Elevations &amp; Interiors
                         </span>
                         <strong className="text-xs font-serif text-akhil-charcoal block">
                           {project.architects.interiors}
                         </strong>
-                      </div>
+                      </motion.div>
                     )}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               )}
             </div>
 
             {/* Sidebar CTA Card */}
             <div className="lg:col-span-4 space-y-6">
-              <div className="bg-akhil-dark text-white p-8 rounded-2xl border border-white/10 shadow-xl">
+              <motion.div
+                variants={fadeInUp(0.6, 0.15)}
+                initial="hidden"
+                animate="visible"
+                className="bg-akhil-dark text-white p-8 rounded-2xl border border-white/10 shadow-xl"
+              >
                 <span className="text-akhil-red text-[11px] font-bold tracking-[0.2em] uppercase block mb-2">
                   DIRECT BUILDER ENQUIRY
                 </span>
@@ -287,18 +357,30 @@ export const ProjectDetails = () => {
                     <Phone size={16} /> Call {OFFICE_PHONE_1}
                   </a>
                 </div>
-              </div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 2: FLOOR PLANS */}
         {activeTab === 'floorplans' && project.floorPlans.length > 0 && (
-          <div className="bg-white p-8 rounded-2xl border border-akhil-border">
-            <div className="flex flex-wrap items-center gap-3 mb-8">
+          <motion.div
+            key="floorplans"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white p-8 rounded-2xl border border-akhil-border"
+          >
+            <motion.div
+              variants={staggerContainer(0.06)}
+              initial="hidden"
+              animate="visible"
+              className="flex flex-wrap items-center gap-3 mb-8"
+            >
               {project.floorPlans.map((plan, idx) => (
-                <button
+                <motion.button
                   key={idx}
+                  variants={itemFadeUp}
                   onClick={() => setSelectedFloorPlanIndex(idx)}
                   className={`px-5 py-2.5 rounded-xl text-xs font-bold tracking-wider transition-all ${
                     selectedFloorPlanIndex === idx
@@ -307,14 +389,19 @@ export const ProjectDetails = () => {
                   }`}
                 >
                   {plan.title} ({plan.size})
-                </button>
+                </motion.button>
               ))}
-            </div>
+            </motion.div>
 
             {/* Selected Plan Details */}
             {project.floorPlans[selectedFloorPlanIndex] && (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                <div className="lg:col-span-7 bg-akhil-off-white p-6 rounded-2xl border border-akhil-border">
+                <motion.div
+                  variants={fadeInUp(0.55)}
+                  initial="hidden"
+                  animate="visible"
+                  className="lg:col-span-7 bg-akhil-off-white p-6 rounded-2xl border border-akhil-border"
+                >
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <span className="text-xs font-bold text-akhil-red uppercase block">
@@ -351,74 +438,93 @@ export const ProjectDetails = () => {
                       </p>
                     </div>
                   )}
-                </div>
+                </motion.div>
 
                 {/* Room Dimensions Table */}
-                <div className="lg:col-span-5 space-y-3">
+                <motion.div
+                  variants={staggerContainer(0.05, 0.1)}
+                  initial="hidden"
+                  animate="visible"
+                  className="lg:col-span-5 space-y-3"
+                >
                   <h4 className="text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-4">
                     Exact Room Dimensions ({project.floorPlans[selectedFloorPlanIndex].size})
                   </h4>
 
-                  <div className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs">
-                    <span className="text-akhil-gray font-medium">Master Bedroom:</span>
-                    <strong className="text-akhil-charcoal">{project.floorPlans[selectedFloorPlanIndex].dimensions.masterBedroom}</strong>
-                  </div>
-
-                  <div className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs">
-                    <span className="text-akhil-gray font-medium">Guest Bedroom:</span>
-                    <strong className="text-akhil-charcoal">{project.floorPlans[selectedFloorPlanIndex].dimensions.guestBedroom}</strong>
-                  </div>
-
-                  <div className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs">
-                    <span className="text-akhil-gray font-medium">Children's Bedroom:</span>
-                    <strong className="text-akhil-charcoal">{project.floorPlans[selectedFloorPlanIndex].dimensions.childrenBedroom}</strong>
-                  </div>
-
-                  <div className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs">
-                    <span className="text-akhil-gray font-medium">Drawing Hall:</span>
-                    <strong className="text-akhil-charcoal">{project.floorPlans[selectedFloorPlanIndex].dimensions.drawingHall}</strong>
-                  </div>
-
-                  <div className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs">
-                    <span className="text-akhil-gray font-medium">Dining Hall:</span>
-                    <strong className="text-akhil-charcoal">{project.floorPlans[selectedFloorPlanIndex].dimensions.dining}</strong>
-                  </div>
-
-                  <div className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs">
-                    <span className="text-akhil-gray font-medium">Kitchen & Utility:</span>
-                    <strong className="text-akhil-charcoal">{project.floorPlans[selectedFloorPlanIndex].dimensions.kitchen}</strong>
-                  </div>
-                </div>
+                  {[
+                    { label: 'Master Bedroom', val: project.floorPlans[selectedFloorPlanIndex].dimensions.masterBedroom },
+                    { label: 'Guest Bedroom', val: project.floorPlans[selectedFloorPlanIndex].dimensions.guestBedroom },
+                    { label: "Children's Bedroom", val: project.floorPlans[selectedFloorPlanIndex].dimensions.childrenBedroom },
+                    { label: 'Drawing Hall', val: project.floorPlans[selectedFloorPlanIndex].dimensions.drawingHall },
+                    { label: 'Dining Hall', val: project.floorPlans[selectedFloorPlanIndex].dimensions.dining },
+                    { label: 'Kitchen & Utility', val: project.floorPlans[selectedFloorPlanIndex].dimensions.kitchen },
+                  ].map((dim) => (
+                    <motion.div
+                      key={dim.label}
+                      variants={itemFadeUp}
+                      className="p-3 bg-akhil-off-white rounded-xl flex justify-between text-xs"
+                    >
+                      <span className="text-akhil-gray font-medium">{dim.label}:</span>
+                      <strong className="text-akhil-charcoal">{dim.val}</strong>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
             )}
-          </div>
+          </motion.div>
         )}
 
         {/* TAB 3: SPECIFICATIONS */}
         {activeTab === 'specs' && (
-          <div className="bg-white p-8 rounded-2xl border border-akhil-border space-y-6">
+          <motion.div
+            key="specs"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white p-8 rounded-2xl border border-akhil-border space-y-6"
+          >
             <h3 className="text-2xl font-serif text-akhil-charcoal mb-4">Construction Specifications</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <motion.div
+              variants={staggerContainer(0.05)}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            >
               {Object.entries(project.specifications).map(([key, val]) => (
-                <div key={key} className="p-5 bg-akhil-off-white rounded-xl border border-akhil-border">
+                <motion.div
+                  key={key}
+                  variants={itemFadeUp}
+                  className="p-5 bg-akhil-off-white rounded-xl border border-akhil-border hover:border-[#C8102E]/30 transition-colors"
+                >
                   <h4 className="text-xs font-bold uppercase tracking-wider text-akhil-red mb-2">{key}</h4>
                   <p className="text-xs text-akhil-charcoal font-light leading-relaxed">{val}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
 
         {/* TAB 4: LOCATION MAP */}
         {activeTab === 'location' && (
-          <div className="bg-white p-8 rounded-2xl border border-akhil-border space-y-8">
+          <motion.div
+            key="location"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="bg-white p-8 rounded-2xl border border-akhil-border space-y-8"
+          >
             <div>
-              <h3 className="text-2xl font-serif text-akhil-charcoal mb-2">Location Map & Surroundings</h3>
+              <h3 className="text-2xl font-serif text-akhil-charcoal mb-2">Location Map &amp; Surroundings</h3>
               <p className="text-xs text-akhil-gray mb-6">{project.siteAddress}</p>
             </div>
 
             {project.locationMapImage && (
-              <div className="p-4 bg-akhil-off-white rounded-2xl border border-akhil-border overflow-hidden">
+              <motion.div
+                variants={fadeInUp(0.6)}
+                initial="hidden"
+                animate="visible"
+                className="p-4 bg-akhil-off-white rounded-2xl border border-akhil-border overflow-hidden"
+              >
                 <h4 className="text-xs font-bold uppercase text-akhil-red mb-3">Architectural Location Map</h4>
                 <div className="rounded-xl overflow-hidden bg-white p-3 border border-gray-100 flex items-center justify-center">
                   <img
@@ -427,18 +533,27 @@ export const ProjectDetails = () => {
                     className="max-h-[500px] w-auto object-contain rounded-lg"
                   />
                 </div>
-              </div>
+              </motion.div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <motion.div
+              variants={staggerContainer(0.06)}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
               {project.locationHighlights.map((highlight, idx) => (
-                <div key={idx} className="flex items-center gap-3 p-4 bg-akhil-off-white rounded-xl border border-gray-100">
+                <motion.div
+                  key={idx}
+                  variants={itemFadeUp}
+                  className="flex items-center gap-3 p-4 bg-akhil-off-white rounded-xl border border-gray-100 hover:border-[#C8102E]/30 transition-colors"
+                >
                   <MapPin size={18} className="text-akhil-red flex-shrink-0" />
                   <span className="text-xs font-bold text-akhil-charcoal">{highlight}</span>
-                </div>
+                </motion.div>
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
       </section>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, ArrowUp, MessageSquare } from 'lucide-react';
 import {
   OFFICE_ADDRESS,
@@ -10,6 +11,7 @@ import {
   WHATSAPP_NUMBER,
   projectData,
 } from '../../data';
+import { staggerContainer, itemFadeUp, viewportConfig } from '../../utils/motion';
 
 export const Footer = () => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -19,14 +21,20 @@ export const Footer = () => {
       {/* ─── Transition divider — prevents footer from merging with section above */}
       <div className="h-px bg-gradient-to-r from-transparent via-[#C8102E]/30 to-transparent" />
 
-      <footer className="bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10">
+      <footer className="bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10 overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
 
           {/* ── Top section ─────────────────────────────── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 pb-12 sm:pb-16 border-b border-white/10">
+          <motion.div
+            variants={staggerContainer(0.08)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 pb-12 sm:pb-16 border-b border-white/10"
+          >
 
             {/* Brand column */}
-            <div className="sm:col-span-2 lg:col-span-4">
+            <motion.div variants={itemFadeUp} className="sm:col-span-2 lg:col-span-4">
               <img
                 src="/images/logo-light.png"
                 alt="Akhil Promoters"
@@ -50,10 +58,10 @@ export const Footer = () => {
                   <MessageSquare size={13} /> WhatsApp Us
                 </a>
               </div>
-            </div>
+            </motion.div>
 
             {/* Navigation columns */}
-            <div className="lg:col-span-2">
+            <motion.div variants={itemFadeUp} className="lg:col-span-2">
               <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Navigate</p>
               <ul className="space-y-2.5 sm:space-y-3">
                 {[
@@ -74,9 +82,9 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-2">
+            <motion.div variants={itemFadeUp} className="lg:col-span-2">
               <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Projects</p>
               <ul className="space-y-2.5 sm:space-y-3">
                 {Object.values(projectData).map((p) => (
@@ -91,9 +99,9 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
-            <div className="lg:col-span-2">
+            <motion.div variants={itemFadeUp} className="lg:col-span-2">
               <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Company</p>
               <ul className="space-y-2.5 sm:space-y-3">
                 {[
@@ -114,10 +122,10 @@ export const Footer = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
 
             {/* Office address */}
-            <div className="sm:col-span-2 lg:col-span-2">
+            <motion.div variants={itemFadeUp} className="sm:col-span-2 lg:col-span-2">
               <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Office</p>
               <div className="space-y-3">
                 <div className="flex items-start gap-2.5">
@@ -140,8 +148,8 @@ export const Footer = () => {
                   </a>
                 </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* ── Bottom bar ──────────────────────────────── */}
           <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, MessageSquare, CheckCircle } from 'lucide-react';
 import { WHATSAPP_NUMBER } from '../data';
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.72, ease: 'easeOut' },
-};
+import {
+  staggerContainer,
+  fadeInUp,
+  itemFadeUp,
+  viewportConfig,
+} from '../utils/motion';
 
 export const Home = () => {
   return (
@@ -37,19 +36,23 @@ export const Home = () => {
 
         <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 w-full pt-28 sm:pt-36 pb-16 sm:pb-24">
           <motion.div
-            initial={{ opacity: 0, y: 32 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: 'easeOut' }}
+            variants={staggerContainer(0.14, 0.1)}
+            initial="hidden"
+            animate="visible"
             className="max-w-[680px]"
           >
             {/* Eyebrow */}
-            <p className="type-label text-[#C8102E] flex items-center gap-3 mb-6 sm:mb-8 text-[10px] sm:text-xs">
+            <motion.p
+              variants={itemFadeUp}
+              className="type-label text-[#C8102E] flex items-center gap-3 mb-6 sm:mb-8 text-[10px] sm:text-xs"
+            >
               <span className="section-rule" />
               Vijayawada · CREDAI Member
-            </p>
+            </motion.p>
 
             {/* Headline */}
-            <h1
+            <motion.h1
+              variants={itemFadeUp}
               className="text-overlay mb-6 sm:mb-8 text-white"
               style={{
                 fontFamily: 'Cormorant Garamond, Georgia, serif',
@@ -62,16 +65,22 @@ export const Home = () => {
               Homes built<br />
               with intent.<br />
               <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Made to last.</em>
-            </h1>
+            </motion.h1>
 
             {/* Sub-copy */}
-            <p className="text-white/75 text-sm sm:text-base md:text-lg font-[300] leading-[1.7] mb-8 sm:mb-12 max-w-[480px]"
-               style={{ fontFamily: 'var(--font-sans)' }}>
+            <motion.p
+              variants={itemFadeUp}
+              className="text-white/75 text-sm sm:text-base md:text-lg font-[300] leading-[1.7] mb-8 sm:mb-12 max-w-[480px]"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
               Thoughtfully designed 3 BHK residences in Kanuru, Ayodhya Nagar & Poranki — where architecture meets everyday life.
-            </p>
+            </motion.p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 sm:gap-4 w-full sm:w-auto">
+            <motion.div
+              variants={itemFadeUp}
+              className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 sm:gap-4 w-full sm:w-auto"
+            >
               <Link
                 to="/projects"
                 className="type-label inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors duration-200 group text-center"
@@ -79,25 +88,37 @@ export const Home = () => {
                 View Residences
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
 
         {/* Scroll indicator */}
-        <div className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1.5 opacity-50">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 0.5, y: 0 }}
+          transition={{ delay: 0.9, duration: 0.6 }}
+          className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex-col items-center gap-1.5"
+        >
           <div className="w-px h-8 bg-white/50" />
           <p className="type-label text-white/60 text-[9px]">Scroll</p>
-        </div>
+        </motion.div>
       </section>
 
       {/* ─── BRIEF INTRODUCTION ──────────────────────────── */}
-      <section className="py-16 md:py-28 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+      <section className="py-16 md:py-28 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
-          <motion.div {...fadeUp} className="lg:col-span-5">
-            <p className="type-label text-[#C8102E] brand-rule mb-4 sm:mb-6">
+          <motion.div
+            variants={staggerContainer(0.12)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="lg:col-span-5"
+          >
+            <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] brand-rule mb-4 sm:mb-6">
               Akhil Promoters
-            </p>
-            <h2
+            </motion.p>
+            <motion.h2
+              variants={itemFadeUp}
               className="mb-6 text-[#181714]"
               style={{
                 fontFamily: 'Cormorant Garamond, Georgia, serif',
@@ -108,56 +129,95 @@ export const Home = () => {
               }}
             >
               Two decades of<br />considered craft.
-            </h2>
-            <p className="type-body mb-8">
+            </motion.h2>
+            <motion.p variants={itemFadeUp} className="type-body mb-8">
               We design homes around how people actually live — light, space, material, and proportion taken seriously. Every Akhil Promoters project is CREDAI certified, fully documented, and built by the same architectural team throughout.
-            </p>
-            <Link
-              to="/who-we-are/story"
-              className="type-label inline-flex items-center gap-2 text-[#181714] hover:text-[#C8102E] transition-colors group"
-            >
-              About the company
-              <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </motion.p>
+            <motion.div variants={itemFadeUp}>
+              <Link
+                to="/who-we-are/story"
+                className="type-label inline-flex items-center gap-2 text-[#181714] hover:text-[#C8102E] transition-colors group"
+              >
+                About the company
+                <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
           </motion.div>
 
-          <motion.div {...fadeUp} className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4">
-            <div className="aspect-[3/4] overflow-hidden rounded-sm">
+          <motion.div
+            variants={staggerContainer(0.15)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4"
+          >
+            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden rounded-sm group">
               <img
                 src="/images/projects/apple.jpg"
                 alt="Apple residences, Kanuru"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-            </div>
-            <div className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm">
+            </motion.div>
+            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group">
               <img
                 src="/images/projects/cherry.jpg"
                 alt="Cherry residences, Kanuru"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* ─── QUALITY COMMITMENT ─────────────────────────── */}
-      <section className="py-16 md:py-28 bg-[#181714] text-white">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+      <section className="relative py-16 md:py-28 bg-[#181714] text-white overflow-hidden">
+        {/* Background Video with Cinematic Overlay */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-35"
+          >
+            <source src="/construction-standards-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Gradients ensuring flawless contrast and typography readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/90 via-[#181714]/75 to-[#181714]/90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#181714] via-transparent to-[#181714]/60" />
+        </div>
+
+        <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
-            <motion.div {...fadeUp} className="lg:col-span-6 order-2 lg:order-1">
-              <div className="aspect-[4/3] overflow-hidden rounded-sm">
+            <motion.div
+              variants={fadeInUp(0.7, 0, 30)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="lg:col-span-6 order-2 lg:order-1"
+            >
+              <div className="aspect-[4/3] overflow-hidden rounded-sm group border border-white/10 shadow-2xl">
                 <img
                   src="/images/projects/blueberry-elevation.jpg"
                   alt="Blueberry, Ayodhya Nagar"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </motion.div>
 
-            <motion.div {...fadeUp} className="lg:col-span-6 order-1 lg:order-2">
-              <p className="type-label text-[#C8102E] brand-rule mb-6 sm:mb-8">Construction Standard</p>
-              <h2
+            <motion.div
+              variants={staggerContainer(0.08)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="lg:col-span-6 order-1 lg:order-2"
+            >
+              <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] brand-rule mb-6 sm:mb-8">
+                Construction Standard
+              </motion.p>
+              <motion.h2
+                variants={itemFadeUp}
                 className="text-white mb-6 sm:mb-8"
                 style={{
                   fontFamily: 'Cormorant Garamond, Georgia, serif',
@@ -167,48 +227,66 @@ export const Home = () => {
                 }}
               >
                 No shortcuts.<br />No substitutions.
-              </h2>
-              <p className="text-white/60 text-sm leading-[1.8] mb-8 sm:mb-10" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
+              </motion.h2>
+              <motion.p
+                variants={itemFadeUp}
+                className="text-white/60 text-sm leading-[1.8] mb-8 sm:mb-10"
+                style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}
+              >
                 Seismic-resistant RCC frames, teak wood main doors, Finolex copper wiring, Jaquar fittings, and vitrified flooring — specified once and delivered without compromise.
-              </p>
+              </motion.p>
 
-              <div className="space-y-3.5 sm:space-y-4">
+              <motion.div variants={staggerContainer(0.08)} className="space-y-3.5 sm:space-y-4">
                 {[
                   'Melamine-polished teak main doors & frames',
                   'Vitrified tiles · Granite corridors · Anti-skid baths',
                   'Johnson 6-passenger automatic elevator',
                   'Generator backup — lift, motors & flat points',
                 ].map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-xs sm:text-sm text-white/70" style={{ fontFamily: 'var(--font-sans)' }}>
+                  <motion.div
+                    key={item}
+                    variants={itemFadeUp}
+                    className="flex items-start gap-3 text-xs sm:text-sm text-white/70"
+                    style={{ fontFamily: 'var(--font-sans)' }}
+                  >
                     <CheckCircle size={16} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
                     {item}
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
-              <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/10">
+              <motion.div variants={itemFadeUp} className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/10">
                 <Link
                   to="/who-we-are/story"
                   className="type-label inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors group"
                 >
                   Our quality standards <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* ─── SITE VISIT CTA ─────────────────────────────── */}
-      <section className="py-16 md:py-24 bg-[#F0EDE6] border-t border-[#E8E4DC]">
+      <section className="py-16 md:py-24 bg-[#F0EDE6] border-t border-[#E8E4DC] overflow-hidden">
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
-          <motion.div {...fadeUp}>
-            <p className="type-label text-[#C8102E] justify-center flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 text-[10px] sm:text-xs">
+          <motion.div
+            variants={staggerContainer(0.1)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+          >
+            <motion.p
+              variants={itemFadeUp}
+              className="type-label text-[#C8102E] justify-center flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 text-[10px] sm:text-xs"
+            >
               <span className="section-rule" />
               Vijayawada — Kanuru, Ayodhya Nagar & Poranki
               <span className="section-rule" />
-            </p>
-            <h2
+            </motion.p>
+            <motion.h2
+              variants={itemFadeUp}
               className="text-[#181714] mb-4 sm:mb-6 mx-auto"
               style={{
                 fontFamily: 'Cormorant Garamond, Georgia, serif',
@@ -219,11 +297,18 @@ export const Home = () => {
               }}
             >
               Talk to our advisory team.
-            </h2>
-            <p className="text-[#8A8580] text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-8 sm:mb-10" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
+            </motion.h2>
+            <motion.p
+              variants={itemFadeUp}
+              className="text-[#8A8580] text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-8 sm:mb-10"
+              style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}
+            >
               Our Vijayawada team is on hand to answer questions about any development.
-            </p>
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto sm:max-w-none">
+            </motion.p>
+            <motion.div
+              variants={itemFadeUp}
+              className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto sm:max-w-none"
+            >
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
@@ -232,10 +317,11 @@ export const Home = () => {
               >
                 <MessageSquare size={13} /> WhatsApp
               </a>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
     </div>
   );
 };
+

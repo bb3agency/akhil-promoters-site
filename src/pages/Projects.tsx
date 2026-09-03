@@ -4,6 +4,12 @@ import { motion } from 'motion/react';
 import { MapPin, Search, Filter, ArrowRight, Download, Building } from 'lucide-react';
 import { projectData } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
+import {
+  staggerContainer,
+  fadeInUp,
+  itemFadeUp,
+  viewportConfig,
+} from '../utils/motion';
 
 export const Projects = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -36,18 +42,40 @@ export const Projects = () => {
       {/* Header Banner */}
       <section className="bg-akhil-dark text-white py-12 sm:py-16 mb-8 sm:mb-12 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
-          <span className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-3 block">
-            AKHIL PROMOTERS PORTFOLIO
-          </span>
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif mb-3 sm:mb-4">Residential & Landmark Developments</h1>
-          <p className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl font-light leading-relaxed">
-            Explore 3 BHK luxury flats and signature developments across Vijayawada’s premier locations including Ayodhya Nagar, Kanuru, and Poranki.
-          </p>
+          <motion.div
+            variants={staggerContainer(0.12)}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.span
+              variants={itemFadeUp}
+              className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-3 block"
+            >
+              AKHIL PROMOTERS PORTFOLIO
+            </motion.span>
+            <motion.h1
+              variants={itemFadeUp}
+              className="text-3xl sm:text-5xl md:text-6xl font-serif mb-3 sm:mb-4"
+            >
+              Residential &amp; Landmark Developments
+            </motion.h1>
+            <motion.p
+              variants={itemFadeUp}
+              className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl font-light leading-relaxed"
+            >
+              Explore 3 BHK luxury flats and signature developments across Vijayawada’s premier locations including Ayodhya Nagar, Kanuru, and Poranki.
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Filter & Search Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-12">
+      <motion.div
+        variants={fadeInUp(0.6, 0.15)}
+        initial="hidden"
+        animate="visible"
+        className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-12"
+      >
         <div className="bg-white p-4 sm:p-6 rounded-2xl border border-akhil-border shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center gap-3 sm:gap-4 justify-between">
           {/* Search Input */}
           <div className="relative w-full lg:w-96">
@@ -85,12 +113,17 @@ export const Projects = () => {
             </select>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Projects Grid */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         {filteredProjects.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-2xl border border-akhil-border">
+          <motion.div
+            variants={fadeInUp(0.5)}
+            initial="hidden"
+            animate="visible"
+            className="text-center py-20 bg-white rounded-2xl border border-akhil-border"
+          >
             <h3 className="text-2xl font-serif text-akhil-charcoal mb-2">No developments match your criteria</h3>
             <p className="text-xs text-akhil-gray mb-6">Try clearing your search query or filters.</p>
             <button
@@ -99,18 +132,23 @@ export const Projects = () => {
                 setStatusFilter('ALL');
                 setCategoryFilter('ALL');
               }}
-              className="px-6 py-3 bg-akhil-red text-white text-xs font-bold uppercase rounded-xl"
+              className="px-6 py-3 bg-akhil-red text-white text-xs font-bold uppercase rounded-xl hover:bg-akhil-red-hover transition-colors"
             >
               Reset Filters
             </button>
-          </div>
+          </motion.div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <motion.div
+            variants={staggerContainer(0.12, 0.1)}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                variants={itemFadeUp}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="bg-white rounded-2xl overflow-hidden border border-akhil-border hover:shadow-xl transition-all duration-300 flex flex-col group"
               >
                 <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
@@ -182,7 +220,7 @@ export const Projects = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </main>
 

@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Phone, Mail, MessageSquare, Clock, Building, Send, CheckCircle } from 'lucide-react';
 import { WHATSAPP_NUMBER, OFFICE_PHONE_1, OFFICE_PHONE_2, LANDLINE_PHONE, OFFICE_EMAIL, OFFICE_ADDRESS, projectData } from '../data';
+import {
+  staggerContainer,
+  fadeInUp,
+  itemFadeUp,
+  viewportConfig,
+} from '../utils/motion';
 
 export const Contact = () => {
   const [formData, setFormData] = useState({
@@ -29,60 +35,97 @@ export const Contact = () => {
       <section className="bg-akhil-dark text-white py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-akhil-dark to-akhil-charcoal opacity-90 pointer-events-none" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <span className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
+          <motion.div
+            variants={staggerContainer(0.12)}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.span
+              variants={itemFadeUp}
+              className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-4 block"
+            >
               REACH OUT TO US
-            </span>
-            <h1 className="text-4xl md:text-6xl font-serif text-white mb-4">Contact Akhil Promoters</h1>
-            <p className="text-gray-400 max-w-xl mx-auto text-sm font-light leading-relaxed">
+            </motion.span>
+            <motion.h1
+              variants={itemFadeUp}
+              className="text-4xl md:text-6xl font-serif text-white mb-4"
+            >
+              Contact Akhil Promoters
+            </motion.h1>
+            <motion.p
+              variants={itemFadeUp}
+              className="text-gray-400 max-w-xl mx-auto text-sm font-light leading-relaxed"
+            >
               Connect with our Vijayawada advisory team for project inquiries, site visits, or investment consultations.
-            </p>
+            </motion.p>
           </motion.div>
         </div>
       </section>
 
       {/* Quick Contact Action Bars */}
-      <section className="bg-white border-b border-akhil-border py-5">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap items-center justify-center md:justify-between gap-4">
-          <a href={`tel:${OFFICE_PHONE_1}`} className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group">
+      <section className="bg-white border-b border-akhil-border py-5 overflow-hidden">
+        <motion.div
+          variants={staggerContainer(0.08, 0.1)}
+          initial="hidden"
+          animate="visible"
+          className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap items-center justify-center md:justify-between gap-4"
+        >
+          <motion.a
+            variants={itemFadeUp}
+            href={`tel:${OFFICE_PHONE_1}`}
+            className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group"
+          >
             <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors">
               <Phone size={18} />
             </span>
             <span className="text-sm font-bold">{OFFICE_PHONE_1}</span>
-          </a>
-          <a href={`tel:${OFFICE_PHONE_2}`} className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group">
+          </motion.a>
+          <motion.a
+            variants={itemFadeUp}
+            href={`tel:${OFFICE_PHONE_2}`}
+            className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group"
+          >
             <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors">
               <Phone size={18} />
             </span>
             <span className="text-sm font-bold">{OFFICE_PHONE_2}</span>
-          </a>
-          <a href={`mailto:${OFFICE_EMAIL}`} className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group">
+          </motion.a>
+          <motion.a
+            variants={itemFadeUp}
+            href={`mailto:${OFFICE_EMAIL}`}
+            className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group"
+          >
             <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors">
               <Mail size={18} />
             </span>
             <span className="text-sm font-bold">{OFFICE_EMAIL}</span>
-          </a>
-          <a
+          </motion.a>
+          <motion.a
+            variants={itemFadeUp}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noreferrer"
-            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center gap-2"
+            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center gap-2 shadow-md"
           >
             <MessageSquare size={16} /> WhatsApp Chat
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </section>
 
       {/* Main Contact Content */}
-      <section className="py-20 max-w-7xl mx-auto px-6 md:px-12">
+      <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left: Office Info */}
           <div className="lg:col-span-5 space-y-8">
             {/* Office Card */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              variants={fadeInUp(0.65)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
               className="bg-akhil-dark text-white p-8 rounded-2xl border border-white/10 shadow-xl space-y-6"
             >
               <div>
@@ -129,7 +172,13 @@ export const Contact = () => {
             </motion.div>
 
             {/* Map Embed Card */}
-            <div className="bg-white rounded-2xl border border-akhil-border overflow-hidden shadow-sm">
+            <motion.div
+              variants={fadeInUp(0.65, 0.15)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
+              className="bg-white rounded-2xl border border-akhil-border overflow-hidden shadow-sm"
+            >
               <div className="p-4 border-b border-akhil-border flex items-center gap-2">
                 <MapPin size={16} className="text-akhil-red" />
                 <span className="text-xs font-bold text-akhil-charcoal">Kanuru, Vijayawada - 520007</span>
@@ -154,15 +203,16 @@ export const Contact = () => {
               >
                 <MapPin size={14} /> Get Directions on Google Maps
               </a>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right: Inquiry Form */}
           <div className="lg:col-span-7">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
+              variants={fadeInUp(0.65, 0.1)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportConfig}
               className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm"
             >
               <h2 className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-2">Send Us an Enquiry</h2>
