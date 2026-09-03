@@ -169,25 +169,82 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* ─── QUALITY COMMITMENT ─────────────────────────── */}
-      <section className="relative py-16 md:py-28 bg-[#181714] text-white overflow-hidden">
-        {/* Background Video with Cinematic Overlay */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-35"
+      {/* ─── 3D ARCHITECTURAL WALKTHROUGH SECTION ─────────── */}
+      <section className="py-16 md:py-24 bg-[#100F0D] text-white overflow-hidden border-t border-white/5">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+          <motion.div
+            variants={staggerContainer(0.1)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
           >
-            <source src="/construction-standards-bg.mp4" type="video/mp4" />
-          </video>
-          {/* Gradients ensuring flawless contrast and typography readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/90 via-[#181714]/75 to-[#181714]/90" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#181714] via-transparent to-[#181714]/60" />
-        </div>
+            <motion.p
+              variants={itemFadeUp}
+              className="type-label text-[#C8102E] flex items-center justify-center gap-2 mb-3 sm:mb-4 text-[10px] sm:text-xs"
+            >
+              <span className="section-rule" />
+              3D Spatial Perspective &amp; Flow
+              <span className="section-rule" />
+            </motion.p>
+            <motion.h2
+              variants={itemFadeUp}
+              className="text-white text-3xl sm:text-4xl md:text-5xl font-serif mb-4"
+              style={{
+                fontFamily: 'Cormorant Garamond, Georgia, serif',
+                fontWeight: 500,
+                lineHeight: 1.15,
+              }}
+            >
+              Every square foot planned with purpose.
+            </motion.h2>
+            <motion.p
+              variants={itemFadeUp}
+              className="text-white/60 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Watch our architectural floor plans transition from paper precision into three-dimensional living spaces — engineered with 100% Vaastu orientation, cross ventilation, and generous room proportions.
+            </motion.p>
+          </motion.div>
 
-        <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+          {/* Cinematic Video Player Showcase */}
+          <motion.div
+            variants={fadeInUp(0.7, 0.15, 30)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-video max-w-5xl mx-auto group"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/floorplan-3d-walkthrough.mp4" type="video/mp4" />
+            </video>
+
+            {/* Subtle cinematic gradient vignette along the edges */}
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+
+            {/* Floating details overlay */}
+            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
+              <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 text-white text-[10px] sm:text-xs tracking-wider uppercase font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                3D Perspective · 100% Vaastu
+              </div>
+              <div className="hidden sm:flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 text-white/80 text-[10px] sm:text-xs font-light">
+                3 BHK Architectural Layout Visualization
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── QUALITY COMMITMENT ─────────────────────────── */}
+      <section className="py-16 md:py-28 bg-[#181714] text-white overflow-hidden">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
             <motion.div
@@ -197,7 +254,7 @@ export const Home = () => {
               viewport={viewportConfig}
               className="lg:col-span-6 order-2 lg:order-1"
             >
-              <div className="aspect-[4/3] overflow-hidden rounded-sm group border border-white/10 shadow-2xl">
+              <div className="aspect-[4/3] overflow-hidden rounded-sm group">
                 <img
                   src="/images/projects/blueberry-elevation.jpg"
                   alt="Blueberry, Ayodhya Nagar"
