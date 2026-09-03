@@ -27,6 +27,7 @@ import {
   fadeInUp,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../../utils/motion';
 
 export const WhoWeAre = () => {
@@ -94,7 +95,10 @@ export const WhoWeAre = () => {
       </section>
 
       {/* ── 2. COMPANY PROFILE & FOUNDING STORY ──────────── */}
-      <section className="py-16 sm:py-24 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 sm:py-24 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Main Story Text */}
           <motion.div
@@ -211,10 +215,13 @@ export const WhoWeAre = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── 3. VISION & MISSION ──────────────────────────── */}
-      <section className="py-16 sm:py-24 bg-white border-y border-[#E8E4DC] overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 sm:py-24 bg-white border-y border-[#E8E4DC] overflow-hidden"
+      >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div
             variants={staggerContainer(0.1)}
@@ -315,10 +322,13 @@ export const WhoWeAre = () => {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── 4. VALUES & 6 QUALITY STANDARDS ──────────────── */}
-      <section className="py-16 sm:py-24 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 sm:py-24 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden"
+      >
         <motion.div
           variants={staggerContainer(0.1)}
           initial="hidden"
@@ -400,10 +410,13 @@ export const WhoWeAre = () => {
             </motion.div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* ── 5. ARCHITECTURAL & ENGINEERING PANEL ─────────── */}
-      <section className="py-16 sm:py-24 bg-[#181714] text-white overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 sm:py-24 bg-[#181714] text-white overflow-hidden"
+      >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div
             variants={staggerContainer(0.1)}
@@ -489,10 +502,13 @@ export const WhoWeAre = () => {
             ))}
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ── 6. BRANDED MATERIALS & SPECIFICATIONS ────────── */}
-      <section className="py-16 sm:py-24 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 sm:py-24 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden"
+      >
         <motion.div
           variants={staggerContainer(0.1)}
           initial="hidden"
@@ -544,10 +560,13 @@ export const WhoWeAre = () => {
             </motion.div>
           ))}
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* ── 7. BOTTOM CTA ───────────────────────────────── */}
-      <section className="bg-[#181714] text-white py-16 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="bg-[#181714] text-white py-16 overflow-hidden"
+      >
         <motion.div
           variants={staggerContainer(0.1)}
           initial="hidden"
@@ -577,7 +596,7 @@ export const WhoWeAre = () => {
             </Link>
           </motion.div>
         </motion.div>
-      </section>
+      </motion.section>
 
     </div>
   );

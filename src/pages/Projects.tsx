@@ -9,6 +9,7 @@ import {
   fadeInUp,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../utils/motion';
 
 export const Projects = () => {
@@ -116,7 +117,10 @@ export const Projects = () => {
       </motion.div>
 
       {/* Projects Grid */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      <motion.section
+        {...sectionScrollProps}
+        className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12"
+      >
         {filteredProjects.length === 0 ? (
           <motion.div
             variants={fadeInUp(0.5)}
@@ -222,7 +226,7 @@ export const Projects = () => {
             ))}
           </motion.div>
         )}
-      </main>
+      </motion.section>
 
       <InquiryModal
         isOpen={isModalOpen}

@@ -7,6 +7,7 @@ import {
   fadeInUp,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../utils/motion';
 
 export const Contact = () => {
@@ -63,7 +64,10 @@ export const Contact = () => {
       </section>
 
       {/* Quick Contact Action Bars */}
-      <section className="bg-white border-b border-akhil-border py-5 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="bg-white border-b border-akhil-border py-5 overflow-hidden"
+      >
         <motion.div
           variants={staggerContainer(0.08, 0.1)}
           initial="hidden"
@@ -112,10 +116,13 @@ export const Contact = () => {
             <MessageSquare size={16} /> WhatsApp Chat
           </motion.a>
         </motion.div>
-      </section>
+      </motion.section>
 
       {/* Main Contact Content */}
-      <section className="py-20 max-w-7xl mx-auto px-6 md:px-12 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-20 max-w-7xl mx-auto px-6 md:px-12 overflow-hidden"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left: Office Info */}
@@ -314,7 +321,7 @@ export const Contact = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

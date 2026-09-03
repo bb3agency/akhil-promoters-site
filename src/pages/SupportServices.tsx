@@ -9,6 +9,7 @@ import {
   fadeInRight,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../utils/motion';
 
 export const SupportServices = () => {
@@ -91,10 +92,7 @@ export const SupportServices = () => {
         {/* 1. EMI CALCULATOR */}
         <motion.section
           id="emi"
-          variants={staggerContainer(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
+          {...sectionScrollProps}
           className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
           <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-8">
@@ -223,10 +221,7 @@ export const SupportServices = () => {
         {/* 2. AREA UNIT CONVERTER */}
         <motion.section
           id="area"
-          variants={staggerContainer(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
+          {...sectionScrollProps}
           className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
           <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-8">
@@ -291,10 +286,7 @@ export const SupportServices = () => {
         {/* 3. NRI CURRENCY CONVERTER */}
         <motion.section
           id="currency"
-          variants={staggerContainer(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
+          {...sectionScrollProps}
           className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
           <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-8">

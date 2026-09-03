@@ -9,6 +9,7 @@ import {
   fadeInUp,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../utils/motion';
 
 export const ProjectDetails = () => {
@@ -132,7 +133,10 @@ export const ProjectDetails = () => {
       </section>
 
       {/* 3. MAIN NAVIGATION TABS & CONTENT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12">
+      <motion.section
+        {...sectionScrollProps}
+        className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 py-8 sm:py-12"
+      >
         {/* Navigation Tabs */}
         <motion.div
           variants={fadeInUp(0.5, 0.25)}
@@ -555,7 +559,7 @@ export const ProjectDetails = () => {
             </motion.div>
           </motion.div>
         )}
-      </section>
+      </motion.section>
 
       <InquiryModal
         isOpen={isModalOpen}

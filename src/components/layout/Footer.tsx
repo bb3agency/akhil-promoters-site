@@ -11,7 +11,7 @@ import {
   WHATSAPP_NUMBER,
   projectData,
 } from '../../data';
-import { staggerContainer, itemFadeUp, viewportConfig } from '../../utils/motion';
+import { staggerContainer, itemFadeUp, viewportConfig, sectionScrollProps } from '../../utils/motion';
 
 export const Footer = () => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -21,7 +21,10 @@ export const Footer = () => {
       {/* ─── Transition divider — prevents footer from merging with section above */}
       <div className="h-px bg-gradient-to-r from-transparent via-[#C8102E]/30 to-transparent" />
 
-      <footer className="relative bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10 overflow-hidden">
+      <motion.footer
+        {...sectionScrollProps}
+        className="relative bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10 overflow-hidden"
+      >
         {/* ─── Architectural Skyline Background ───────── */}
         <div className="absolute inset-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden">
           <img
@@ -177,7 +180,7 @@ export const Footer = () => {
             </button>
           </div>
         </div>
-      </footer>
+      </motion.footer>
     </>
   );
 };

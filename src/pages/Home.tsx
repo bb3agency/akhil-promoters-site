@@ -8,6 +8,7 @@ import {
   fadeInUp,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../utils/motion';
 
 export const Home = () => {
@@ -105,7 +106,10 @@ export const Home = () => {
       </section>
 
       {/* ─── BRIEF INTRODUCTION ──────────────────────────── */}
-      <section className="py-16 md:py-28 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 md:py-28 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
           <motion.div
             variants={staggerContainer(0.12)}
@@ -167,10 +171,13 @@ export const Home = () => {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ─── 3D ARCHITECTURAL WALKTHROUGH SECTION ─────────── */}
-      <section className="py-16 md:py-24 bg-[#100F0D] text-white overflow-hidden border-t border-white/5">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 md:py-24 bg-[#100F0D] text-white overflow-hidden border-t border-white/5"
+      >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
           <motion.div
             variants={staggerContainer(0.1)}
@@ -240,10 +247,13 @@ export const Home = () => {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ─── QUALITY COMMITMENT ─────────────────────────── */}
-      <section className="py-16 md:py-28 bg-[#181714] text-white overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 md:py-28 bg-[#181714] text-white overflow-hidden"
+      >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
 
@@ -323,10 +333,13 @@ export const Home = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ─── SITE VISIT CTA ─────────────────────────────── */}
-      <section className="py-16 md:py-24 bg-[#F0EDE6] border-t border-[#E8E4DC] overflow-hidden">
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 md:py-24 bg-[#F0EDE6] border-t border-[#E8E4DC] overflow-hidden"
+      >
         <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
           <motion.div
             variants={staggerContainer(0.1)}
@@ -377,7 +390,7 @@ export const Home = () => {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import {
   fadeInUp,
   itemFadeUp,
   viewportConfig,
+  sectionScrollProps,
 } from '../utils/motion';
 
 const faqs = [
@@ -67,10 +68,7 @@ export const BuyersGuide = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
         {/* Step-by-Step Buying Process */}
         <motion.section
-          variants={staggerContainer(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
+          {...sectionScrollProps}
           className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
           <motion.h2 variants={itemFadeUp} className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-8">
@@ -106,10 +104,7 @@ export const BuyersGuide = () => {
 
         {/* Required Documents Checklist */}
         <motion.section
-          variants={staggerContainer(0.08)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
+          {...sectionScrollProps}
           className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
           <motion.h2 variants={itemFadeUp} className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-6">
@@ -140,10 +135,7 @@ export const BuyersGuide = () => {
 
         {/* FAQs Accordion */}
         <motion.section
-          variants={staggerContainer(0.06)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportConfig}
+          {...sectionScrollProps}
           className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
           <motion.h2 variants={itemFadeUp} className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-8">
