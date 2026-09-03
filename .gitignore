@@ -33,6 +33,7 @@ bun.lock
 # Large binary files in repo root (kept locally, not in GitHub)
 *.pdf
 /*.mp4
+/ChatGPT Image *.png
 # ...except the brochures the site serves for download
 !public/brochures/*.pdf
 !public/*.mp4
@@ -40,4 +41,5 @@ bun.lock
 
 # AI Studio artifacts
 assets/.aistudio/
+
 

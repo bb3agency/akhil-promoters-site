@@ -21,8 +21,20 @@ export const Footer = () => {
       {/* ─── Transition divider — prevents footer from merging with section above */}
       <div className="h-px bg-gradient-to-r from-transparent via-[#C8102E]/30 to-transparent" />
 
-      <footer className="bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10 overflow-hidden">
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+      <footer className="relative bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10 overflow-hidden">
+        {/* ─── Architectural Skyline Background ───────── */}
+        <div className="absolute inset-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden">
+          <img
+            src="/images/footer-skyline.png"
+            alt=""
+            aria-hidden="true"
+            className="w-full max-w-[1800px] h-auto object-cover sm:object-contain object-bottom opacity-20 select-none"
+          />
+          {/* Subtle gradient blend */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#181714]/60 via-transparent to-[#181714]/90" />
+        </div>
+
+        <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
 
           {/* ── Top section ─────────────────────────────── */}
           <motion.div
