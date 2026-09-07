@@ -25,13 +25,21 @@ export const Footer = () => {
         {...sectionScrollProps}
         className="relative bg-[#181714] text-white pt-8 sm:pt-20 pb-6 sm:pb-10 overflow-hidden"
       >
-        {/* ─── Architectural Skyline Background ───────── */}
+        {/* ─── Architectural Background ───────── */}
         <div className="absolute inset-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden">
+          {/* Mobile Viewport Background */}
+          <img
+            src="/images/footer-mobile-building.png"
+            alt=""
+            aria-hidden="true"
+            className="block sm:hidden w-full max-w-[360px] h-auto object-contain object-bottom opacity-20 select-none"
+          />
+          {/* Desktop Viewport Background */}
           <img
             src="/images/footer-skyline.png"
             alt=""
             aria-hidden="true"
-            className="w-full max-w-[1800px] h-auto object-cover sm:object-contain object-bottom opacity-15 sm:opacity-20 select-none"
+            className="hidden sm:block w-full max-w-[1800px] h-auto object-contain object-bottom opacity-20 select-none"
           />
           {/* Subtle gradient blend */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#181714]/60 via-transparent to-[#181714]/90" />
