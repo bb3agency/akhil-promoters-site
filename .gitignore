@@ -34,6 +34,7 @@ bun.lock
 *.pdf
 /*.mp4
 /ChatGPT Image *.png
+/[0-9a-f-]*.png
 # ...except the brochures the site serves for download
 !public/brochures/*.pdf
 !public/*.mp4
