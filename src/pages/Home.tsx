@@ -264,10 +264,10 @@ export const Home = () => {
               viewport={viewportConfig}
               className="lg:col-span-6 order-2 lg:order-1 flex justify-center"
             >
-              <div className="w-full max-w-lg lg:max-w-none aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-[#1f1e1a] group">
+              <div className="w-full max-w-lg lg:max-w-none aspect-[3/2] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-[#1f1e1a] group">
                 <img
-                  src="/images/projects/blueberry-elevation.jpg"
-                  alt="Blueberry Architectural Elevation, Ayodhya Nagar"
+                  src="/images/construction-standard.jpg"
+                  alt="Construction Standard — Architectural Craftsmanship"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
