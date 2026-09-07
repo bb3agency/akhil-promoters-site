@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { WHATSAPP_NUMBER } from '../../data';
+import { mobileTap, mobileButtonTap, fadeInRight, staggerContainer } from '../../utils/motion';
 
 /* ─── Navigation Data ─────────────────────────── */
 const navigation = [
@@ -204,7 +205,8 @@ export const GlobalHeader = () => {
             <div aria-hidden="true" className="hidden lg:block ml-4 xl:min-w-[170px]" />
 
             {/* ── Mobile Hamburger ── */}
-            <button
+            <motion.button
+              whileTap={mobileButtonTap}
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors ${
                 isTransparentDarkHeader ? 'text-white hover:bg-white/10' : 'text-[#181714] hover:bg-black/5'
@@ -212,7 +214,7 @@ export const GlobalHeader = () => {
               aria-label="Toggle menu"
             >
               {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            </motion.button>
           </div>
         </div>
       </header>
@@ -224,64 +226,84 @@ export const GlobalHeader = () => {
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.28 }}
+            transition={{ type: 'tween', duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
             className="fixed inset-0 z-50 bg-[#181714] text-white flex flex-col overflow-y-auto pt-safe"
           >
             {/* Mobile header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
               <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-8 sm:h-9 w-auto object-contain" />
-              <button
+              <motion.button
+                whileTap={mobileButtonTap}
                 onClick={() => setMobileOpen(false)}
                 className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/70 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
                 aria-label="Close menu"
               >
                 <X size={24} />
-              </button>
+              </motion.button>
             </div>
 
-            {/* Mobile nav links */}
-            <div className="flex-1 px-5 sm:px-6 py-6 space-y-1 overflow-y-auto -webkit-overflow-scrolling-touch">
-              {navigation.map((item) => (
-                <div key={item.name}>
+            {/* Mobile nav links with Staggered Entrance */}
+            <motion.div
+              variants={staggerContainer(0.04, 0.05)}
+              initial="hidden"
+              animate="visible"
+              className="flex-1 px-5 sm:px-6 py-6 space-y-1 overflow-y-auto -webkit-overflow-scrolling-touch"
+            >
+              {navigation.map((item, idx) => (
+                <motion.div
+                  key={item.name}
+                  variants={fadeInRight(0.28, idx * 0.035, 16)}
+                >
                   <Link
                     to={item.href || '#'}
                     onClick={() => setMobileOpen(false)}
-                    className="flex items-center min-h-[48px] py-3 text-lg font-serif font-medium text-white/90 hover:text-[#C8102E] transition-colors border-b border-white/5 active:bg-white/5"
+                    className="flex items-center min-h-[48px] py-3 text-lg font-serif font-medium text-white/90 hover:text-[#C8102E] transition-colors border-b border-white/5 active:bg-white/5 active:scale-[0.98]"
                   >
                     {item.name}
                   </Link>
                   {item.dropdown && (
-                    <div className="pl-3.5 mb-2 space-y-1 border-l-2 border-[#C8102E]/40 mt-2">
-                      {item.dropdown.map((sub, idx) =>
+                    <motion.div
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 + idx * 0.03, duration: 0.25 }}
+                      className="pl-3.5 mb-2 space-y-1 border-l-2 border-[#C8102E]/40 mt-2"
+                    >
+                      {item.dropdown.map((sub) =>
                         'divider' in sub && sub.divider ? null : (
                           <Link
                             key={sub.name}
                             to={sub.href || '#'}
                             onClick={() => setMobileOpen(false)}
-                            className="flex items-center min-h-[44px] py-2 px-2 text-xs font-medium text-white/70 hover:text-white active:text-[#C8102E] active:bg-white/5 rounded transition-colors"
+                            className="flex items-center min-h-[44px] py-2 px-2 text-xs font-medium text-white/70 hover:text-white active:text-[#C8102E] active:bg-white/5 rounded transition-colors active:scale-[0.97]"
                           >
                             <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]/60 mr-2 flex-shrink-0" />
                             <span>{sub.name}</span>
                           </Link>
                         )
                       )}
-                    </div>
+                    </motion.div>
                   )}
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            {/* Mobile CTAs */}
-            <div className="p-5 sm:p-6 space-y-3 border-t border-white/10 bg-[#181714]/95 shrink-0 pb-safe">
-              <a
+            {/* Mobile CTAs with tactile tap & entry animation */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.25, duration: 0.3 }}
+              className="p-5 sm:p-6 space-y-3 border-t border-white/10 bg-[#181714]/95 shrink-0 pb-safe"
+            >
+              <motion.a
+                whileTap={mobileTap}
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full min-h-[48px] py-3.5 px-4 border border-white/20 text-white/90 type-label flex items-center justify-center gap-2 hover:border-white/40 hover:text-white transition-colors text-xs font-bold tracking-wider uppercase rounded-sm active:bg-white/10"
               >
                 <MessageSquare size={16} /> WhatsApp Advisory
-              </a>
-            </div>
+              </motion.a>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

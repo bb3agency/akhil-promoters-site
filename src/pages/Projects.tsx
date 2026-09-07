@@ -10,6 +10,9 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
+  mobileButtonTap,
 } from '../utils/motion';
 
 export const Projects = () => {
@@ -153,6 +156,7 @@ export const Projects = () => {
                 key={project.id}
                 variants={itemFadeUp}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                whileTap={mobileCardTap}
                 className="bg-white rounded-2xl overflow-hidden border border-akhil-border hover:shadow-xl transition-all duration-300 flex flex-col group"
               >
                 <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
@@ -198,12 +202,13 @@ export const Projects = () => {
                   <div className="flex items-center gap-3">
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="flex-1 min-h-[44px] py-3 px-4 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold tracking-wider uppercase rounded-xl text-center transition-colors flex items-center justify-center gap-2"
+                      className="flex-1 min-h-[44px] py-3 px-4 bg-akhil-charcoal hover:bg-akhil-red active:bg-[#900B20] active:scale-[0.97] text-white text-xs font-bold tracking-wider uppercase rounded-xl text-center transition-all flex items-center justify-center gap-2"
                     >
                       View Specs <ArrowRight size={14} />
                     </Link>
                     {project.brochureUrl ? (
-                      <a
+                      <motion.a
+                        whileTap={mobileTap}
                         href={project.brochureUrl}
                         download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
                         className="min-h-[44px] min-w-[44px] py-3 px-3.5 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors flex items-center justify-center"
@@ -211,16 +216,17 @@ export const Projects = () => {
                         aria-label={`Download ${project.name} brochure`}
                       >
                         <Download size={16} />
-                      </a>
+                      </motion.a>
                     ) : (
-                      <button
+                      <motion.button
+                        whileTap={mobileTap}
                         onClick={() => handleOpenBrochureModal(project.name)}
                         className="min-h-[44px] min-w-[44px] py-3 px-3.5 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors flex items-center justify-center"
                         title="Request Brochure"
                         aria-label="Request Brochure"
                       >
                         <Download size={16} />
-                      </button>
+                      </motion.button>
                     )}
                   </div>
                 </div>

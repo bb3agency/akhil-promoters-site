@@ -1,9 +1,9 @@
 import { Variants } from 'motion/react';
 
-/* ─── Standard Viewport Settings ───────────────── */
+/* ─── Standard Viewport Settings (Optimized for Mobile Viewports) ─── */
 export const viewportConfig = {
   once: true,
-  amount: 0.15,
+  amount: 0.05,
 };
 
 /* ─── Container Staggers ──────────────────────── */
@@ -163,7 +163,41 @@ export const sectionFadeUp: Variants = {
 export const sectionScrollProps = {
   initial: 'hidden',
   whileInView: 'visible',
-  viewport: { once: true, amount: 0.08 },
+  viewport: { once: true, amount: 0.04 },
   variants: sectionFadeUp,
 };
+
+/* ─── Mobile Interactive Micro-Animations ──────── */
+export const mobileTap = {
+  scale: 0.96,
+  transition: { duration: 0.12, ease: 'easeOut' },
+};
+
+export const mobileCardTap = {
+  scale: 0.985,
+  transition: { duration: 0.12, ease: 'easeOut' },
+};
+
+export const mobileButtonTap = {
+  scale: 0.95,
+  transition: { duration: 0.1, ease: 'easeOut' },
+};
+
+export const mobileChipTap = {
+  scale: 0.93,
+  transition: { duration: 0.1 },
+};
+
+export const mobileDrawerLink = (i: number = 0): Variants => ({
+  hidden: { opacity: 0, x: 24 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.06 + i * 0.035,
+      duration: 0.3,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+});
 

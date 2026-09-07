@@ -10,6 +10,10 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
+  mobileButtonTap,
+  mobileChipTap,
 } from '../utils/motion';
 
 export const ProjectDetails = () => {
@@ -32,17 +36,18 @@ export const ProjectDetails = () => {
   /* Downloads the real brochure PDF when one exists; falls back to the enquiry form. */
   const BrochureAction = ({ className, iconSize, label }: { className: string; iconSize: number; label: string }) =>
     project.brochureUrl ? (
-      <a
+      <motion.a
+        whileTap={mobileTap}
         href={project.brochureUrl}
         download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
         className={className}
       >
         <Download size={iconSize} /> {label}
-      </a>
+      </motion.a>
     ) : (
-      <button onClick={openBrochureModal} className={className}>
+      <motion.button whileTap={mobileTap} onClick={openBrochureModal} className={className}>
         <Download size={iconSize} /> {label}
-      </button>
+      </motion.button>
     );
 
   return (
@@ -107,24 +112,24 @@ export const ProjectDetails = () => {
             animate="visible"
             className="flex items-center overflow-x-auto no-scrollbar gap-5 sm:grid sm:grid-cols-4 sm:gap-4 text-xs text-akhil-charcoal"
           >
-            <motion.div variants={itemFadeUp} className="shrink-0 sm:shrink border-r border-gray-100 pr-4 sm:pr-2 last:border-0 md:border-r">
+            <motion.div variants={itemFadeUp} whileTap={mobileChipTap} className="shrink-0 sm:shrink border-r border-gray-100 pr-4 sm:pr-2 last:border-0 md:border-r">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Configurations</span>
               <strong className="text-xs sm:text-sm font-serif whitespace-nowrap sm:line-clamp-1">{project.configurations.join(', ')}</strong>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="shrink-0 sm:shrink border-r border-gray-100 sm:border-r-0 md:border-r pr-4 sm:pr-2">
+            <motion.div variants={itemFadeUp} whileTap={mobileChipTap} className="shrink-0 sm:shrink border-r border-gray-100 sm:border-r-0 md:border-r pr-4 sm:pr-2">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Compliance</span>
               <strong className="text-xs sm:text-sm font-serif text-emerald-700 flex items-center gap-1 whitespace-nowrap">
                 <Compass size={13} /> 100% Vaastu
               </strong>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="shrink-0 sm:shrink border-r border-gray-100 pr-4 sm:pr-2">
+            <motion.div variants={itemFadeUp} whileTap={mobileChipTap} className="shrink-0 sm:shrink border-r border-gray-100 pr-4 sm:pr-2">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Location</span>
               <strong className="text-xs sm:text-sm font-serif whitespace-nowrap sm:line-clamp-1">{project.area}</strong>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="shrink-0 sm:shrink">
+            <motion.div variants={itemFadeUp} whileTap={mobileChipTap} className="shrink-0 sm:shrink">
               <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Builder</span>
               <strong className="text-xs sm:text-sm font-serif text-akhil-red whitespace-nowrap">CREDAI Member</strong>
             </motion.div>
@@ -144,7 +149,8 @@ export const ProjectDetails = () => {
           animate="visible"
           className="flex items-center gap-1.5 sm:gap-4 border-b border-akhil-border mb-6 sm:mb-10 overflow-x-auto no-scrollbar pb-1"
         >
-          <button
+          <motion.button
+            whileTap={mobileButtonTap}
             onClick={() => setActiveTab('overview')}
             className={`min-h-[44px] px-3 pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
               activeTab === 'overview'
@@ -153,9 +159,10 @@ export const ProjectDetails = () => {
             }`}
           >
             Project Overview
-          </button>
+          </motion.button>
           {project.floorPlans.length > 0 && (
-            <button
+            <motion.button
+              whileTap={mobileButtonTap}
               onClick={() => setActiveTab('floorplans')}
               className={`min-h-[44px] px-3 pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
                 activeTab === 'floorplans'
@@ -164,9 +171,10 @@ export const ProjectDetails = () => {
               }`}
             >
               Floor Plans ({project.floorPlans.length})
-            </button>
+            </motion.button>
           )}
-          <button
+          <motion.button
+            whileTap={mobileButtonTap}
             onClick={() => setActiveTab('specs')}
             className={`min-h-[44px] px-3 pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
               activeTab === 'specs'
@@ -175,8 +183,9 @@ export const ProjectDetails = () => {
             }`}
           >
             Specifications
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileTap={mobileButtonTap}
             onClick={() => setActiveTab('location')}
             className={`min-h-[44px] px-3 pb-3 sm:pb-4 text-xs font-bold tracking-wider uppercase transition-colors whitespace-nowrap border-b-2 shrink-0 ${
               activeTab === 'location'
@@ -185,7 +194,7 @@ export const ProjectDetails = () => {
             }`}
           >
             Location & Map
-          </button>
+          </motion.button>
         </motion.div>
 
         {/* TAB 1: OVERVIEW */}
@@ -346,20 +355,22 @@ export const ProjectDetails = () => {
                 </p>
 
                 <div className="space-y-3">
-                  <a
+                  <motion.a
+                    whileTap={mobileTap}
                     href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Akhil%20Promoters,%20I%20want%20details%20and%20pricing%20for%20${project.name}`}
                     target="_blank"
                     rel="noreferrer"
                     className="w-full min-h-[46px] py-3.5 bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 shadow-md"
                   >
                     <MessageSquare size={16} /> WhatsApp Inquiry
-                  </a>
-                  <a
+                  </motion.a>
+                  <motion.a
+                    whileTap={mobileTap}
                     href={`tel:${OFFICE_PHONE_1}`}
                     className="w-full min-h-[46px] py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/15 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 border border-white/20"
                   >
                     <Phone size={16} /> Call {OFFICE_PHONE_1}
-                  </a>
+                  </motion.a>
                 </div>
               </motion.div>
             </div>
@@ -385,6 +396,7 @@ export const ProjectDetails = () => {
                 <motion.button
                   key={idx}
                   variants={itemFadeUp}
+                  whileTap={mobileButtonTap}
                   onClick={() => setSelectedFloorPlanIndex(idx)}
                   className={`min-h-[40px] px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs font-bold tracking-wider whitespace-nowrap transition-all shrink-0 sm:shrink ${
                     selectedFloorPlanIndex === idx

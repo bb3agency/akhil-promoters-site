@@ -11,7 +11,7 @@ import {
   WHATSAPP_NUMBER,
   projectData,
 } from '../../data';
-import { staggerContainer, itemFadeUp, viewportConfig, sectionScrollProps } from '../../utils/motion';
+import { staggerContainer, itemFadeUp, viewportConfig, sectionScrollProps, mobileTap, mobileButtonTap } from '../../utils/motion';
 
 export const Footer = () => {
   const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -72,14 +72,15 @@ export const Footer = () => {
 
               {/* Contact actions */}
               <div>
-                <a
+                <motion.a
+                  whileTap={mobileTap}
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noreferrer"
                   className="type-label text-[10px] min-h-[40px] sm:min-h-[44px] inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 border border-white/20 text-white/80 hover:border-white/50 hover:text-white transition-colors active:bg-white/10"
                 >
                   <MessageSquare size={13} /> WhatsApp Us
-                </a>
+                </motion.a>
               </div>
             </motion.div>
 
@@ -98,7 +99,7 @@ export const Footer = () => {
                   <li key={l.name}>
                     <Link
                       to={l.href}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E]"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E] active:scale-[0.98]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
@@ -115,7 +116,7 @@ export const Footer = () => {
                   <li key={p.id}>
                     <Link
                       to={`/projects/${p.slug}`}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E]"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E] active:scale-[0.98]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {p.name}
@@ -138,7 +139,7 @@ export const Footer = () => {
                   <li key={l.name}>
                     <Link
                       to={l.href}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E]"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E] active:scale-[0.98]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
@@ -181,14 +182,15 @@ export const Footer = () => {
             <p className="text-[11px] text-white/30" style={{ fontFamily: 'var(--font-sans)' }}>
               © {new Date().getFullYear()} Akhil Promoters Private Limited. CREDAI Member.
             </p>
-            <button
+            <motion.button
+              whileTap={mobileButtonTap}
               onClick={scrollTop}
               className="p-2.5 sm:p-3 min-w-[38px] min-h-[38px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center border border-white/20 text-white/40 hover:text-white hover:border-white/50 active:bg-white/10 transition-colors"
               title="Back to top"
               aria-label="Back to top"
             >
               <ArrowUp size={15} />
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.footer>

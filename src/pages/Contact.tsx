@@ -8,6 +8,9 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
+  mobileButtonTap,
 } from '../utils/motion';
 
 export const Contact = () => {
@@ -76,6 +79,7 @@ export const Contact = () => {
         >
           <motion.a
             variants={itemFadeUp}
+            whileTap={mobileTap}
             href={`tel:${OFFICE_PHONE_1}`}
             className="flex items-center gap-3 p-2.5 sm:p-0 rounded-xl bg-akhil-off-white sm:bg-transparent text-akhil-charcoal hover:text-akhil-red transition-colors group min-h-[44px]"
           >
@@ -86,6 +90,7 @@ export const Contact = () => {
           </motion.a>
           <motion.a
             variants={itemFadeUp}
+            whileTap={mobileTap}
             href={`tel:${OFFICE_PHONE_2}`}
             className="flex items-center gap-3 p-2.5 sm:p-0 rounded-xl bg-akhil-off-white sm:bg-transparent text-akhil-charcoal hover:text-akhil-red transition-colors group min-h-[44px]"
           >
@@ -96,6 +101,7 @@ export const Contact = () => {
           </motion.a>
           <motion.a
             variants={itemFadeUp}
+            whileTap={mobileTap}
             href={`mailto:${OFFICE_EMAIL}`}
             className="flex items-center gap-3 p-2.5 sm:p-0 rounded-xl bg-akhil-off-white sm:bg-transparent text-akhil-charcoal hover:text-akhil-red transition-colors group min-h-[44px]"
           >
@@ -107,11 +113,11 @@ export const Contact = () => {
           <motion.a
             variants={itemFadeUp}
             whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={mobileTap}
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noreferrer"
-            className="px-6 py-3 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 shadow-md"
+            className="px-6 py-3 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 shadow-md active:bg-emerald-800"
           >
             <MessageSquare size={16} /> WhatsApp Chat
           </motion.a>
@@ -303,18 +309,20 @@ export const Contact = () => {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                    <button
+                    <motion.button
+                      whileTap={mobileTap}
                       type="submit"
                       className="flex-1 min-h-[48px] py-3.5 sm:py-4 px-6 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2 active:bg-[#900B20]"
                     >
                       <MessageSquare size={16} /> Send via WhatsApp
-                    </button>
-                    <a
+                    </motion.button>
+                    <motion.a
+                      whileTap={mobileTap}
                       href={`tel:${OFFICE_PHONE_1}`}
                       className="min-h-[48px] py-3.5 sm:py-4 px-6 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold tracking-widest uppercase rounded-xl transition-colors flex items-center justify-center gap-2 border border-akhil-border active:bg-gray-200"
                     >
                       <Phone size={16} /> Call Now
-                    </a>
+                    </motion.a>
                   </div>
                 </form>
               )}

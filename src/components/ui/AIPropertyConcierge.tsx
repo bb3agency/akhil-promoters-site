@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { MessageSquare, X, Send, Sparkles, Building2, PhoneCall, ShieldCheck } from 'lucide-react';
 import { projectData } from '../../data';
+import { mobileTap, mobileButtonTap, mobileChipTap } from '../../utils/motion';
 
 export const AIPropertyConcierge = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,20 +14,14 @@ export const AIPropertyConcierge = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
 
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!inputMessage.trim()) return;
-
-    const userText = inputMessage.trim();
-    const newMessages = [...messages, { sender: 'user' as const, text: userText }];
+  const sendPrompt = (query: string) => {
+    const newMessages = [...messages, { sender: 'user' as const, text: query }];
     setMessages(newMessages);
-    setInputMessage('');
 
-    // Generate intelligent AI response based on real estate queries
     setTimeout(() => {
       let botResponse = "Thank you for reaching out! Our advisory team would be delighted to assist you further. You can call our Vijayawada office directly at +91 96766 67666 or visit our Contact page.";
 
-      const lower = userText.toLowerCase();
+      const lower = query.toLowerCase();
       if (lower.includes('blueberry') || lower.includes('ayodhya')) {
         botResponse = "Blueberry features luxury 3 BHK flats (1930 & 2020 SFT) in Lotus Land Mark, Ayodhya Nagar, Vijayawada with 100% Vaastu compliance and generator backup.";
       } else if (lower.includes('apple')) {
@@ -44,30 +39,43 @@ export const AIPropertyConcierge = () => {
       }
 
       setMessages((prev) => [...prev, { sender: 'bot' as const, text: botResponse }]);
-    }, 600);
+    }, 500);
   };
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputMessage.trim()) return;
+    const text = inputMessage.trim();
+    setInputMessage('');
+    sendPrompt(text);
+  };
+
+  const quickPills = ['Blueberry 3 BHK', 'Apple Kanuru', 'Daffodils Poranki', 'Calculate EMI'];
 
   return (
     <>
-      {/* Floating Trigger Button */}
-      <button
+      {/* Floating Trigger Button with Ambient Pulse & Tactile Tap */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={mobileButtonTap}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-3.5 sm:p-4 bg-[#111111] text-[#C5A880] border border-[#C5A880]/50 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group min-w-[48px] min-h-[48px] justify-center"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-3.5 sm:p-4 bg-[#111111] text-[#C5A880] border border-[#C5A880]/50 rounded-full shadow-2xl transition-all flex items-center gap-2 group min-w-[48px] min-h-[48px] justify-center"
         title="AI Property Assistant"
         aria-label="Open AI Property Assistant"
       >
         <Sparkles className="w-5 h-5 animate-pulse text-[#C5A880]" />
         <span className="text-xs font-bold uppercase tracking-wider hidden md:inline pr-2">Property Advisor</span>
-      </button>
+      </motion.button>
 
       {/* Chat Drawer Modal */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            initial={{ opacity: 0, y: 24, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed inset-x-3 bottom-20 sm:bottom-24 sm:right-6 sm:left-auto sm:w-96 max-h-[75dvh] sm:max-h-[500px] h-[480px] z-50 bg-white border border-gray-200 shadow-2xl rounded-2xl overflow-hidden flex flex-col"
+            exit={{ opacity: 0, y: 24, scale: 0.94 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            className="fixed inset-x-3 bottom-20 sm:bottom-24 sm:right-6 sm:left-auto sm:w-96 max-h-[75dvh] sm:max-h-[500px] h-[490px] z-50 bg-white border border-gray-200 shadow-2xl rounded-2xl overflow-hidden flex flex-col"
           >
             {/* Drawer Header */}
             <div className="bg-[#111111] text-white p-4 flex justify-between items-center border-b border-gold-900/30 shrink-0">
@@ -78,36 +86,55 @@ export const AIPropertyConcierge = () => {
                 <div>
                   <h4 className="text-sm font-serif font-semibold text-white">Akhil Property Concierge</h4>
                   <span className="text-[10px] text-[#C5A880] flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block"></span> Online | AI Powered
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block animate-ping"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block -ml-2.5"></span> Online | AI Powered
                   </span>
                 </div>
               </div>
-              <button
+              <motion.button
+                whileTap={mobileButtonTap}
                 onClick={() => setIsOpen(false)}
                 className="text-gray-400 hover:text-white p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
                 aria-label="Close concierge"
               >
                 <X className="w-5 h-5" />
-              </button>
+              </motion.button>
             </div>
 
-            {/* Chat History */}
+            {/* Chat History with Animated Bubble Pop-ins */}
             <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50 text-xs">
               {messages.map((msg, i) => (
-                <div
+                <motion.div
                   key={i}
+                  initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.2 }}
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
                     className={`max-w-[85%] p-3 rounded-lg leading-relaxed ${
                       msg.sender === 'user'
-                        ? 'bg-black text-white font-medium'
+                        ? 'bg-black text-white font-medium shadow-sm'
                         : 'bg-white text-gray-800 border border-gray-200 shadow-xs'
                     }`}
                   >
                     {msg.text}
                   </div>
-                </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Quick Suggestion Pills (Touch-Friendly for Mobile) */}
+            <div className="px-3 py-2 bg-white border-t border-gray-100 flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+              {quickPills.map((pill) => (
+                <motion.button
+                  key={pill}
+                  whileTap={mobileChipTap}
+                  onClick={() => sendPrompt(pill)}
+                  className="px-2.5 py-1 bg-gray-100 hover:bg-[#C5A880]/20 active:bg-[#C5A880]/30 text-gray-700 hover:text-black rounded-full text-[10px] font-medium whitespace-nowrap transition-colors border border-gray-200"
+                >
+                  {pill}
+                </motion.button>
               ))}
             </div>
 
@@ -120,13 +147,14 @@ export const AIPropertyConcierge = () => {
                 onChange={(e) => setInputMessage(e.target.value)}
                 className="flex-1 px-3 py-2.5 bg-gray-50 border border-gray-300 text-base sm:text-xs text-gray-900 focus:outline-none focus:border-[#C5A880] rounded-lg"
               />
-              <button
+              <motion.button
+                whileTap={mobileButtonTap}
                 type="submit"
                 className="p-2.5 min-w-[44px] min-h-[44px] bg-black text-[#C5A880] hover:bg-[#C5A880] hover:text-black transition-colors rounded-lg flex items-center justify-center"
                 aria-label="Send message"
               >
                 <Send className="w-4 h-4" />
-              </button>
+              </motion.button>
             </form>
           </motion.div>
         )}
@@ -134,3 +162,4 @@ export const AIPropertyConcierge = () => {
     </>
   );
 };
+

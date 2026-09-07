@@ -10,6 +10,8 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
 } from '../utils/motion';
 
 export const SupportServices = () => {
@@ -208,12 +210,13 @@ export const SupportServices = () => {
                 </div>
               </div>
 
-              <button
+              <motion.button
+                whileTap={mobileTap}
                 onClick={() => setIsModalOpen(true)}
                 className="w-full min-h-[46px] py-3.5 px-4 bg-akhil-red hover:bg-akhil-red-hover active:bg-[#900B20] text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md"
               >
                 Apply for Home Loan Assistance
-              </button>
+              </motion.button>
             </motion.div>
           </div>
         </motion.section>
@@ -273,7 +276,8 @@ export const SupportServices = () => {
                   key={idx}
                   variants={itemFadeUp}
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className="p-3 sm:p-4 bg-akhil-off-white rounded-xl border border-akhil-border text-center hover:border-[#C8102E]/30 transition-colors"
+                  whileTap={mobileCardTap}
+                  className="p-3 sm:p-4 bg-akhil-off-white rounded-xl border border-akhil-border text-center hover:border-[#C8102E]/30 transition-colors cursor-pointer"
                 >
                   <span className="text-[10px] font-bold text-akhil-gray block uppercase mb-1">{item.label}</span>
                   <strong className={`text-lg sm:text-xl font-serif font-bold ${item.color}`}>{item.value}</strong>
@@ -325,7 +329,8 @@ export const SupportServices = () => {
                   key={idx}
                   variants={itemFadeUp}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="p-4 sm:p-5 bg-akhil-dark text-white rounded-xl text-center border border-white/10 hover:border-[#C8102E]/40 transition-colors"
+                  whileTap={mobileCardTap}
+                  className="p-4 sm:p-5 bg-akhil-dark text-white rounded-xl text-center border border-white/10 hover:border-[#C8102E]/40 transition-colors cursor-pointer"
                 >
                   <span className="text-[10px] font-bold text-akhil-red block uppercase mb-1">{c.cur}</span>
                   <strong className="text-xl sm:text-2xl font-serif text-white font-bold block">

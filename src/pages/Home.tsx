@@ -9,6 +9,8 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
 } from '../utils/motion';
 
 export const Home = () => {
@@ -84,7 +86,7 @@ export const Home = () => {
             >
               <Link
                 to="/projects"
-                className="type-label min-h-[48px] inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors duration-200 group text-center active:bg-[#900B20]"
+                className="type-label min-h-[48px] inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-all duration-200 group text-center active:bg-[#900B20] active:scale-[0.96]"
               >
                 View Residences
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -313,7 +315,8 @@ export const Home = () => {
                   <motion.div
                     key={item}
                     variants={itemFadeUp}
-                    className="flex items-start gap-3 text-xs sm:text-sm text-white/70"
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-start gap-3 text-xs sm:text-sm text-white/70 active:text-white transition-colors"
                     style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     <CheckCircle size={16} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
@@ -325,7 +328,7 @@ export const Home = () => {
               <motion.div variants={itemFadeUp} className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/10">
                 <Link
                   to="/who-we-are/story"
-                  className="type-label inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors group"
+                  className="type-label inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors group active:scale-[0.98]"
                 >
                   Our quality standards <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
@@ -379,14 +382,15 @@ export const Home = () => {
               variants={itemFadeUp}
               className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 max-w-md mx-auto sm:max-w-none"
             >
-              <a
+              <motion.a
+                whileTap={mobileTap}
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
                 className="type-label min-h-[48px] w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#DDD9D1] text-[#181714] hover:border-[#181714] active:bg-black/5 transition-colors text-center"
               >
                 <MessageSquare size={14} /> WhatsApp
-              </a>
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>

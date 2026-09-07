@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { BookOpen, FileCheck, ShieldCheck, HelpCircle, ChevronDown, ChevronUp, Download, CheckCircle } from 'lucide-react';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
@@ -8,6 +8,9 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
+  mobileButtonTap,
 } from '../utils/motion';
 
 const faqs = [
@@ -90,7 +93,8 @@ export const BuyersGuide = () => {
                 key={st.step}
                 variants={itemFadeUp}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="p-4 sm:p-5 bg-akhil-off-white rounded-xl border border-akhil-border hover:border-[#C8102E]/30 transition-colors"
+                whileTap={mobileCardTap}
+                className="p-4 sm:p-5 bg-akhil-off-white rounded-xl border border-akhil-border hover:border-[#C8102E]/30 transition-colors cursor-pointer"
               >
                 <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-akhil-red text-white font-bold text-xs flex items-center justify-center mb-3 shadow-sm">
                   {st.step}
@@ -124,7 +128,8 @@ export const BuyersGuide = () => {
                 key={idx}
                 variants={itemFadeUp}
                 whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                className="p-3.5 sm:p-4 bg-akhil-off-white rounded-xl flex items-center gap-3 border border-gray-100 hover:border-[#C8102E]/30 transition-colors"
+                whileTap={mobileCardTap}
+                className="p-3.5 sm:p-4 bg-akhil-off-white rounded-xl flex items-center gap-3 border border-gray-100 hover:border-[#C8102E]/30 transition-colors cursor-pointer"
               >
                 <CheckCircle size={18} className="text-akhil-red flex-shrink-0" />
                 <span className="text-xs sm:text-sm font-bold text-akhil-charcoal">{doc}</span>
@@ -148,24 +153,27 @@ export const BuyersGuide = () => {
                 variants={itemFadeUp}
                 className="border border-akhil-border rounded-xl overflow-hidden"
               >
-                <button
+                <motion.button
+                  whileTap={mobileButtonTap}
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
                   className="w-full p-4 sm:p-5 bg-akhil-off-white hover:bg-white text-left text-xs sm:text-sm font-bold text-akhil-charcoal flex justify-between items-center gap-3 transition-colors min-h-[48px]"
                 >
                   <span className="leading-snug">{faq.question}</span>
                   {openFaqIndex === idx ? <ChevronUp size={18} className="flex-shrink-0 text-akhil-red" /> : <ChevronDown size={18} className="flex-shrink-0 text-akhil-gray" />}
-                </button>
-                {openFaqIndex === idx && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="p-4 sm:p-5 bg-white text-xs sm:text-sm text-akhil-gray leading-relaxed border-t border-gray-100"
-                  >
-                    {faq.answer}
-                  </motion.div>
-                )}
+                </motion.button>
+                <AnimatePresence>
+                  {openFaqIndex === idx && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25, ease: 'easeOut' }}
+                      className="p-4 sm:p-5 bg-white text-xs sm:text-sm text-akhil-gray leading-relaxed border-t border-gray-100 overflow-hidden"
+                    >
+                      {faq.answer}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
             ))}
           </motion.div>

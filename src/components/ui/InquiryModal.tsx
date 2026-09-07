@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Phone, MessageSquare, CheckCircle, Calendar, Send, ShieldCheck } from 'lucide-react';
 import { WHATSAPP_NUMBER, OFFICE_PHONE_1, OFFICE_PHONE_2 } from '../../data';
+import { mobileTap, mobileButtonTap } from '../../utils/motion';
 
 interface InquiryModalProps {
   isOpen: boolean;
@@ -62,13 +63,14 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
           {/* Header Banner */}
           <div className="bg-akhil-dark text-white p-5 sm:p-7 relative overflow-hidden shrink-0">
             <div className="absolute right-0 top-0 w-48 h-48 bg-akhil-red/10 rounded-full blur-2xl -mr-12 -mt-12 pointer-events-none" />
-            <button
+            <motion.button
+              whileTap={mobileButtonTap}
               onClick={onClose}
               className="absolute top-3.5 right-3.5 text-gray-400 hover:text-white transition-colors p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full hover:bg-white/10"
               aria-label="Close modal"
             >
               <X size={20} />
-            </button>
+            </motion.button>
 
             <span className="inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] text-akhil-red uppercase mb-1.5 sm:mb-2">
               <ShieldCheck size={14} /> CREDAI ACCREDITED BUILDER
@@ -94,12 +96,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 <p className="text-xs sm:text-sm text-akhil-gray max-w-xs leading-relaxed mb-6">
                   Thank you for reaching out. Our Vijayawada team will contact you shortly on <strong>{formData.phone}</strong>.
                 </p>
-                <button
+                <motion.button
+                  whileTap={mobileTap}
                   onClick={handleWhatsApp}
                   className="w-full sm:w-auto min-h-[44px] px-6 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold tracking-wider uppercase rounded-xl transition-colors flex items-center justify-center gap-2"
                 >
                   <MessageSquare size={16} /> Instant WhatsApp Response
-                </button>
+                </motion.button>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-4">
@@ -176,29 +179,31 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 </div>
 
                 <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                  <button
+                  <motion.button
+                    whileTap={mobileTap}
                     type="submit"
-                    className="flex-1 min-h-[44px] py-3.5 px-6 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                    className="flex-1 min-h-[44px] py-3.5 px-6 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2 active:bg-[#900B20]"
                   >
                     <Send size={15} /> Submit Inquiry
-                  </button>
-                  <button
+                  </motion.button>
+                  <motion.button
+                    whileTap={mobileTap}
                     type="button"
                     onClick={handleWhatsApp}
-                    className="min-h-[44px] py-3.5 px-5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-colors flex items-center justify-center gap-2"
+                    className="min-h-[44px] py-3.5 px-5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-colors flex items-center justify-center gap-2 active:bg-emerald-800"
                   >
                     <MessageSquare size={16} /> WhatsApp
-                  </button>
+                  </motion.button>
                 </div>
 
                 <div className="pt-2 text-center text-[11px] text-akhil-gray flex items-center justify-center gap-4 border-t border-gray-200 mt-4">
-                  <a href={`tel:${OFFICE_PHONE_1}`} className="flex items-center gap-1 hover:text-akhil-red py-1">
+                  <motion.a whileTap={{ scale: 0.96 }} href={`tel:${OFFICE_PHONE_1}`} className="flex items-center gap-1 hover:text-akhil-red py-1">
                     <Phone size={12} /> {OFFICE_PHONE_1}
-                  </a>
+                  </motion.a>
                   <span>•</span>
-                  <a href={`tel:${OFFICE_PHONE_2}`} className="flex items-center gap-1 hover:text-akhil-red py-1">
+                  <motion.a whileTap={{ scale: 0.96 }} href={`tel:${OFFICE_PHONE_2}`} className="flex items-center gap-1 hover:text-akhil-red py-1">
                     <Phone size={12} /> {OFFICE_PHONE_2}
-                  </a>
+                  </motion.a>
                 </div>
               </form>
             )}

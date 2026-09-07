@@ -28,6 +28,8 @@ import {
   itemFadeUp,
   viewportConfig,
   sectionScrollProps,
+  mobileTap,
+  mobileCardTap,
 } from '../../utils/motion';
 
 export const WhoWeAre = () => {
@@ -83,14 +85,15 @@ export const WhoWeAre = () => {
             </motion.p>
 
             <motion.div variants={itemFadeUp} className="flex flex-wrap items-center gap-3 sm:gap-4">
-              <a
+              <motion.a
+                whileTap={mobileTap}
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
                 className="type-label min-h-[44px] w-full sm:w-auto px-6 py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/15 text-white transition-colors text-xs border border-white/20 inline-flex items-center justify-center"
               >
                 Direct Advisory Chat
-              </a>
+              </motion.a>
             </motion.div>
           </motion.div>
         </div>
@@ -148,7 +151,8 @@ export const WhoWeAre = () => {
                     key={proj.name}
                     variants={itemFadeUp}
                     whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                    className="p-4 bg-white border border-[#E8E4DC] flex items-center justify-between gap-4 hover:border-[#C8102E]/40 transition-colors"
+                    whileTap={mobileCardTap}
+                    className="p-4 bg-white border border-[#E8E4DC] flex items-center justify-between gap-4 hover:border-[#C8102E]/40 transition-colors cursor-pointer"
                   >
                     <div>
                       <div className="flex items-center gap-2">
@@ -258,7 +262,8 @@ export const WhoWeAre = () => {
             <motion.div
               variants={itemFadeUp}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="p-8 sm:p-10 bg-[#F7F5F0] border border-[#E8E4DC] rounded-sm hover:border-[#C8102E]/40 transition-all group"
+              whileTap={mobileCardTap}
+              className="p-8 sm:p-10 bg-[#F7F5F0] border border-[#E8E4DC] rounded-sm hover:border-[#C8102E]/40 transition-all group cursor-pointer"
             >
               <div className="w-12 h-12 rounded-full bg-[#C8102E]/10 text-[#C8102E] flex items-center justify-center mb-6 group-hover:bg-[#C8102E] group-hover:text-white transition-colors">
                 <Eye size={24} />
@@ -278,7 +283,8 @@ export const WhoWeAre = () => {
             <motion.div
               variants={itemFadeUp}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="p-8 sm:p-10 bg-[#F7F5F0] border border-[#E8E4DC] rounded-sm hover:border-[#C8102E]/40 transition-all group"
+              whileTap={mobileCardTap}
+              className="p-8 sm:p-10 bg-[#F7F5F0] border border-[#E8E4DC] rounded-sm hover:border-[#C8102E]/40 transition-all group cursor-pointer"
             >
               <div className="w-12 h-12 rounded-full bg-[#C8102E]/10 text-[#C8102E] flex items-center justify-center mb-6 group-hover:bg-[#C8102E] group-hover:text-white transition-colors">
                 <Target size={24} />
@@ -396,7 +402,8 @@ export const WhoWeAre = () => {
               key={idx}
               variants={itemFadeUp}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
-              className="p-7 bg-white border border-[#E8E4DC] rounded-sm hover:shadow-md hover:border-[#C8102E]/30 transition-all group"
+              whileTap={mobileCardTap}
+              className="p-7 bg-white border border-[#E8E4DC] rounded-sm hover:shadow-md hover:border-[#C8102E]/30 transition-all group cursor-pointer"
             >
               <div className="w-11 h-11 rounded-lg bg-[#C8102E]/10 text-[#C8102E] flex items-center justify-center mb-5 group-hover:bg-[#C8102E] group-hover:text-white transition-colors">
                 <val.icon size={20} />
@@ -483,7 +490,8 @@ export const WhoWeAre = () => {
                 key={idx}
                 variants={itemFadeUp}
                 whileHover={{ y: -4, transition: { duration: 0.25 } }}
-                className="p-7 bg-white/5 border border-white/10 rounded-sm hover:border-[#C8102E]/50 transition-colors group"
+                whileTap={mobileCardTap}
+                className="p-7 bg-white/5 border border-white/10 rounded-sm hover:border-[#C8102E]/50 transition-colors group cursor-pointer"
               >
                 <div className="flex items-start gap-4 mb-4">
                   <div className="w-12 h-12 rounded-lg bg-[#C8102E]/15 text-[#C8102E] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8102E] group-hover:text-white transition-colors">
@@ -552,7 +560,8 @@ export const WhoWeAre = () => {
               key={idx}
               variants={itemFadeUp}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="p-3.5 sm:p-5 bg-white border border-[#E8E4DC] rounded-sm text-center flex flex-col justify-between hover:border-[#C8102E]/40 transition-colors"
+              whileTap={mobileCardTap}
+              className="p-3.5 sm:p-5 bg-white border border-[#E8E4DC] rounded-sm text-center flex flex-col justify-between hover:border-[#C8102E]/40 transition-colors cursor-pointer"
             >
               <span className="type-label text-[9px] text-[#C8102E] uppercase tracking-wider block mb-1">
                 {item.label}
@@ -590,12 +599,14 @@ export const WhoWeAre = () => {
             Explore Blueberry, Apple, Cherry and Daffodils in detail. Our advisory team is ready to assist you.
           </motion.p>
           <motion.div variants={itemFadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              to="/projects"
-              className="w-full sm:w-auto px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-widest border border-white/20 transition-colors"
-            >
-              Explore Developments
-            </Link>
+            <motion.div whileTap={mobileTap}>
+              <Link
+                to="/projects"
+                className="w-full sm:w-auto px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-white/10 hover:bg-white/20 active:bg-white/15 text-white text-xs font-semibold uppercase tracking-widest border border-white/20 transition-colors"
+              >
+                Explore Developments
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
       </motion.section>
