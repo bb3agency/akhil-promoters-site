@@ -35,13 +35,15 @@ export const WhoWeAre = () => {
     <div className="bg-[#F7F5F0] min-h-screen pt-20 pb-20">
       {/* ── 1. HERO HEADER ───────────────────────────────── */}
       <section className="bg-[#181714] text-white py-14 sm:py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none opacity-20">
+        <div className="absolute inset-0 pointer-events-none">
           <img
-            src="/images/projects/blueberry-1.jpg"
-            alt="Akhil Promoters Developments"
-            className="w-full h-full object-cover"
+            src="/images/who-we-are-hero.jpg"
+            alt="Akhil Promoters Architectural Excellence"
+            className="w-full h-full object-cover object-right sm:object-center opacity-40 sm:opacity-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#181714] via-[#181714]/80 to-transparent" />
+          {/* Directional gradients: ensures left text is 100% legible while the glowing building on the right shines through */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#181714] via-[#181714]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#181714] via-transparent to-[#181714]/60" />
         </div>
 
         <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
