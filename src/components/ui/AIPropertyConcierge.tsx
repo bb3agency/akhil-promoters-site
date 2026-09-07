@@ -8,7 +8,7 @@ export const AIPropertyConcierge = () => {
   const [messages, setMessages] = useState<Array<{ sender: 'bot' | 'user'; text: string }>>([
     {
       sender: 'bot',
-      text: "Welcome to Akhil Promoters! I am your AI Property Concierge. How can I assist you today? You can ask about our signature villas in Banjara Hills, sky residences in Jubilee Hills, or loan EMI calculations."
+      text: "Welcome to Akhil Promoters! I am your AI Property Concierge. How can I assist you today? You can ask about our residential developments (Blueberry, Apple, Cherry, Daffodils), specifications, or loan EMI calculations."
     }
   ]);
   const [inputMessage, setInputMessage] = useState('');
@@ -24,19 +24,23 @@ export const AIPropertyConcierge = () => {
 
     // Generate intelligent AI response based on real estate queries
     setTimeout(() => {
-      let botResponse = "Thank you for reaching out! Our luxury sales team would be delighted to assist you further. You can call us directly at +91 40 4859 9999 or schedule a private site tour.";
+      let botResponse = "Thank you for reaching out! Our advisory team would be delighted to assist you further. You can call our Vijayawada office directly at +91 96766 67666 or visit our Contact page.";
 
       const lower = userText.toLowerCase();
-      if (lower.includes('signature') || lower.includes('banjara')) {
-        botResponse = "Akhil Signature features 36 ultra-luxury sky villas in Banjara Hills (Road No. 12) starting from ₹12.5 Cr with private plunge pools and double-height living salons.";
-      } else if (lower.includes('heights') || lower.includes('jubilee')) {
-        botResponse = "Akhil Heights is a 32-story sky residence tower in Jubilee Hills offering 3 BHK & 4 BHK luxury suites (3,450 - 4,950 sq.ft) with 270° views of KBR National Park.";
+      if (lower.includes('blueberry') || lower.includes('ayodhya')) {
+        botResponse = "Blueberry features luxury 3 BHK flats (1930 & 2020 SFT) in Lotus Land Mark, Ayodhya Nagar, Vijayawada with 100% Vaastu compliance and generator backup.";
+      } else if (lower.includes('apple')) {
+        botResponse = "Apple offers premium 3 BHK residences (1445 SFT) in Mahadevpuram Colony, Kanuru, Vijayawada with 3D isometric interior planning and high-end joinery.";
+      } else if (lower.includes('cherry')) {
+        botResponse = "Cherry is a completed 3 BHK landmark project (1625 SFT) in Varalakshmi Puram, Kanuru, Vijayawada situated on 33' and 40' wide roads.";
+      } else if (lower.includes('daffodils') || lower.includes('poranki') || lower.includes('tadigadapa')) {
+        botResponse = "Daffodils offers premium 3 BHK apartments (1700 & 1730 SFT) on Tadigadapa 100ft Road, Poranki, Vijayawada, just 1 Km from Kamineni Hospital.";
       } else if (lower.includes('emi') || lower.includes('loan') || lower.includes('calculator')) {
         botResponse = "You can test custom loan amounts and interest schedules on our Support Services page using our interactive EMI Calculator!";
       } else if (lower.includes('nri') || lower.includes('dollar') || lower.includes('currency')) {
         botResponse = "We offer complete NRI investment advisory including FEMA compliance, Power of Attorney assistance, and multi-currency conversion in our Support Services suite.";
       } else if (lower.includes('contact') || lower.includes('phone') || lower.includes('call') || lower.includes('visit')) {
-        botResponse = "You can reach our concierge at +91 40 4859 9999 or book a private site visit via the Project Details page!";
+        botResponse = "You can reach our Vijayawada office directly at +91 96766 67666 or +91 99121 62349, or WhatsApp us anytime!";
       }
 
       setMessages((prev) => [...prev, { sender: 'bot' as const, text: botResponse }]);

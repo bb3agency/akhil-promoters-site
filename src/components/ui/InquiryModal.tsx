@@ -116,8 +116,6 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                     <option value="Apple">Apple (3 BHK - Kanuru)</option>
                     <option value="Cherry">Cherry (3 BHK - Kanuru)</option>
                     <option value="Daffodils">Daffodils (3 BHK - Poranki / Tadigadapa)</option>
-                    <option value="Akhil Signature">Akhil Signature (Villas)</option>
-                    <option value="Akhil Heights">Akhil Heights (Kanuru)</option>
                   </select>
                 </div>
 
