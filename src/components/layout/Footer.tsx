@@ -23,7 +23,7 @@ export const Footer = () => {
 
       <motion.footer
         {...sectionScrollProps}
-        className="relative bg-[#181714] text-white pt-14 sm:pt-20 pb-8 sm:pb-10 overflow-hidden"
+        className="relative bg-[#181714] text-white pt-8 sm:pt-20 pb-6 sm:pb-10 overflow-hidden"
       >
         {/* ─── Architectural Skyline Background ───────── */}
         <div className="absolute inset-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden">
@@ -31,7 +31,7 @@ export const Footer = () => {
             src="/images/footer-skyline.png"
             alt=""
             aria-hidden="true"
-            className="w-full max-w-[1800px] h-auto object-cover sm:object-contain object-bottom opacity-20 select-none"
+            className="w-full max-w-[1800px] h-auto object-cover sm:object-contain object-bottom opacity-15 sm:opacity-20 select-none"
           />
           {/* Subtle gradient blend */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#181714]/60 via-transparent to-[#181714]/90" />
@@ -45,18 +45,18 @@ export const Footer = () => {
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 pb-12 sm:pb-16 border-b border-white/10"
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-12 gap-x-4 sm:gap-x-10 gap-y-6 sm:gap-y-10 lg:gap-12 pb-6 sm:pb-16 border-b border-white/10"
           >
 
             {/* Brand column */}
-            <motion.div variants={itemFadeUp} className="sm:col-span-2 lg:col-span-4">
+            <motion.div variants={itemFadeUp} className="col-span-2 lg:col-span-4">
               <img
                 src="/images/logo-light.png"
                 alt="Akhil Promoters"
-                className="h-10 sm:h-11 w-auto object-contain mb-5 sm:mb-6"
+                className="h-8 sm:h-11 w-auto object-contain mb-3 sm:mb-6"
               />
               <p
-                className="text-white/55 text-xs sm:text-sm leading-[1.8] mb-6 sm:mb-8 max-w-sm"
+                className="text-white/55 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-8 max-w-sm"
                 style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}
               >
                 Premium residences in Vijayawada. CREDAI member. Every home built with full legal title and uncompromised material quality.
@@ -68,19 +68,20 @@ export const Footer = () => {
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="type-label text-[10px] min-h-[44px] inline-flex items-center gap-2.5 px-5 py-3 border border-white/20 text-white/80 hover:border-white/50 hover:text-white transition-colors active:bg-white/10"
+                  className="type-label text-[10px] min-h-[40px] sm:min-h-[44px] inline-flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-3 border border-white/20 text-white/80 hover:border-white/50 hover:text-white transition-colors active:bg-white/10"
                 >
-                  <MessageSquare size={14} /> WhatsApp Us
+                  <MessageSquare size={13} /> WhatsApp Us
                 </a>
               </div>
             </motion.div>
 
             {/* Navigation columns */}
-            <motion.div variants={itemFadeUp} className="lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Navigate</p>
-              <ul className="space-y-1.5 sm:space-y-3">
+            <motion.div variants={itemFadeUp} className="col-span-1 lg:col-span-2">
+              <p className="type-label text-[9px] text-[#C8102E] mb-2 sm:mb-5">Navigate</p>
+              <ul className="space-y-0.5 sm:space-y-3">
                 {[
                   { name: 'Home', href: '/' },
+                  { name: 'Who We Are', href: '/who-we-are' },
                   { name: 'Projects', href: '/projects' },
                   { name: 'Buyers Guide', href: '/buyers-guide' },
                   { name: 'Support & Tools', href: '/support-services' },
@@ -89,7 +90,7 @@ export const Footer = () => {
                   <li key={l.name}>
                     <Link
                       to={l.href}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E]"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
@@ -99,14 +100,14 @@ export const Footer = () => {
               </ul>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Projects</p>
-              <ul className="space-y-1.5 sm:space-y-3">
+            <motion.div variants={itemFadeUp} className="col-span-1 lg:col-span-2">
+              <p className="type-label text-[9px] text-[#C8102E] mb-2 sm:mb-5">Projects</p>
+              <ul className="space-y-0.5 sm:space-y-3">
                 {Object.values(projectData).map((p) => (
                   <li key={p.id}>
                     <Link
                       to={`/projects/${p.slug}`}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E]"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {p.name}
@@ -116,7 +117,7 @@ export const Footer = () => {
               </ul>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="lg:col-span-2">
+            <motion.div variants={itemFadeUp} className="hidden lg:block lg:col-span-2">
               <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Company</p>
               <ul className="space-y-1.5 sm:space-y-3">
                 {[
@@ -140,24 +141,25 @@ export const Footer = () => {
             </motion.div>
 
             {/* Office address */}
-            <motion.div variants={itemFadeUp} className="sm:col-span-2 lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Office</p>
-              <div className="space-y-3.5">
-                <div className="flex items-start gap-2.5">
-                  <MapPin size={14} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
+            <motion.div variants={itemFadeUp} className="col-span-2 sm:col-span-2 lg:col-span-2">
+              <p className="type-label text-[9px] text-[#C8102E] mb-2 sm:mb-5">Office</p>
+              <div className="space-y-2.5 sm:space-y-3.5">
+                <div className="flex items-start gap-2 sm:gap-2.5">
+                  <MapPin size={13} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
                   <p className="text-xs sm:text-sm text-white/55 leading-relaxed" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
                     {OFFICE_ADDRESS}
                   </p>
                 </div>
-                <div className="flex items-start gap-2.5">
-                  <Phone size={14} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
-                  <div className="space-y-1">
-                    <a href={`tel:${OFFICE_PHONE_1}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_1}</a>
-                    <a href={`tel:${OFFICE_PHONE_2}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_2}</a>
+                <div className="flex items-start gap-2 sm:gap-2.5">
+                  <Phone size={13} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 sm:block sm:space-y-1">
+                    <a href={`tel:${OFFICE_PHONE_1}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_1}</a>
+                    <span className="text-white/20 sm:hidden">/</span>
+                    <a href={`tel:${OFFICE_PHONE_2}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_2}</a>
                   </div>
                 </div>
-                <div className="flex items-center gap-2.5">
-                  <Mail size={14} className="text-[#C8102E] flex-shrink-0" />
+                <div className="flex items-center gap-2 sm:gap-2.5">
+                  <Mail size={13} className="text-[#C8102E] flex-shrink-0" />
                   <a href={`mailto:${OFFICE_EMAIL}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>
                     {OFFICE_EMAIL}
                   </a>
@@ -167,17 +169,17 @@ export const Footer = () => {
           </motion.div>
 
           {/* ── Bottom bar ──────────────────────────────── */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 text-center sm:text-left">
             <p className="text-[11px] text-white/30" style={{ fontFamily: 'var(--font-sans)' }}>
               © {new Date().getFullYear()} Akhil Promoters Private Limited. CREDAI Member.
             </p>
             <button
               onClick={scrollTop}
-              className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center border border-white/20 text-white/40 hover:text-white hover:border-white/50 active:bg-white/10 transition-colors"
+              className="p-2.5 sm:p-3 min-w-[38px] min-h-[38px] sm:min-w-[44px] sm:min-h-[44px] flex items-center justify-center border border-white/20 text-white/40 hover:text-white hover:border-white/50 active:bg-white/10 transition-colors"
               title="Back to top"
               aria-label="Back to top"
             >
-              <ArrowUp size={16} />
+              <ArrowUp size={15} />
             </button>
           </div>
         </div>
