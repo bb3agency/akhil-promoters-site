@@ -34,7 +34,7 @@ export const WhoWeAre = () => {
   return (
     <div className="bg-[#F7F5F0] min-h-screen pt-20 pb-20">
       {/* ── 1. HERO HEADER ───────────────────────────────── */}
-      <section className="bg-[#181714] text-white py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-[#181714] text-white py-14 sm:py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <img
             src="/images/projects/blueberry-1.jpg"
@@ -50,7 +50,7 @@ export const WhoWeAre = () => {
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemFadeUp} className="flex items-center gap-2 mb-4">
+            <motion.div variants={itemFadeUp} className="flex items-center gap-2 mb-3 sm:mb-4">
               <span className="type-label text-[#C8102E] tracking-[0.25em] uppercase text-[10px] sm:text-xs">
                 WHO WE ARE
               </span>
@@ -62,7 +62,7 @@ export const WhoWeAre = () => {
 
             <motion.h1
               variants={itemFadeUp}
-              className="text-white text-3xl sm:text-5xl lg:text-6xl max-w-3xl mb-6"
+              className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl mb-4 sm:mb-6 break-words"
               style={{
                 fontFamily: 'Cormorant Garamond, Georgia, serif',
                 fontWeight: 500,
@@ -74,7 +74,7 @@ export const WhoWeAre = () => {
 
             <motion.p
               variants={itemFadeUp}
-              className="text-white/60 text-sm sm:text-base max-w-2xl font-light leading-relaxed mb-8"
+              className="text-white/60 text-xs sm:text-sm md:text-base max-w-2xl font-light leading-relaxed mb-6 sm:mb-8"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
               Akhil Promoters Private Limited is one of Vijayawada's premier residential real estate developers — dedicated to creating enduring 3 BHK residences and signature communities with 100% Vaastu compliance, legal clarity, and world-class craftsmanship.
@@ -85,7 +85,7 @@ export const WhoWeAre = () => {
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
-                className="type-label px-6 py-3.5 bg-white/10 hover:bg-white/20 text-white transition-colors text-xs border border-white/20"
+                className="type-label min-h-[44px] w-full sm:w-auto px-6 py-3.5 bg-white/10 hover:bg-white/20 active:bg-white/15 text-white transition-colors text-xs border border-white/20 inline-flex items-center justify-center"
               >
                 Direct Advisory Chat
               </a>
@@ -536,7 +536,7 @@ export const WhoWeAre = () => {
           initial="hidden"
           whileInView="visible"
           viewport={viewportConfig}
-          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4"
         >
           {[
             { label: 'Electrical Wiring', brand: 'Finolex / Havells', note: 'ISI Flame-Retardant Copper' },
@@ -550,13 +550,13 @@ export const WhoWeAre = () => {
               key={idx}
               variants={itemFadeUp}
               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-              className="p-5 bg-white border border-[#E8E4DC] rounded-sm text-center flex flex-col justify-between hover:border-[#C8102E]/40 transition-colors"
+              className="p-3.5 sm:p-5 bg-white border border-[#E8E4DC] rounded-sm text-center flex flex-col justify-between hover:border-[#C8102E]/40 transition-colors"
             >
               <span className="type-label text-[9px] text-[#C8102E] uppercase tracking-wider block mb-1">
                 {item.label}
               </span>
-              <h4 className="font-serif text-base text-[#181714] font-medium my-1">{item.brand}</h4>
-              <p className="text-[11px] text-[#8A8580] font-light">{item.note}</p>
+              <h4 className="font-serif text-sm sm:text-base text-[#181714] font-medium my-1">{item.brand}</h4>
+              <p className="text-[10px] sm:text-[11px] text-[#8A8580] font-light">{item.note}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -590,7 +590,7 @@ export const WhoWeAre = () => {
           <motion.div variants={itemFadeUp} className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/projects"
-              className="w-full sm:w-auto px-8 py-3.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-widest border border-white/20 transition-colors"
+              className="w-full sm:w-auto px-8 py-3.5 min-h-[44px] flex items-center justify-center bg-white/10 hover:bg-white/20 text-white text-xs font-semibold uppercase tracking-widest border border-white/20 transition-colors"
             >
               Explore Developments
             </Link>

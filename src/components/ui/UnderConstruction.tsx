@@ -22,7 +22,7 @@ export const UnderConstruction: React.FC<UnderConstructionProps> = ({
   backText = "BACK TO HOME"
 }) => {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-akhil-off-white pt-24 pb-16 px-6">
+    <div className="min-h-[70vh] flex items-center justify-center bg-akhil-off-white pt-24 pb-16 px-4 sm:px-6">
       <div className="max-w-2xl mx-auto text-center">
         <motion.div initial="initial" animate="animate" variants={fadeInUp} className="flex flex-col items-center">
           <span className="text-akhil-red text-[11px] font-bold tracking-[0.2em] uppercase mb-6 flex items-center gap-4">
@@ -49,7 +49,7 @@ export const UnderConstruction: React.FC<UnderConstructionProps> = ({
           
           <Link 
             to={backLink}
-            className="inline-flex items-center text-[12px] font-bold tracking-widest uppercase text-akhil-charcoal hover:text-akhil-red transition-colors group"
+            className="inline-flex items-center min-h-[44px] py-2 text-[12px] font-bold tracking-widest uppercase text-akhil-charcoal hover:text-akhil-red transition-colors group"
           >
             {backText} 
             <span className="ml-3 text-akhil-red transform group-hover:-translate-x-1 transition-transform">←</span>

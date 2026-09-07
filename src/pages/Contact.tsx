@@ -33,9 +33,9 @@ export const Contact = () => {
   return (
     <div className="bg-akhil-off-white min-h-screen pt-24">
       {/* Hero Header */}
-      <section className="bg-akhil-dark text-white py-20 relative overflow-hidden">
+      <section className="bg-akhil-dark text-white py-12 sm:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-akhil-dark to-akhil-charcoal opacity-90 pointer-events-none" />
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 text-center">
           <motion.div
             variants={staggerContainer(0.12)}
             initial="hidden"
@@ -43,19 +43,19 @@ export const Contact = () => {
           >
             <motion.span
               variants={itemFadeUp}
-              className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-4 block"
+              className="text-akhil-red text-xs font-bold tracking-[0.2em] uppercase mb-3 sm:mb-4 block"
             >
               REACH OUT TO US
             </motion.span>
             <motion.h1
               variants={itemFadeUp}
-              className="text-4xl md:text-6xl font-serif text-white mb-4"
+              className="text-3xl sm:text-4xl md:text-6xl font-serif text-white mb-3 sm:mb-4"
             >
               Contact Akhil Promoters
             </motion.h1>
             <motion.p
               variants={itemFadeUp}
-              className="text-gray-400 max-w-xl mx-auto text-sm font-light leading-relaxed"
+              className="text-gray-400 max-w-xl mx-auto text-xs sm:text-sm font-light leading-relaxed"
             >
               Connect with our Vijayawada advisory team for project inquiries, site visits, or investment consultations.
             </motion.p>
@@ -66,43 +66,43 @@ export const Contact = () => {
       {/* Quick Contact Action Bars */}
       <motion.section
         {...sectionScrollProps}
-        className="bg-white border-b border-akhil-border py-5 overflow-hidden"
+        className="bg-white border-b border-akhil-border py-4 sm:py-5 overflow-hidden"
       >
         <motion.div
           variants={staggerContainer(0.08, 0.1)}
           initial="hidden"
           animate="visible"
-          className="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap items-center justify-center md:justify-between gap-4"
+          className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center justify-center md:justify-between gap-3 sm:gap-4"
         >
           <motion.a
             variants={itemFadeUp}
             href={`tel:${OFFICE_PHONE_1}`}
-            className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group"
+            className="flex items-center gap-3 p-2.5 sm:p-0 rounded-xl bg-akhil-off-white sm:bg-transparent text-akhil-charcoal hover:text-akhil-red transition-colors group min-h-[44px]"
           >
-            <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors">
+            <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors flex-shrink-0">
               <Phone size={18} />
             </span>
-            <span className="text-sm font-bold">{OFFICE_PHONE_1}</span>
+            <span className="text-xs sm:text-sm font-bold">{OFFICE_PHONE_1}</span>
           </motion.a>
           <motion.a
             variants={itemFadeUp}
             href={`tel:${OFFICE_PHONE_2}`}
-            className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group"
+            className="flex items-center gap-3 p-2.5 sm:p-0 rounded-xl bg-akhil-off-white sm:bg-transparent text-akhil-charcoal hover:text-akhil-red transition-colors group min-h-[44px]"
           >
-            <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors">
+            <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors flex-shrink-0">
               <Phone size={18} />
             </span>
-            <span className="text-sm font-bold">{OFFICE_PHONE_2}</span>
+            <span className="text-xs sm:text-sm font-bold">{OFFICE_PHONE_2}</span>
           </motion.a>
           <motion.a
             variants={itemFadeUp}
             href={`mailto:${OFFICE_EMAIL}`}
-            className="flex items-center gap-3 text-akhil-charcoal hover:text-akhil-red transition-colors group"
+            className="flex items-center gap-3 p-2.5 sm:p-0 rounded-xl bg-akhil-off-white sm:bg-transparent text-akhil-charcoal hover:text-akhil-red transition-colors group min-h-[44px]"
           >
-            <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors">
+            <span className="w-10 h-10 rounded-xl bg-akhil-red/10 text-akhil-red flex items-center justify-center group-hover:bg-akhil-red group-hover:text-white transition-colors flex-shrink-0">
               <Mail size={18} />
             </span>
-            <span className="text-sm font-bold">{OFFICE_EMAIL}</span>
+            <span className="text-xs sm:text-sm font-bold break-all">{OFFICE_EMAIL}</span>
           </motion.a>
           <motion.a
             variants={itemFadeUp}
@@ -111,7 +111,7 @@ export const Contact = () => {
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noreferrer"
-            className="px-6 py-3 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center gap-2 shadow-md"
+            className="px-6 py-3 min-h-[44px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 shadow-md"
           >
             <MessageSquare size={16} /> WhatsApp Chat
           </motion.a>
@@ -121,7 +121,7 @@ export const Contact = () => {
       {/* Main Contact Content */}
       <motion.section
         {...sectionScrollProps}
-        className="py-20 max-w-7xl mx-auto px-6 md:px-12 overflow-hidden"
+        className="py-10 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 md:px-12 overflow-hidden"
       >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
@@ -220,10 +220,10 @@ export const Contact = () => {
               initial="hidden"
               whileInView="visible"
               viewport={viewportConfig}
-              className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm"
+              className="bg-white p-4 sm:p-8 md:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm"
             >
-              <h2 className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-2">Send Us an Enquiry</h2>
-              <p className="text-xs text-akhil-gray mb-8 font-light">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal mb-2">Send Us an Enquiry</h2>
+              <p className="text-xs text-akhil-gray mb-6 sm:mb-8 font-light">
                 Our Vijayawada team will respond within 24 hours. For instant response, use WhatsApp.
               </p>
 
@@ -232,54 +232,54 @@ export const Contact = () => {
                   <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
                     <CheckCircle size={36} />
                   </div>
-                  <h4 className="text-2xl font-serif text-akhil-charcoal mb-2">Message Sent!</h4>
-                  <p className="text-sm text-akhil-gray max-w-xs">Your inquiry has been opened in WhatsApp. Our team will respond promptly.</p>
+                  <h4 className="text-xl sm:text-2xl font-serif text-akhil-charcoal mb-2">Message Sent!</h4>
+                  <p className="text-xs sm:text-sm text-akhil-gray max-w-xs">Your inquiry has been opened in WhatsApp. Our team will respond promptly.</p>
                 </div>
               ) : (
-                <form onSubmit={handleFormSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <form onSubmit={handleFormSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-2">Full Name *</label>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1.5 sm:mb-2">Full Name *</label>
                       <input
                         type="text"
                         required
                         placeholder="e.g. Rajesh Kumar"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
+                        className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-2">Phone Number *</label>
+                      <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1.5 sm:mb-2">Phone Number *</label>
                       <input
                         type="tel"
                         required
                         placeholder="+91 98765 43210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
+                        className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-2">Email Address *</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1.5 sm:mb-2">Email Address *</label>
                     <input
                       type="email"
                       required
                       placeholder="your@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
+                      className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-2">Select Project of Interest</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1.5 sm:mb-2">Select Project of Interest</label>
                     <select
                       value={formData.project}
                       onChange={(e) => setFormData({ ...formData, project: e.target.value })}
-                      className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-sm font-medium text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
+                      className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-sm font-medium text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors"
                     >
                       <option value="">Select a project (optional)</option>
                       {Object.values(projectData).map((p) => (
@@ -292,26 +292,26 @@ export const Contact = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-2">Message / Requirements</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-akhil-charcoal mb-1.5 sm:mb-2">Message / Requirements</label>
                     <textarea
                       rows={4}
                       placeholder="Tell us about your preferred flat configuration, budget range, or any specific requirements..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red transition-colors resize-none"
                     />
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     <button
                       type="submit"
-                      className="flex-1 py-4 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
+                      className="flex-1 min-h-[48px] py-3.5 sm:py-4 px-6 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center gap-2 active:bg-[#900B20]"
                     >
                       <MessageSquare size={16} /> Send via WhatsApp
                     </button>
                     <a
                       href={`tel:${OFFICE_PHONE_1}`}
-                      className="py-4 px-6 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold tracking-widest uppercase rounded-xl transition-colors flex items-center justify-center gap-2 border border-akhil-border"
+                      className="min-h-[48px] py-3.5 sm:py-4 px-6 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold tracking-widest uppercase rounded-xl transition-colors flex items-center justify-center gap-2 border border-akhil-border active:bg-gray-200"
                     >
                       <Phone size={16} /> Call Now
                     </a>

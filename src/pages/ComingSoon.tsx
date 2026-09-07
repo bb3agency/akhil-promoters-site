@@ -42,10 +42,10 @@ export const ComingSoon = () => {
           This section of the Akhil Promoters website is under development. In the meantime, explore our flagship projects or reach out to our Vijayawada office directly.
         </motion.p>
 
-        <motion.div variants={itemFadeUp} className="flex flex-col sm:flex-row gap-4 justify-center">
+        <motion.div variants={itemFadeUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
           <Link
             to="/projects"
-            className="px-8 py-4 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md hover:scale-[1.02]"
+            className="w-full sm:w-auto px-8 py-3.5 sm:py-4 min-h-[48px] flex items-center justify-center bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md hover:scale-[1.02]"
           >
             Explore Projects
           </Link>
@@ -53,13 +53,13 @@ export const ComingSoon = () => {
             href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noreferrer"
-            className="px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
+            className="w-full sm:w-auto px-8 py-3.5 sm:py-4 min-h-[48px] bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 shadow-md hover:scale-[1.02]"
           >
             <MessageSquare size={16} /> WhatsApp Us
           </a>
           <Link
             to="/"
-            className="px-8 py-4 bg-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold tracking-widest uppercase rounded-xl border border-akhil-border transition-all hover:scale-[1.02]"
+            className="w-full sm:w-auto px-8 py-3.5 sm:py-4 min-h-[48px] flex items-center justify-center bg-white hover:bg-akhil-border text-akhil-charcoal text-xs font-bold tracking-widest uppercase rounded-xl border border-akhil-border transition-all hover:scale-[1.02]"
           >
             Back to Home
           </Link>

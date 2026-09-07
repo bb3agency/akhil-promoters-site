@@ -36,8 +36,8 @@ export const BuyersGuide = () => {
   return (
     <div className="bg-akhil-off-white min-h-screen pt-28 pb-20">
       {/* Header Banner */}
-      <section className="bg-akhil-dark text-white py-16 mb-12 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <section className="bg-akhil-dark text-white py-12 sm:py-16 mb-8 sm:mb-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <motion.div
             variants={staggerContainer(0.12)}
             initial="hidden"
@@ -51,13 +51,13 @@ export const BuyersGuide = () => {
             </motion.span>
             <motion.h1
               variants={itemFadeUp}
-              className="text-4xl md:text-5xl font-serif mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4"
             >
               Vijayawada Home Buyers Guide
             </motion.h1>
             <motion.p
               variants={itemFadeUp}
-              className="text-gray-400 text-sm md:text-base max-w-2xl font-light"
+              className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl font-light"
             >
               Everything you need to know about purchasing your dream 3 BHK flat with Akhil Promoters — from document checklists and RERA compliance to home loan approvals.
             </motion.p>
@@ -65,19 +65,19 @@ export const BuyersGuide = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-8 sm:space-y-12">
         {/* Step-by-Step Buying Process */}
         <motion.section
           {...sectionScrollProps}
-          className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
+          className="bg-white p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
-          <motion.h2 variants={itemFadeUp} className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-8">
+          <motion.h2 variants={itemFadeUp} className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal mb-6 sm:mb-8">
             5-Step Flat Purchasing Process
           </motion.h2>
 
           <motion.div
             variants={staggerContainer(0.08)}
-            className="grid grid-cols-1 md:grid-cols-5 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3.5 sm:gap-6"
           >
             {[
               { step: 1, title: 'Site Visit', desc: 'Explore Blueberry (Ayodhya Nagar) or Apple / Cherry (Kanuru) with our advisory team.' },
@@ -90,9 +90,9 @@ export const BuyersGuide = () => {
                 key={st.step}
                 variants={itemFadeUp}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className="p-5 bg-akhil-off-white rounded-xl border border-akhil-border hover:border-[#C8102E]/30 transition-colors"
+                className="p-4 sm:p-5 bg-akhil-off-white rounded-xl border border-akhil-border hover:border-[#C8102E]/30 transition-colors"
               >
-                <span className="w-8 h-8 rounded-full bg-akhil-red text-white font-bold text-xs flex items-center justify-center mb-3 shadow-sm">
+                <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-akhil-red text-white font-bold text-xs flex items-center justify-center mb-3 shadow-sm">
                   {st.step}
                 </span>
                 <h4 className="text-sm font-bold text-akhil-charcoal mb-1">{st.title}</h4>
@@ -105,14 +105,14 @@ export const BuyersGuide = () => {
         {/* Required Documents Checklist */}
         <motion.section
           {...sectionScrollProps}
-          className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
+          className="bg-white p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
-          <motion.h2 variants={itemFadeUp} className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-6">
+          <motion.h2 variants={itemFadeUp} className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal mb-4 sm:mb-6">
             Document Checklist for Flat Registration
           </motion.h2>
           <motion.div
             variants={staggerContainer(0.06)}
-            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"
           >
             {[
               'PAN Card & Aadhaar Card Copies of Buyer(s)',
@@ -124,10 +124,10 @@ export const BuyersGuide = () => {
                 key={idx}
                 variants={itemFadeUp}
                 whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                className="p-4 bg-akhil-off-white rounded-xl flex items-center gap-3 border border-gray-100 hover:border-[#C8102E]/30 transition-colors"
+                className="p-3.5 sm:p-4 bg-akhil-off-white rounded-xl flex items-center gap-3 border border-gray-100 hover:border-[#C8102E]/30 transition-colors"
               >
-                <CheckCircle size={20} className="text-akhil-red flex-shrink-0" />
-                <span className="text-xs font-bold text-akhil-charcoal">{doc}</span>
+                <CheckCircle size={18} className="text-akhil-red flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-bold text-akhil-charcoal">{doc}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -136,12 +136,12 @@ export const BuyersGuide = () => {
         {/* FAQs Accordion */}
         <motion.section
           {...sectionScrollProps}
-          className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
+          className="bg-white p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
-          <motion.h2 variants={itemFadeUp} className="text-2xl md:text-3xl font-serif text-akhil-charcoal mb-8">
+          <motion.h2 variants={itemFadeUp} className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal mb-6 sm:mb-8">
             Frequently Asked Questions
           </motion.h2>
-          <motion.div variants={staggerContainer(0.06)} className="space-y-4">
+          <motion.div variants={staggerContainer(0.06)} className="space-y-3 sm:space-y-4">
             {faqs.map((faq, idx) => (
               <motion.div
                 key={idx}
@@ -150,10 +150,10 @@ export const BuyersGuide = () => {
               >
                 <button
                   onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                  className="w-full p-5 bg-akhil-off-white hover:bg-white text-left text-sm font-bold text-akhil-charcoal flex justify-between items-center transition-colors"
+                  className="w-full p-4 sm:p-5 bg-akhil-off-white hover:bg-white text-left text-xs sm:text-sm font-bold text-akhil-charcoal flex justify-between items-center gap-3 transition-colors min-h-[48px]"
                 >
-                  <span>{faq.question}</span>
-                  {openFaqIndex === idx ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                  <span className="leading-snug">{faq.question}</span>
+                  {openFaqIndex === idx ? <ChevronUp size={18} className="flex-shrink-0 text-akhil-red" /> : <ChevronDown size={18} className="flex-shrink-0 text-akhil-gray" />}
                 </button>
                 {openFaqIndex === idx && (
                   <motion.div
@@ -161,7 +161,7 @@ export const BuyersGuide = () => {
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.25 }}
-                    className="p-5 bg-white text-xs text-akhil-gray leading-relaxed border-t border-gray-100"
+                    className="p-4 sm:p-5 bg-white text-xs sm:text-sm text-akhil-gray leading-relaxed border-t border-gray-100"
                   >
                     {faq.answer}
                   </motion.div>

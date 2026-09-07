@@ -68,17 +68,17 @@ export const Footer = () => {
                   href={`https://wa.me/${WHATSAPP_NUMBER}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="type-label text-[10px] inline-flex items-center gap-2.5 px-5 py-3 border border-white/20 text-white/80 hover:border-white/50 hover:text-white transition-colors"
+                  className="type-label text-[10px] min-h-[44px] inline-flex items-center gap-2.5 px-5 py-3 border border-white/20 text-white/80 hover:border-white/50 hover:text-white transition-colors active:bg-white/10"
                 >
-                  <MessageSquare size={13} /> WhatsApp Us
+                  <MessageSquare size={14} /> WhatsApp Us
                 </a>
               </div>
             </motion.div>
 
             {/* Navigation columns */}
             <motion.div variants={itemFadeUp} className="lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Navigate</p>
-              <ul className="space-y-2.5 sm:space-y-3">
+              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Navigate</p>
+              <ul className="space-y-1.5 sm:space-y-3">
                 {[
                   { name: 'Home', href: '/' },
                   { name: 'Projects', href: '/projects' },
@@ -89,7 +89,7 @@ export const Footer = () => {
                   <li key={l.name}>
                     <Link
                       to={l.href}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-0.5"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
@@ -100,13 +100,13 @@ export const Footer = () => {
             </motion.div>
 
             <motion.div variants={itemFadeUp} className="lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Projects</p>
-              <ul className="space-y-2.5 sm:space-y-3">
+              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Projects</p>
+              <ul className="space-y-1.5 sm:space-y-3">
                 {Object.values(projectData).map((p) => (
                   <li key={p.id}>
                     <Link
                       to={`/projects/${p.slug}`}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-0.5"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {p.name}
@@ -117,8 +117,8 @@ export const Footer = () => {
             </motion.div>
 
             <motion.div variants={itemFadeUp} className="lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Company</p>
-              <ul className="space-y-2.5 sm:space-y-3">
+              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Company</p>
+              <ul className="space-y-1.5 sm:space-y-3">
                 {[
                   { name: 'Who We Are', href: '/who-we-are' },
                   { name: 'Our Projects', href: '/projects' },
@@ -129,7 +129,7 @@ export const Footer = () => {
                   <li key={l.name}>
                     <Link
                       to={l.href}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-0.5"
+                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E]"
                       style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
                     >
                       {l.name}
@@ -141,8 +141,8 @@ export const Footer = () => {
 
             {/* Office address */}
             <motion.div variants={itemFadeUp} className="sm:col-span-2 lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-4 sm:mb-5">Office</p>
-              <div className="space-y-3">
+              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Office</p>
+              <div className="space-y-3.5">
                 <div className="flex items-start gap-2.5">
                   <MapPin size={14} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
                   <p className="text-xs sm:text-sm text-white/55 leading-relaxed" style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}>
@@ -151,14 +151,14 @@ export const Footer = () => {
                 </div>
                 <div className="flex items-start gap-2.5">
                   <Phone size={14} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
-                  <div className="space-y-0.5">
-                    <a href={`tel:${OFFICE_PHONE_1}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_1}</a>
-                    <a href={`tel:${OFFICE_PHONE_2}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_2}</a>
+                  <div className="space-y-1">
+                    <a href={`tel:${OFFICE_PHONE_1}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_1}</a>
+                    <a href={`tel:${OFFICE_PHONE_2}`} className="block text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>{OFFICE_PHONE_2}</a>
                   </div>
                 </div>
                 <div className="flex items-center gap-2.5">
                   <Mail size={14} className="text-[#C8102E] flex-shrink-0" />
-                  <a href={`mailto:${OFFICE_EMAIL}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>
+                  <a href={`mailto:${OFFICE_EMAIL}`} className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors py-0.5" style={{ fontFamily: 'var(--font-sans)' }}>
                     {OFFICE_EMAIL}
                   </a>
                 </div>
@@ -167,16 +167,17 @@ export const Footer = () => {
           </motion.div>
 
           {/* ── Bottom bar ──────────────────────────────── */}
-          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
             <p className="text-[11px] text-white/30" style={{ fontFamily: 'var(--font-sans)' }}>
               © {new Date().getFullYear()} Akhil Promoters Private Limited. CREDAI Member.
             </p>
             <button
               onClick={scrollTop}
-              className="p-2 border border-white/20 text-white/40 hover:text-white hover:border-white/50 transition-colors"
+              className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center border border-white/20 text-white/40 hover:text-white hover:border-white/50 active:bg-white/10 transition-colors"
               title="Back to top"
+              aria-label="Back to top"
             >
-              <ArrowUp size={14} />
+              <ArrowUp size={16} />
             </button>
           </div>
         </div>

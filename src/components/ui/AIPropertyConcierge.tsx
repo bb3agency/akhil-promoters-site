@@ -48,10 +48,11 @@ export const AIPropertyConcierge = () => {
       {/* Floating Trigger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 z-50 p-4 bg-[#111111] text-[#C5A880] border border-[#C5A880]/50 rounded-full shadow-2xl hover:scale-105 transition-all flex items-center gap-2 group"
+        className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 p-3.5 sm:p-4 bg-[#111111] text-[#C5A880] border border-[#C5A880]/50 rounded-full shadow-2xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 group min-w-[48px] min-h-[48px] justify-center"
         title="AI Property Assistant"
+        aria-label="Open AI Property Assistant"
       >
-        <Sparkles className="w-5 h-5 animate-pulse" />
+        <Sparkles className="w-5 h-5 animate-pulse text-[#C5A880]" />
         <span className="text-xs font-bold uppercase tracking-wider hidden md:inline pr-2">Property Advisor</span>
       </button>
 
@@ -62,10 +63,10 @@ export const AIPropertyConcierge = () => {
             initial={{ opacity: 0, y: 20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            className="fixed bottom-24 right-6 z-50 w-96 max-w-[calc(100vw-3rem)] bg-white border border-gray-200 shadow-2xl overflow-hidden flex flex-col h-[500px]"
+            className="fixed inset-x-3 bottom-20 sm:bottom-24 sm:right-6 sm:left-auto sm:w-96 max-h-[75dvh] sm:max-h-[500px] h-[480px] z-50 bg-white border border-gray-200 shadow-2xl rounded-2xl overflow-hidden flex flex-col"
           >
             {/* Drawer Header */}
-            <div className="bg-[#111111] text-white p-4 flex justify-between items-center border-b border-gold-900/30">
+            <div className="bg-[#111111] text-white p-4 flex justify-between items-center border-b border-gold-900/30 shrink-0">
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-full bg-[#C5A880] text-black flex items-center justify-center font-bold text-xs">
                   AP
@@ -77,7 +78,11 @@ export const AIPropertyConcierge = () => {
                   </span>
                 </div>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-gray-400 hover:text-white p-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors"
+                aria-label="Close concierge"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -90,7 +95,7 @@ export const AIPropertyConcierge = () => {
                   className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] p-3 rounded-sm leading-relaxed ${
+                    className={`max-w-[85%] p-3 rounded-lg leading-relaxed ${
                       msg.sender === 'user'
                         ? 'bg-black text-white font-medium'
                         : 'bg-white text-gray-800 border border-gray-200 shadow-xs'
@@ -103,17 +108,18 @@ export const AIPropertyConcierge = () => {
             </div>
 
             {/* Input Bar */}
-            <form onSubmit={handleSendMessage} className="p-3 bg-white border-t border-gray-200 flex gap-2">
+            <form onSubmit={handleSendMessage} className="p-3 bg-white border-t border-gray-200 flex gap-2 shrink-0">
               <input
                 type="text"
                 placeholder="Ask about projects, prices, or site visits..."
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
-                className="flex-1 px-3 py-2 bg-gray-50 border border-gray-300 text-xs text-gray-900 focus:outline-none focus:border-[#C5A880]"
+                className="flex-1 px-3 py-2.5 bg-gray-50 border border-gray-300 text-base sm:text-xs text-gray-900 focus:outline-none focus:border-[#C5A880] rounded-lg"
               />
               <button
                 type="submit"
-                className="p-2 bg-black text-[#C5A880] hover:bg-[#C5A880] hover:text-black transition-colors"
+                className="p-2.5 min-w-[44px] min-h-[44px] bg-black text-[#C5A880] hover:bg-[#C5A880] hover:text-black transition-colors rounded-lg flex items-center justify-center"
+                aria-label="Send message"
               >
                 <Send className="w-4 h-4" />
               </button>

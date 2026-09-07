@@ -59,8 +59,8 @@ export const SupportServices = () => {
   return (
     <div className="bg-akhil-off-white min-h-screen pt-28 pb-20">
       {/* Header Banner */}
-      <section className="bg-akhil-dark text-white py-16 mb-12 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <section className="bg-akhil-dark text-white py-12 sm:py-16 mb-8 sm:mb-12 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
           <motion.div
             variants={staggerContainer(0.12)}
             initial="hidden"
@@ -74,13 +74,13 @@ export const SupportServices = () => {
             </motion.span>
             <motion.h1
               variants={itemFadeUp}
-              className="text-4xl md:text-5xl font-serif mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4"
             >
               Support Services &amp; Calculators
             </motion.h1>
             <motion.p
               variants={itemFadeUp}
-              className="text-gray-400 text-sm md:text-base max-w-2xl font-light"
+              className="text-gray-400 text-xs sm:text-sm md:text-base max-w-2xl font-light"
             >
               Plan your investment in Akhil Promoters projects with our interactive home loan EMI calculator, land unit converter, and NRI currency suite.
             </motion.p>
@@ -88,26 +88,26 @@ export const SupportServices = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 space-y-10 sm:space-y-16">
         {/* 1. EMI CALCULATOR */}
         <motion.section
           id="emi"
           {...sectionScrollProps}
-          className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
+          className="bg-white p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
-          <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-akhil-red/10 text-akhil-red rounded-xl">
-              <Calculator size={24} />
+          <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-6 sm:mb-8">
+            <div className="p-2.5 sm:p-3 bg-akhil-red/10 text-akhil-red rounded-xl">
+              <Calculator size={22} />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-serif text-akhil-charcoal">Home Loan EMI Calculator</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal">Home Loan EMI Calculator</h2>
               <p className="text-xs text-akhil-gray">Estimate your monthly installment for 3 BHK flat purchases</p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Sliders Input Column */}
-            <motion.div variants={fadeInLeft(0.6)} className="lg:col-span-7 space-y-8">
+            <motion.div variants={fadeInLeft(0.6)} className="lg:col-span-7 space-y-6 sm:space-y-8">
               {/* Loan Amount Slider */}
               <div>
                 <div className="flex justify-between items-center mb-2">
@@ -183,17 +183,17 @@ export const SupportServices = () => {
             {/* EMI Result Summary Card */}
             <motion.div
               variants={fadeInRight(0.6)}
-              className="lg:col-span-5 bg-akhil-dark text-white p-8 rounded-2xl border border-white/10 shadow-xl text-center"
+              className="lg:col-span-5 bg-akhil-dark text-white p-5 sm:p-8 rounded-xl sm:rounded-2xl border border-white/10 shadow-xl text-center"
             >
               <span className="text-akhil-red text-xs font-bold tracking-widest uppercase block mb-2">
                 ESTIMATED MONTHLY EMI
               </span>
-              <h3 className="text-4xl md:text-5xl font-serif text-white font-bold mb-6">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white font-bold mb-4 sm:mb-6">
                 ₹{emi.toLocaleString('en-IN')}
                 <span className="text-xs text-gray-400 font-sans block mt-1 font-normal">/ month</span>
               </h3>
 
-              <div className="space-y-3 pt-4 border-t border-white/10 text-left text-xs mb-8">
+              <div className="space-y-3 pt-4 border-t border-white/10 text-left text-xs mb-6 sm:mb-8">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Principal Amount:</span>
                   <strong className="text-white">₹{(loanAmount / 100000).toFixed(2)} Lakhs</strong>
@@ -210,7 +210,7 @@ export const SupportServices = () => {
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="w-full py-3.5 bg-akhil-red hover:bg-akhil-red-hover text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md hover:scale-[1.02]"
+                className="w-full min-h-[46px] py-3.5 px-4 bg-akhil-red hover:bg-akhil-red-hover active:bg-[#900B20] text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md"
               >
                 Apply for Home Loan Assistance
               </button>
@@ -222,32 +222,32 @@ export const SupportServices = () => {
         <motion.section
           id="area"
           {...sectionScrollProps}
-          className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
+          className="bg-white p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
-          <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-akhil-red/10 text-akhil-red rounded-xl">
-              <Grid size={24} />
+          <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-6 sm:mb-8">
+            <div className="p-2.5 sm:p-3 bg-akhil-red/10 text-akhil-red rounded-xl">
+              <Grid size={22} />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-serif text-akhil-charcoal">Land &amp; Flat Area Unit Converter</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal">Land &amp; Flat Area Unit Converter</h2>
               <p className="text-xs text-akhil-gray">Convert between SFT, Square Yards, Acres, Cents &amp; Gunta</p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             <motion.div variants={fadeInLeft(0.6)} className="lg:col-span-5 space-y-4">
               <label className="block text-xs font-bold uppercase text-akhil-charcoal">Enter Area Value</label>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <input
                   type="number"
                   value={areaValue}
                   onChange={(e) => setAreaValue(Number(e.target.value))}
-                  className="flex-1 px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-lg font-bold text-akhil-charcoal focus:outline-none"
+                  className="flex-1 px-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-lg font-bold text-akhil-charcoal focus:outline-none focus:border-akhil-red"
                 />
                 <select
                   value={fromUnit}
                   onChange={(e) => setFromUnit(e.target.value)}
-                  className="px-4 py-3 bg-akhil-dark text-white rounded-xl text-xs font-bold uppercase"
+                  className="min-h-[44px] px-4 py-3 bg-akhil-dark text-white rounded-xl text-xs font-bold uppercase cursor-pointer"
                 >
                   <option value="SFT">Sq. Feet (SFT)</option>
                   <option value="SQ_YDS">Sq. Yards</option>
@@ -261,7 +261,7 @@ export const SupportServices = () => {
             {/* Equivalent Grid Output */}
             <motion.div
               variants={staggerContainer(0.06)}
-              className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4"
+              className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4"
             >
               {[
                 { label: 'Square Feet', value: valueInSft, color: 'text-akhil-red' },
@@ -273,10 +273,10 @@ export const SupportServices = () => {
                   key={idx}
                   variants={itemFadeUp}
                   whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                  className="p-4 bg-akhil-off-white rounded-xl border border-akhil-border text-center hover:border-[#C8102E]/30 transition-colors"
+                  className="p-3 sm:p-4 bg-akhil-off-white rounded-xl border border-akhil-border text-center hover:border-[#C8102E]/30 transition-colors"
                 >
                   <span className="text-[10px] font-bold text-akhil-gray block uppercase mb-1">{item.label}</span>
-                  <strong className={`text-xl font-serif font-bold ${item.color}`}>{item.value}</strong>
+                  <strong className={`text-lg sm:text-xl font-serif font-bold ${item.color}`}>{item.value}</strong>
                 </motion.div>
               ))}
             </motion.div>
@@ -287,19 +287,19 @@ export const SupportServices = () => {
         <motion.section
           id="currency"
           {...sectionScrollProps}
-          className="bg-white p-8 md:p-12 rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
+          className="bg-white p-4 sm:p-6 md:p-10 lg:p-12 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm overflow-hidden"
         >
-          <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-8">
-            <div className="p-3 bg-akhil-red/10 text-akhil-red rounded-xl">
-              <Globe size={24} />
+          <motion.div variants={itemFadeUp} className="flex items-center gap-3 mb-6 sm:mb-8">
+            <div className="p-2.5 sm:p-3 bg-akhil-red/10 text-akhil-red rounded-xl">
+              <Globe size={22} />
             </div>
             <div>
-              <h2 className="text-2xl md:text-3xl font-serif text-akhil-charcoal">NRI Investment Currency Estimator</h2>
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-serif text-akhil-charcoal">NRI Investment Currency Estimator</h2>
               <p className="text-xs text-akhil-gray">Quick currency valuation for international real estate buyers</p>
             </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             <motion.div variants={fadeInLeft(0.6)} className="lg:col-span-5 space-y-2">
               <label className="block text-xs font-bold uppercase text-akhil-charcoal">Property Price (INR)</label>
               <input
@@ -307,14 +307,14 @@ export const SupportServices = () => {
                 value={inrAmount}
                 step={500000}
                 onChange={(e) => setInrAmount(Number(e.target.value))}
-                className="w-full px-4 py-3.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xl font-bold text-akhil-red focus:outline-none"
+                className="w-full px-4 py-3.5 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-xl font-bold text-akhil-red focus:outline-none focus:border-akhil-red"
               />
               <span className="text-[11px] text-akhil-gray block">₹{(inrAmount / 100000).toFixed(2)} Lakhs INR</span>
             </motion.div>
 
             <motion.div
               variants={staggerContainer(0.08)}
-              className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4"
+              className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4"
             >
               {[
                 { cur: 'USD ($)', amount: `$${Math.round(inrAmount / usdRate).toLocaleString()}`, rate: `@ ₹${usdRate} / USD` },
@@ -325,10 +325,10 @@ export const SupportServices = () => {
                   key={idx}
                   variants={itemFadeUp}
                   whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                  className="p-5 bg-akhil-dark text-white rounded-xl text-center border border-white/10 hover:border-[#C8102E]/40 transition-colors"
+                  className="p-4 sm:p-5 bg-akhil-dark text-white rounded-xl text-center border border-white/10 hover:border-[#C8102E]/40 transition-colors"
                 >
                   <span className="text-[10px] font-bold text-akhil-red block uppercase mb-1">{c.cur}</span>
-                  <strong className="text-2xl font-serif text-white font-bold block">
+                  <strong className="text-xl sm:text-2xl font-serif text-white font-bold block">
                     {c.amount}
                   </strong>
                   <span className="text-[10px] text-gray-400 block mt-1">{c.rate}</span>

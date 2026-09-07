@@ -207,7 +207,7 @@ export const GlobalHeader = () => {
             {/* ── Mobile Hamburger ── */}
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className={`lg:hidden p-2.5 rounded-lg transition-colors ${
+              className={`lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-lg transition-colors ${
                 isTransparentDarkHeader ? 'text-white hover:bg-white/10' : 'text-[#181714] hover:bg-black/5'
               }`}
               aria-label="Toggle menu"
@@ -226,38 +226,43 @@ export const GlobalHeader = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'tween', duration: 0.28 }}
-            className="fixed inset-0 z-50 bg-[#181714] text-white flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-50 bg-[#181714] text-white flex flex-col overflow-y-auto pt-safe"
           >
             {/* Mobile header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10">
-              <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-9 w-auto object-contain" />
-              <button onClick={() => setMobileOpen(false)} className="p-2 text-white/70 hover:text-white rounded-lg hover:bg-white/10" aria-label="Close menu">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
+              <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-8 sm:h-9 w-auto object-contain" />
+              <button
+                onClick={() => setMobileOpen(false)}
+                className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-white/70 hover:text-white rounded-lg hover:bg-white/10 transition-colors"
+                aria-label="Close menu"
+              >
                 <X size={24} />
               </button>
             </div>
 
             {/* Mobile nav links */}
-            <div className="flex-1 px-6 py-6 space-y-1 overflow-y-auto">
+            <div className="flex-1 px-5 sm:px-6 py-6 space-y-1 overflow-y-auto -webkit-overflow-scrolling-touch">
               {navigation.map((item) => (
                 <div key={item.name}>
                   <Link
                     to={item.href || '#'}
                     onClick={() => setMobileOpen(false)}
-                    className="block py-3 text-lg font-serif font-medium text-white/90 hover:text-[#C8102E] transition-colors border-b border-white/5 active:bg-white/5"
+                    className="flex items-center min-h-[48px] py-3 text-lg font-serif font-medium text-white/90 hover:text-[#C8102E] transition-colors border-b border-white/5 active:bg-white/5"
                   >
                     {item.name}
                   </Link>
                   {item.dropdown && (
-                    <div className="pl-4 mb-2 space-y-1 border-l border-[#C8102E]/30 mt-2">
+                    <div className="pl-3.5 mb-2 space-y-1 border-l-2 border-[#C8102E]/40 mt-2">
                       {item.dropdown.map((sub, idx) =>
                         'divider' in sub && sub.divider ? null : (
                           <Link
                             key={sub.name}
                             to={sub.href || '#'}
                             onClick={() => setMobileOpen(false)}
-                            className="block py-2 text-xs font-medium text-white/60 hover:text-white active:text-[#C8102E] transition-colors"
+                            className="flex items-center min-h-[44px] py-2 px-2 text-xs font-medium text-white/70 hover:text-white active:text-[#C8102E] active:bg-white/5 rounded transition-colors"
                           >
-                            {sub.name}
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E]/60 mr-2 flex-shrink-0" />
+                            <span>{sub.name}</span>
                           </Link>
                         )
                       )}
@@ -268,14 +273,14 @@ export const GlobalHeader = () => {
             </div>
 
             {/* Mobile CTAs */}
-            <div className="p-6 space-y-3 border-t border-white/10 bg-[#181714]/95">
+            <div className="p-5 sm:p-6 space-y-3 border-t border-white/10 bg-[#181714]/95 shrink-0 pb-safe">
               <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-3.5 border border-white/20 text-white/90 type-label flex items-center justify-center gap-2 hover:border-white/40 hover:text-white transition-colors text-xs font-bold tracking-wider uppercase"
+                className="w-full min-h-[48px] py-3.5 px-4 border border-white/20 text-white/90 type-label flex items-center justify-center gap-2 hover:border-white/40 hover:text-white transition-colors text-xs font-bold tracking-wider uppercase rounded-sm active:bg-white/10"
               >
-                <MessageSquare size={15} /> WhatsApp Advisory
+                <MessageSquare size={16} /> WhatsApp Advisory
               </a>
             </div>
           </motion.div>

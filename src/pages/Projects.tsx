@@ -56,7 +56,7 @@ export const Projects = () => {
             </motion.span>
             <motion.h1
               variants={itemFadeUp}
-              className="text-3xl sm:text-5xl md:text-6xl font-serif mb-3 sm:mb-4"
+              className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-3 sm:mb-4"
             >
               Residential &amp; Landmark Developments
             </motion.h1>
@@ -77,25 +77,25 @@ export const Projects = () => {
         animate="visible"
         className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-8 sm:mb-12"
       >
-        <div className="bg-white p-4 sm:p-6 rounded-2xl border border-akhil-border shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center gap-3 sm:gap-4 justify-between">
+        <div className="bg-white p-3.5 sm:p-6 rounded-xl sm:rounded-2xl border border-akhil-border shadow-sm flex flex-col lg:flex-row items-stretch lg:items-center gap-3 sm:gap-4 justify-between">
           {/* Search Input */}
           <div className="relative w-full lg:w-96">
-            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
+            <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
             <input
               type="text"
               placeholder="Search project, location, flat size..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-xs sm:text-sm focus:outline-none focus:border-akhil-red"
+              className="w-full pl-11 pr-4 py-3 bg-akhil-off-white border border-akhil-border rounded-xl text-base sm:text-sm text-akhil-charcoal focus:outline-none focus:border-akhil-red"
             />
           </div>
 
           {/* Category & Status Filters */}
-          <div className="flex items-center gap-2 sm:gap-3 w-full lg:w-auto overflow-x-auto no-scrollbar">
+          <div className="flex items-center gap-2 sm:gap-3 w-full lg:w-auto">
             <select
               value={categoryFilter}
               onChange={(e) => setCategoryFilter(e.target.value)}
-              className="flex-1 lg:flex-none px-3.5 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none"
+              className="flex-1 lg:flex-none min-h-[44px] px-3.5 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none cursor-pointer"
             >
               <option value="ALL">All Categories</option>
               <option value="Apartments">Apartments</option>
@@ -105,7 +105,7 @@ export const Projects = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="flex-1 lg:flex-none px-3.5 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none"
+              className="flex-1 lg:flex-none min-h-[44px] px-3.5 py-2.5 bg-akhil-off-white border border-akhil-border rounded-xl text-xs font-bold text-akhil-charcoal focus:outline-none cursor-pointer"
             >
               <option value="ALL">All Statuses</option>
               <option value="ONGOING">Ongoing</option>
@@ -198,7 +198,7 @@ export const Projects = () => {
                   <div className="flex items-center gap-3">
                     <Link
                       to={`/projects/${project.slug}`}
-                      className="flex-1 py-3 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold tracking-wider uppercase rounded-xl text-center transition-colors flex items-center justify-center gap-2"
+                      className="flex-1 min-h-[44px] py-3 px-4 bg-akhil-charcoal hover:bg-akhil-red text-white text-xs font-bold tracking-wider uppercase rounded-xl text-center transition-colors flex items-center justify-center gap-2"
                     >
                       View Specs <ArrowRight size={14} />
                     </Link>
@@ -206,16 +206,18 @@ export const Projects = () => {
                       <a
                         href={project.brochureUrl}
                         download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
-                        className="py-3 px-3 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors"
+                        className="min-h-[44px] min-w-[44px] py-3 px-3.5 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors flex items-center justify-center"
                         title={`Download ${project.name} brochure`}
+                        aria-label={`Download ${project.name} brochure`}
                       >
                         <Download size={16} />
                       </a>
                     ) : (
                       <button
                         onClick={() => handleOpenBrochureModal(project.name)}
-                        className="py-3 px-3 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors"
+                        className="min-h-[44px] min-w-[44px] py-3 px-3.5 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors flex items-center justify-center"
                         title="Request Brochure"
+                        aria-label="Request Brochure"
                       >
                         <Download size={16} />
                       </button>

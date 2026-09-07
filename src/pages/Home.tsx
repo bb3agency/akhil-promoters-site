@@ -54,10 +54,10 @@ export const Home = () => {
             {/* Headline */}
             <motion.h1
               variants={itemFadeUp}
-              className="text-overlay mb-6 sm:mb-8 text-white"
+              className="text-overlay mb-6 sm:mb-8 text-white break-words"
               style={{
                 fontFamily: 'Cormorant Garamond, Georgia, serif',
-                fontSize: 'clamp(2.3rem, 7.5vw, 5.5rem)',
+                fontSize: 'clamp(2rem, 7.5vw, 5.5rem)',
                 fontWeight: 500,
                 lineHeight: 1.05,
                 letterSpacing: '-0.02em',
@@ -84,7 +84,7 @@ export const Home = () => {
             >
               <Link
                 to="/projects"
-                className="type-label inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors duration-200 group text-center"
+                className="type-label min-h-[48px] inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-colors duration-200 group text-center active:bg-[#900B20]"
               >
                 View Residences
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
@@ -236,8 +236,8 @@ export const Home = () => {
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
             {/* Floating details overlay */}
-            <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-wrap items-center justify-between gap-3 pointer-events-none">
-              <div className="flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 text-white text-[10px] sm:text-xs tracking-wider uppercase font-medium">
+            <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex flex-wrap items-center justify-between gap-2 sm:gap-3 pointer-events-none">
+              <div className="flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-white/15 text-white text-[10px] sm:text-xs tracking-wider uppercase font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                 3D Perspective · 100% Vaastu
               </div>
@@ -383,9 +383,9 @@ export const Home = () => {
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
-                className="type-label inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#DDD9D1] text-[#181714] hover:border-[#181714] transition-colors text-center"
+                className="type-label min-h-[48px] w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#DDD9D1] text-[#181714] hover:border-[#181714] active:bg-black/5 transition-colors text-center"
               >
-                <MessageSquare size={13} /> WhatsApp
+                <MessageSquare size={14} /> WhatsApp
               </a>
             </motion.div>
           </motion.div>
