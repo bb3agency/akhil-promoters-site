@@ -262,12 +262,12 @@ export const Home = () => {
               initial="hidden"
               whileInView="visible"
               viewport={viewportConfig}
-              className="lg:col-span-6 order-2 lg:order-1"
+              className="lg:col-span-6 order-2 lg:order-1 flex justify-center"
             >
-              <div className="aspect-[4/3] overflow-hidden rounded-sm group">
+              <div className="w-full max-w-lg lg:max-w-none aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-[#1f1e1a] group">
                 <img
                   src="/images/projects/blueberry-elevation.jpg"
-                  alt="Blueberry, Ayodhya Nagar"
+                  alt="Blueberry Architectural Elevation, Ayodhya Nagar"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
