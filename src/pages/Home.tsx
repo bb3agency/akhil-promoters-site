@@ -28,7 +28,7 @@ export const Home = () => {
             loop
             muted
             playsInline
-            poster="/images/projects/blueberry.jpg"
+            preload="auto"
             className="block sm:hidden w-full h-full object-cover opacity-60"
           >
             <source src="/hero-bg-mobile.mp4" type="video/mp4" />
@@ -40,7 +40,7 @@ export const Home = () => {
             loop
             muted
             playsInline
-            poster="/images/projects/blueberry.jpg"
+            preload="auto"
             className="hidden sm:block w-full h-full object-cover opacity-60"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
@@ -72,16 +72,16 @@ export const Home = () => {
               variants={itemFadeUp}
               className="text-overlay mb-6 sm:mb-8 text-white break-words"
               style={{
-                fontFamily: 'Cormorant Garamond, Georgia, serif',
-                fontSize: 'clamp(2rem, 7.5vw, 5.5rem)',
-                fontWeight: 500,
-                lineHeight: 1.05,
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2.2rem, 7.5vw, 5.5rem)',
+                fontWeight: 600,
+                lineHeight: 1.08,
                 letterSpacing: '-0.02em',
               }}
             >
               Homes built<br />
               with intent.<br />
-              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Made to last.</em>
+              <em style={{ fontStyle: 'italic', fontWeight: 500 }}>Made to last.</em>
             </motion.h1>
 
             {/* Sub-copy */}
@@ -141,11 +141,11 @@ export const Home = () => {
               variants={itemFadeUp}
               className="mb-6 text-[#181714]"
               style={{
-                fontFamily: 'Cormorant Garamond, Georgia, serif',
+                fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 500,
-                lineHeight: 1.1,
-                letterSpacing: '-0.01em',
+                fontWeight: 600,
+                lineHeight: 1.12,
+                letterSpacing: '-0.015em',
               }}
             >
               Two decades of<br />considered craft.
@@ -214,9 +214,10 @@ export const Home = () => {
               variants={itemFadeUp}
               className="text-white text-3xl sm:text-4xl md:text-5xl font-serif mb-4"
               style={{
-                fontFamily: 'Cormorant Garamond, Georgia, serif',
-                fontWeight: 500,
+                fontFamily: 'var(--font-display)',
+                fontWeight: 600,
                 lineHeight: 1.15,
+                letterSpacing: '-0.015em',
               }}
             >
               Every square foot planned with purpose.
@@ -303,10 +304,11 @@ export const Home = () => {
                 variants={itemFadeUp}
                 className="text-white mb-6 sm:mb-8"
                 style={{
-                  fontFamily: 'Cormorant Garamond, Georgia, serif',
-                  fontSize: 'clamp(1.75rem, 3vw, 2.75rem)',
-                  fontWeight: 500,
-                  lineHeight: 1.1,
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(1.85rem, 3vw, 2.75rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.12,
+                  letterSpacing: '-0.015em',
                 }}
               >
                 No shortcuts.<br />No substitutions.
@@ -376,10 +378,11 @@ export const Home = () => {
               variants={itemFadeUp}
               className="text-[#181714] mb-4 sm:mb-6 mx-auto"
               style={{
-                fontFamily: 'Cormorant Garamond, Georgia, serif',
-                fontSize: 'clamp(1.75rem, 3.5vw, 3rem)',
-                fontWeight: 500,
-                lineHeight: 1.1,
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.85rem, 3.5vw, 3rem)',
+                fontWeight: 600,
+                lineHeight: 1.12,
+                letterSpacing: '-0.015em',
                 maxWidth: '560px',
               }}
             >

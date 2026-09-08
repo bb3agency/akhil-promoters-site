@@ -37,10 +37,10 @@
   --color-akhil-border:      #DDD9D1;
 
   /* Typography */
-  --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
   --font-sans:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   /* Legacy */
-  --font-serif:   'Cormorant Garamond', Georgia, serif;
+  --font-serif:   'Playfair Display', Georgia, serif;
 }
 
 /* ─────────────────────────────────────────────
@@ -69,14 +69,14 @@
     overflow-x: clip;
   }
 
-  /* Display headings — Cormorant Garamond */
+  /* Display headings — Playfair Display */
   h1, h2, h3, h4,
   .font-serif,
   .font-display {
     font-family: var(--font-display);
-    font-weight: 500;
-    line-height: 1.1;
-    letter-spacing: -0.01em;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
 
   /* Body copy */
