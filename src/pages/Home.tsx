@@ -22,16 +22,30 @@ export const Home = () => {
 
         {/* Background — video with fallback poster */}
         <div className="absolute inset-0">
+          {/* Mobile Viewport Video */}
           <video
             autoPlay
             loop
             muted
             playsInline
             poster="/images/projects/blueberry.jpg"
-            className="w-full h-full object-cover opacity-60"
+            className="block sm:hidden w-full h-full object-cover opacity-60"
+          >
+            <source src="/hero-bg-mobile.mp4" type="video/mp4" />
+          </video>
+
+          {/* Desktop Viewport Video */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/images/projects/blueberry.jpg"
+            className="hidden sm:block w-full h-full object-cover opacity-60"
           >
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
+
           {/* Cinematic gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#181714]/40 via-[#181714]/20 to-[#181714]/60" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/40 to-transparent" />
