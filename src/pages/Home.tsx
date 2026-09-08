@@ -18,7 +18,7 @@ export const Home = () => {
     <div className="bg-[#F7F5F0] text-[#181714]">
 
       {/* ─── HERO ─────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#181714]">
+      <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-[#181714]">
 
         {/* Background — video with fallback poster */}
         <div className="absolute inset-0">
@@ -29,7 +29,7 @@ export const Home = () => {
             muted
             playsInline
             preload="auto"
-            className="block sm:hidden w-full h-full object-cover opacity-60"
+            className="block sm:hidden w-full h-full object-cover opacity-45"
           >
             <source src="/hero-bg-mobile.mp4" type="video/mp4" />
           </video>
@@ -46,12 +46,12 @@ export const Home = () => {
             <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
 
-          {/* Cinematic gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#181714]/40 via-[#181714]/20 to-[#181714]/60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/40 to-transparent" />
+          {/* Cinematic gradient overlay — optimized scrim for mobile text legibility */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#181714]/85 via-[#181714]/50 to-[#181714]/90 sm:from-[#181714]/40 sm:via-[#181714]/20 sm:to-[#181714]/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#181714]/90 via-[#181714]/60 to-transparent sm:from-[#181714]/40 sm:to-transparent" />
         </div>
 
-        <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 w-full pt-28 sm:pt-36 pb-16 sm:pb-24">
+        <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 w-full pt-20 sm:pt-36 pb-8 sm:pb-24">
           <motion.div
             variants={staggerContainer(0.14, 0.1)}
             initial="hidden"
@@ -61,7 +61,7 @@ export const Home = () => {
             {/* Eyebrow */}
             <motion.p
               variants={itemFadeUp}
-              className="type-label text-[#C8102E] flex items-center gap-3 mb-6 sm:mb-8 text-[10px] sm:text-xs"
+              className="type-label text-[#C8102E] flex items-center gap-2.5 mb-3 sm:mb-8 text-[10px] sm:text-xs tracking-wider"
             >
               <span className="section-rule" />
               Vijayawada · CREDAI Member
@@ -70,10 +70,10 @@ export const Home = () => {
             {/* Headline */}
             <motion.h1
               variants={itemFadeUp}
-              className="text-overlay mb-6 sm:mb-8 text-white break-words"
+              className="text-overlay mb-3.5 sm:mb-8 text-white break-words drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]"
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2.2rem, 7.5vw, 5.5rem)',
+                fontSize: 'clamp(2.1rem, 7.5vw, 5.5rem)',
                 fontWeight: 600,
                 lineHeight: 1.08,
                 letterSpacing: '-0.02em',
@@ -87,10 +87,10 @@ export const Home = () => {
             {/* Sub-copy */}
             <motion.p
               variants={itemFadeUp}
-              className="text-white/75 text-sm sm:text-base md:text-lg font-[300] leading-[1.7] mb-8 sm:mb-12 max-w-[480px]"
+              className="text-white/85 sm:text-white/75 text-xs sm:text-base md:text-lg font-[300] leading-relaxed sm:leading-[1.7] mb-6 sm:mb-12 max-w-[480px] drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              Thoughtfully designed 3 BHK residences in Kanuru, Ayodhya Nagar & Poranki — where architecture meets everyday life.
+              Thoughtfully designed 3 BHK residences in Kanuru, Ayodhya Nagar &amp; Poranki — where architecture meets everyday life.
             </motion.p>
 
             {/* CTAs */}
@@ -100,7 +100,7 @@ export const Home = () => {
             >
               <Link
                 to="/projects"
-                className="type-label min-h-[48px] inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-all duration-200 group text-center active:bg-[#900B20] active:scale-[0.96]"
+                className="type-label min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center gap-3 px-7 sm:px-8 py-3.5 sm:py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-all duration-200 group text-center active:bg-[#900B20] active:scale-[0.97] rounded-sm shadow-lg shadow-black/20"
               >
                 View Residences
                 <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
