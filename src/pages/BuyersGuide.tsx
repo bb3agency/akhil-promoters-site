@@ -15,8 +15,8 @@ import {
 
 const faqs = [
   {
-    question: 'Are all Akhil Promoters projects 100% Vaastu compliant?',
-    answer: 'Yes. Every project (including Blueberry, Apple, and Cherry) is scientifically designed by reputed architects according to traditional Vaastu principles for maximum natural lighting, ventilation, and positive energy.'
+    question: 'What architectural standards do Akhil Promoters projects follow?',
+    answer: 'Every project (including Blueberry, Apple, Cherry, and Daffodils) is designed by reputed architects for optimal spatial layout, generous natural lighting, positive cross-ventilation, and enduring construction quality.'
   },
   {
     question: 'What documents will I receive upon purchasing a flat?',

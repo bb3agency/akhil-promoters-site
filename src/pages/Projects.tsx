@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { MapPin, Search, Filter, ArrowRight, Download, Building } from 'lucide-react';
+import { Search, ArrowUpRight, Download, BedDouble, Maximize2 } from 'lucide-react';
 import { projectData } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
@@ -149,89 +149,110 @@ export const Projects = () => {
             variants={staggerContainer(0.12, 0.1)}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto"
           >
-            {filteredProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                variants={itemFadeUp}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                whileTap={mobileCardTap}
-                className="bg-white rounded-2xl overflow-hidden border border-akhil-border hover:shadow-xl transition-all duration-300 flex flex-col group"
-              >
-                <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
-                  <img
-                    src={project.heroImage}
-                    alt={project.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute top-4 left-4 flex gap-2">
-                    <span className="px-3 py-1 bg-akhil-dark/80 backdrop-blur-md text-white text-[10px] font-bold tracking-widest uppercase rounded-md">
-                      {project.status}
-                    </span>
-                    <span className="px-3 py-1 bg-akhil-red text-white text-[10px] font-bold tracking-widest uppercase rounded-md">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
+            {filteredProjects.map((project) => {
+              const displayStatus =
+                project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase();
 
-                <div className="p-6 flex-1 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-center gap-1.5 text-akhil-red text-xs font-semibold mb-2">
-                      <MapPin size={14} /> {project.location}
+              return (
+                <motion.div
+                  key={project.id}
+                  variants={itemFadeUp}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  whileTap={mobileCardTap}
+                  className="bg-white rounded-3xl p-4 sm:p-5 border border-[#E5E5E5] hover:border-gray-300 hover:shadow-xl transition-all duration-300 flex flex-col group"
+                >
+                  {/* Top Image with Status Pill */}
+                  <Link
+                    to={`/projects/${project.slug}`}
+                    className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
+                  >
+                    <img
+                      src={project.heroImage}
+                      alt={project.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
+                      <span className="px-4 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
+                        {displayStatus}
+                      </span>
                     </div>
-                    <h3 className="text-2xl font-serif font-bold text-akhil-charcoal mb-2 group-hover:text-akhil-red transition-colors">
-                      {project.name}
-                    </h3>
-                    <p className="text-akhil-gray text-xs leading-relaxed line-clamp-2 mb-6">
-                      {project.overview}
-                    </p>
+                  </Link>
 
-                    <div className="grid grid-cols-2 gap-3 py-3 border-y border-gray-100 mb-6 text-xs text-akhil-charcoal">
-                      <div>
-                        <span className="text-[10px] text-akhil-gray block uppercase">Sizes</span>
-                        <strong className="font-semibold">{project.configurations.join(', ')}</strong>
+                  {/* Card Content */}
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      {/* Title & Circular Arrow Action Row */}
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <div>
+                          <Link to={`/projects/${project.slug}`} className="block">
+                            <h3
+                              className="text-2xl sm:text-[26px] font-serif font-semibold text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
+                              style={{ fontFamily: 'var(--font-display)' }}
+                            >
+                              {project.name}
+                            </h3>
+                          </Link>
+                          <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
+                            {project.location}
+                          </p>
+                        </div>
+
+                        <Link
+                          to={`/projects/${project.slug}`}
+                          className="w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] transition-all duration-300 shadow-xs active:scale-95"
+                          aria-label={`View ${project.name} details`}
+                        >
+                          <ArrowUpRight size={18} strokeWidth={1.8} />
+                        </Link>
                       </div>
-                      <div>
-                        <span className="text-[10px] text-akhil-gray block uppercase">Compliance</span>
-                        <strong className="font-semibold">100% Vaastu</strong>
+
+                      {/* Overview Description */}
+                      <p className="text-xs sm:text-[13px] text-gray-600 font-sans leading-relaxed line-clamp-2 mt-2.5 mb-4 sm:mb-5">
+                        {project.overview}
+                      </p>
+                    </div>
+
+                    {/* Bottom Chips: Configuration & Area & Brochure */}
+                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 mt-auto">
+                      <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
+                        <BedDouble size={14} className="text-gray-500 stroke-[1.6]" />
+                        <span>{project.configurations.join(', ')}</span>
                       </div>
+
+                      <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
+                        <Maximize2 size={13} className="text-gray-500 stroke-[1.6]" />
+                        <span>{project.area}</span>
+                      </div>
+
+                      {project.brochureUrl ? (
+                        <motion.a
+                          whileTap={mobileTap}
+                          href={project.brochureUrl}
+                          download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto"
+                          title={`Download ${project.name} brochure`}
+                        >
+                          <Download size={13} className="text-gray-500 stroke-[1.6]" />
+                          <span>Brochure</span>
+                        </motion.a>
+                      ) : (
+                        <motion.button
+                          whileTap={mobileTap}
+                          onClick={() => handleOpenBrochureModal(project.name)}
+                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto"
+                          title={`Request ${project.name} brochure`}
+                        >
+                          <Download size={13} className="text-gray-500 stroke-[1.6]" />
+                          <span>Brochure</span>
+                        </motion.button>
+                      )}
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-3">
-                    <Link
-                      to={`/projects/${project.slug}`}
-                      className="flex-1 min-h-[44px] py-3 px-4 bg-akhil-charcoal hover:bg-akhil-red active:bg-[#900B20] active:scale-[0.97] text-white text-xs font-bold tracking-wider uppercase rounded-xl text-center transition-all flex items-center justify-center gap-2"
-                    >
-                      View Specs <ArrowRight size={14} />
-                    </Link>
-                    {project.brochureUrl ? (
-                      <motion.a
-                        whileTap={mobileTap}
-                        href={project.brochureUrl}
-                        download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
-                        className="min-h-[44px] min-w-[44px] py-3 px-3.5 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors flex items-center justify-center"
-                        title={`Download ${project.name} brochure`}
-                        aria-label={`Download ${project.name} brochure`}
-                      >
-                        <Download size={16} />
-                      </motion.a>
-                    ) : (
-                      <motion.button
-                        whileTap={mobileTap}
-                        onClick={() => handleOpenBrochureModal(project.name)}
-                        className="min-h-[44px] min-w-[44px] py-3 px-3.5 bg-akhil-off-white hover:bg-akhil-border text-akhil-charcoal rounded-xl transition-colors flex items-center justify-center"
-                        title="Request Brochure"
-                        aria-label="Request Brochure"
-                      >
-                        <Download size={16} />
-                      </motion.button>
-                    )}
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </motion.section>

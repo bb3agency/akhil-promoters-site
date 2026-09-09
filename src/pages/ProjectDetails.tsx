@@ -118,9 +118,9 @@ export const ProjectDetails = () => {
             </motion.div>
 
             <motion.div variants={itemFadeUp} whileTap={mobileChipTap} className="shrink-0 sm:shrink border-r border-gray-100 sm:border-r-0 md:border-r pr-4 sm:pr-2">
-              <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Compliance</span>
+              <span className="text-[9px] sm:text-[10px] text-akhil-gray block uppercase font-bold">Documentation</span>
               <strong className="text-xs sm:text-sm font-serif text-emerald-700 flex items-center gap-1 whitespace-nowrap">
-                <Compass size={13} /> 100% Vaastu
+                <ShieldCheck size={13} /> Clear Title
               </strong>
             </motion.div>
 

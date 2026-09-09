@@ -23,7 +23,7 @@ export const AIPropertyConcierge = () => {
 
       const lower = query.toLowerCase();
       if (lower.includes('blueberry') || lower.includes('ayodhya')) {
-        botResponse = "Blueberry features luxury 3 BHK flats (1930 & 2020 SFT) in Lotus Land Mark, Ayodhya Nagar, Vijayawada with 100% Vaastu compliance and generator backup.";
+        botResponse = "Blueberry features luxury 3 BHK flats (1930 & 2020 SFT) in Lotus Land Mark, Ayodhya Nagar, Vijayawada with premium architectural planning and generator backup.";
       } else if (lower.includes('apple')) {
         botResponse = "Apple offers premium 3 BHK residences (1445 SFT) in Mahadevpuram Colony, Kanuru, Vijayawada with 3D isometric interior planning and high-end joinery.";
       } else if (lower.includes('cherry')) {

@@ -81,7 +81,7 @@ export const WhoWeAre = () => {
               className="text-white/60 text-xs sm:text-sm md:text-base max-w-2xl font-light leading-relaxed mb-6 sm:mb-8"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              Akhil Promoters Private Limited is one of Vijayawada's premier residential real estate developers — dedicated to creating enduring 3 BHK residences and signature communities with 100% Vaastu compliance, legal clarity, and world-class craftsmanship.
+              Akhil Promoters Private Limited is one of Vijayawada's premier residential real estate developers — dedicated to creating enduring 3 BHK residences and signature communities with architectural excellence, legal clarity, and world-class craftsmanship.
             </motion.p>
 
             <motion.div variants={itemFadeUp} className="flex flex-wrap items-center gap-3 sm:gap-4">
@@ -296,7 +296,7 @@ export const WhoWeAre = () => {
                 Our Mission
               </h3>
               <p className="text-xs sm:text-sm text-[#4A4640] leading-relaxed font-light">
-                To build high-quality, 100% Vaastu-compliant homes using certified branded materials, designed by leading architectural experts, and supported by complete legal transparency from initial booking to final possession.
+                To build high-quality, architecturally refined homes using certified branded materials, designed by leading architectural experts, and supported by complete legal transparency from initial booking to final possession.
               </p>
             </motion.div>
           </motion.div>
@@ -374,8 +374,8 @@ export const WhoWeAre = () => {
             },
             {
               icon: Compass,
-              title: '100% Vaastu Compliance',
-              desc: 'Every flat is designed with scientific Vaastu orientation for entrance, kitchen, master bedroom, and positive cross-ventilation.'
+              title: 'Considered Spatial Planning',
+              desc: 'Every flat is designed with optimal spatial orientation for entrance, kitchen, master bedroom, and generous cross-ventilation.'
             },
             {
               icon: Star,

@@ -76,7 +76,7 @@ export const projectData: Record<string, Project> = {
     configurations: ["3 BHK (1930 SFT)", "3 BHK (2020 SFT)"],
     siteArea: "Sector-3, Ayodhya Nagar",
     unitCount: "5 Floors | 3 BHK Residences",
-    overview: "Blueberry offers elegant 3 BHK luxury residences situated in Sector-3, Lotus Land Mark, Ayodhya Nagar. Designed to deliver exceptional comfort and aesthetic perfection, each flat boasts 100% Vaastu compliance, generous balcony space, granite common areas, and high-end joinery.",
+    overview: "Blueberry offers elegant 3 BHK luxury residences situated in Sector-3, Lotus Land Mark, Ayodhya Nagar. Designed to deliver exceptional comfort and aesthetic perfection, each flat boasts generous balcony space, granite common areas, and high-end joinery.",
     locationHighlights: [
       "Located in Lotus Land Mark Sector-3",
       "Proximity to KCP Godown & Prabhas College",
@@ -135,7 +135,7 @@ export const projectData: Record<string, Project> = {
       { id: "g2", title: "Floor Plan Layout", category: "Floor Plan", image: "/images/projects/blueberry-floorplan.jpg" },
       { id: "g3", title: "Elevation Concept Sketch", category: "Design", image: "/images/projects/blueberry-sketch.jpg" }
     ],
-    highlights: ["100% Vaastu Compliant", "Johnson 6-Passenger Lift", "Teak Wood Main Doors", "Power Backup Generator", "Granite Common Area"],
+    highlights: ["Clear Legal Title", "Johnson 6-Passenger Lift", "Teak Wood Main Doors", "Power Backup Generator", "Granite Common Area"],
     amenities: ["Intercom System", "Dedicated Car Parking", "Earthquake Resistant RCC", "Smooth Emulsion Wall Finish", "24/7 Water & Power Backup"],
     locationDetails: "Lotus Land Mark, Sector-3, Ayodhya Nagar, Vijayawada",
     architects: {
@@ -222,7 +222,7 @@ export const projectData: Record<string, Project> = {
       { id: "g2", title: "3D Isometric Interior View", category: "Interior", image: "/images/projects/apple-isometric.jpg" },
       { id: "g3", title: "2D Floor Plan Layout", category: "Floor Plan", image: "/images/projects/apple-floorplan.jpg" }
     ],
-    highlights: ["3D Isometric Floor Layouts", "Near Bandar Road", "Johnson Elevator", "Clear Title", "Vaastu Designed"],
+    highlights: ["3D Isometric Floor Layouts", "Near Bandar Road", "Johnson Elevator", "Clear Title", "Architectural Layout"],
     amenities: ["Intercom System", "Power Backup", "Covered Car Parking", "Granite Corridors"],
     locationDetails: "Near Mahadev Puram Colony Arch, 1st Lane, Manikya Nagar, Kanuru, Vijayawada",
     architects: {
@@ -316,7 +316,7 @@ export const projectData: Record<string, Project> = {
     configurations: ["3 BHK East Facing (1700 SFT)", "3 BHK North Facing (1730 SFT)"],
     siteArea: "Tadigadapa 100ft Road, Poranki",
     unitCount: "5 Floors | 3 BHK Luxury Apartments",
-    overview: "Daffodils by Akhil Promoters offers premium 3 BHK residential apartments strategically located on Tadigadapa 100 Feet Road, Poranki. Designed with 100% Vaastu compliance, spacious east- and north-facing layouts, premium vitrified tile flooring, and excellent proximity to Kamineni Hospital and top schools.",
+    overview: "Daffodils by Akhil Promoters offers premium 3 BHK residential apartments strategically located on Tadigadapa 100 Feet Road, Poranki. Designed with spacious east- and north-facing layouts, premium vitrified tile flooring, and excellent proximity to Kamineni Hospital and top schools.",
     locationHighlights: [
       "Prime location on Tadigadapa 100 Feet Road",
       "1 Km from Kamineni Hospital",
@@ -376,7 +376,7 @@ export const projectData: Record<string, Project> = {
       { id: "g2", title: "Floor Plan Layouts", category: "Floor Plan", image: "/images/projects/daffodils-floorplan.jpg" },
       { id: "g3", title: "Location Map", category: "Location", image: "/images/projects/daffodils-map.jpg" }
     ],
-    highlights: ["800x800mm Vitrified Tiles", "Tadigadapa 100ft Road Access", "100% Vaastu Compliant", "Six Passenger Lift", "Full Generator Backup"],
+    highlights: ["800x800mm Vitrified Tiles", "Tadigadapa 100ft Road Access", "Clear Legal Title", "Six Passenger Lift", "Full Generator Backup"],
     amenities: ["Intercom Facility", "Dedicated Covered Parking", "Rainwater Harvesting", "24/7 Security & Power Backup"],
     locationDetails: "Tadigadapa 100ft Road, Poranki, Vijayawada",
     architects: {
