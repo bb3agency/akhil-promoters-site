@@ -4,8 +4,6 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   ChevronRight,
   ChevronDown,
-  ArrowLeft,
-  ArrowRight,
   Download,
   Phone,
   MessageSquare,
@@ -20,7 +18,6 @@ const NAV_ITEMS = [
   { id: 'overview', label: 'Overview' },
   { id: 'location', label: 'Location' },
   { id: 'plans', label: 'Plans' },
-  { id: 'gallery', label: 'Gallery' },
   { id: 'specification', label: 'Specifications' },
 ];
 
@@ -37,10 +34,6 @@ export const ProjectDetails: React.FC = () => {
   // Plans & Layouts state
   const [activePlanTab, setActivePlanTab] = useState<'floor' | 'master' | 'isometric'>('floor');
   const [selectedFloorPlanIndex, setSelectedFloorPlanIndex] = useState<number>(0);
-
-  // Gallery state
-  const [galleryFilter, setGalleryFilter] = useState<'All' | 'Exterior' | 'Interior' | 'Floor Plan'>('All');
-  const [currentGalleryIndex, setCurrentGalleryIndex] = useState<number>(0);
 
   // Specifications state
   const [selectedSpecKey, setSelectedSpecKey] = useState<string>('Structure');
@@ -123,12 +116,6 @@ export const ProjectDetails: React.FC = () => {
       });
     }, 3500);
   };
-
-  // Filter gallery items
-  const filteredGallery = project.gallery.filter(item => {
-    if (galleryFilter === 'All') return true;
-    return item.category.toLowerCase().includes(galleryFilter.toLowerCase());
-  });
 
   // Specs keys
   const specKeys = Object.keys(project.specifications);
@@ -640,113 +627,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          6. GALLERY SECTION (#gallery) [Dark #2a2828]
-      ───────────────────────────────────────────────────────────── */}
-      <section
-        id="gallery"
-        data-section="project-gallery"
-        className="relative w-full bg-[#2a2828] pt-[30px] pb-[70px] lg:pt-[4.167vw] lg:pb-[4.688vw] overflow-hidden text-white"
-      >
-        {/* Left vertical accent */}
-        <div
-          className="flex lg:absolute left-[12px] top-[30px] lg:left-[4.167vw] lg:top-[4.688vw] flex-col items-center gap-[8px] md:gap-[12px] lg:gap-[1.094vw] w-auto lg:w-[2.813vw] z-[5] max-lg:static max-lg:!w-full max-lg:flex-row max-lg:!justify-center max-lg:items-center max-lg:!gap-[8px] max-lg:mt-[15px] max-lg:mb-[18px]"
-          aria-hidden="true"
-        >
-          <span className="block w-px h-[28px] md:h-[36px] lg:h-[3.125vw] bg-white/70 max-lg:!w-[28px] max-lg:!h-px" />
-          <span
-            className="font-medium capitalize whitespace-nowrap text-white text-[12px] md:text-[14px] lg:text-[1.25vw] max-lg:[writing-mode:horizontal-tb] lg:[writing-mode:vertical-rl] lg:rotate-180"
-          >
-            A Living Portrait
-          </span>
-        </div>
-
-        <div className="px-5 md:px-12 lg:px-[9.375vw]">
-          <h2
-            className="capitalize text-white leading-[1.08] tracking-[0.022em] text-center text-[34px] xs:text-[38px] sm:text-[48px] md:text-[64px] lg:text-[5vw]"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-          >
-            Glimpses Of {project.name}
-          </h2>
-          <p
-            className="mx-auto mt-[14px] lg:mt-[0.729vw] max-w-[760px] lg:max-w-[56.719vw] text-center text-white/80 text-[14px] leading-[24px] sm:text-[16px] sm:leading-[28px] lg:text-[0.938vw] lg:leading-[1.563vw]"
-          >
-            Browse high-resolution photographs, architectural elevations, and walkthrough layouts.
-          </p>
-
-          {/* Filter buttons */}
-          <div className="mt-[28px] lg:mt-[2.708vw] flex flex-wrap items-center justify-center gap-[12px] sm:gap-[16px] lg:gap-[1.094vw]" role="tablist">
-            {(['All', 'Exterior', 'Interior', 'Floor Plan'] as const).map((filter) => (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => {
-                  setGalleryFilter(filter);
-                  setCurrentGalleryIndex(0);
-                }}
-                className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[100px] sm:min-w-[120px] lg:min-w-[7.083vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] cursor-pointer ${
-                  galleryFilter === filter
-                    ? 'bg-white text-[#333] font-semibold'
-                    : 'bg-transparent text-white border-[0.7px] border-white hover:bg-white/10 font-normal'
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Gallery Carousel Container */}
-        <div className="relative mt-[36px] lg:mt-[2.917vw] w-full px-5 md:px-12 lg:px-[10.083vw]">
-          {filteredGallery.length > 0 && (
-            <div className="relative w-full aspect-[16/10] lg:aspect-[1398/632] rounded-[12px] overflow-hidden bg-black/40 group shadow-2xl">
-              <img
-                src={filteredGallery[currentGalleryIndex]?.image}
-                alt={filteredGallery[currentGalleryIndex]?.title}
-                className="w-full h-full object-cover object-center select-none transition-transform duration-700 group-hover:scale-[1.02]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6 sm:p-10">
-                <div className="flex items-center justify-between w-full">
-                  <div>
-                    <span className="text-xs font-semibold text-[#ef493d] uppercase tracking-widest">
-                      {filteredGallery[currentGalleryIndex]?.category}
-                    </span>
-                    <h4
-                      className="text-lg sm:text-2xl text-white mt-1"
-                      style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-                    >
-                      {filteredGallery[currentGalleryIndex]?.title}
-                    </h4>
-                  </div>
-                  <span className="text-sm font-medium text-white/70">
-                    {String(currentGalleryIndex + 1).padStart(2, '0')} / {String(filteredGallery.length).padStart(2, '0')}
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Previous / Next Circular Buttons */}
-          <button
-            type="button"
-            aria-label="Previous gallery image"
-            onClick={() => setCurrentGalleryIndex((prev) => (prev > 0 ? prev - 1 : filteredGallery.length - 1))}
-            className="absolute z-[5] top-1/2 -translate-y-1/2 left-[12px] md:left-[24px] lg:left-[8.5vw] inline-flex items-center justify-center rounded-full bg-[#ef493d] text-white shadow-[0_6px_16px_rgba(0,0,0,0.35)] w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] lg:w-[3.092vw] lg:h-[3.092vw] transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            <ArrowLeft className="w-[18px] h-[18px] lg:w-[1.342vw] lg:h-[1.342vw]" />
-          </button>
-          <button
-            type="button"
-            aria-label="Next gallery image"
-            onClick={() => setCurrentGalleryIndex((prev) => (prev < filteredGallery.length - 1 ? prev + 1 : 0))}
-            className="absolute z-[5] top-1/2 -translate-y-1/2 right-[12px] md:right-[24px] lg:right-[8.5vw] inline-flex items-center justify-center rounded-full bg-[#ef493d] text-white shadow-[0_6px_16px_rgba(0,0,0,0.35)] w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] lg:w-[3.092vw] lg:h-[3.092vw] transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-          >
-            <ArrowRight className="w-[18px] h-[18px] lg:w-[1.342vw] lg:h-[1.342vw]" />
-          </button>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          7. SPECIFICATIONS SECTION (#specification) [Light]
+          6. SPECIFICATIONS SECTION (#specification) [Light]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="specification"
