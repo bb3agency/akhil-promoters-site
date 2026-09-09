@@ -23,7 +23,7 @@ export const Footer = () => {
 
       <motion.footer
         {...sectionScrollProps}
-        className="relative bg-[#181714] text-white pt-8 sm:pt-20 pb-6 sm:pb-10 overflow-hidden"
+        className="relative bg-[#2A2828] text-white pt-8 sm:pt-20 pb-6 sm:pb-10 overflow-hidden"
       >
         {/* ─── Architectural Background ───────── */}
         <div className="absolute inset-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden">
@@ -42,7 +42,7 @@ export const Footer = () => {
             className="hidden sm:block w-full max-w-[1800px] h-auto object-contain object-bottom opacity-20 select-none"
           />
           {/* Subtle gradient blend */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#181714]/60 via-transparent to-[#181714]/90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2A2828]/60 via-transparent to-[#2A2828]/90" />
         </div>
 
         <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
