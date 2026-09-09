@@ -314,4 +314,15 @@ input[type="range"]::-moz-range-thumb {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
+
+  /* ─── Vertical Accent Eyebrow ─── */
+  .vertical-eyebrow {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+}
+
+/* ─── Scroll Margin for Sticky Section Navigation ─── */
+section[id], div[id] {
+  scroll-margin-top: 120px;
 }

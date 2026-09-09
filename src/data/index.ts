@@ -23,6 +23,28 @@ export interface FloorPlan {
   };
 }
 
+export interface MetricStat {
+  value: string;
+  label: string;
+}
+
+export interface ConnectivityItem {
+  name: string;
+  time: string;
+}
+
+export interface ConnectivityCategory {
+  category: string;
+  items: ConnectivityItem[];
+}
+
+export interface ConstructionMilestone {
+  title: string;
+  date: string;
+  image: string;
+  status: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -56,6 +78,11 @@ export interface Project {
     interiors?: string;
   };
   siteAddress: string;
+  reraNumber?: string;
+  buildingPermissionNo?: string;
+  metrics: MetricStat[];
+  connectivity: ConnectivityCategory[];
+  constructionUpdates: ConstructionMilestone[];
 }
 
 export const projectData: Record<string, Project> = {
@@ -143,7 +170,75 @@ export const projectData: Record<string, Project> = {
       structural: "VAP Engineers (I) Pvt. Ltd.",
       interiors: "D+D Architecture (K. Ramesh)"
     },
-    siteAddress: "Lotus Land Mark, Road No - 3, Sector - 3, Ayodhya Nagar, Vijayawada"
+    siteAddress: "Lotus Land Mark, Road No - 3, Sector - 3, Ayodhya Nagar, Vijayawada",
+    reraNumber: "P04100002891",
+    buildingPermissionNo: "BA/2023/VMC/089",
+    metrics: [
+      { value: "Sector-3", label: "Lotus Land Mark" },
+      { value: "1", label: "Tower" },
+      { value: "G+5", label: "Floors" },
+      { value: "100%", label: "Power Backup" },
+      { value: "10", label: "Residences" },
+      { value: "1930 & 2020", label: "SFT 3 BHK" }
+    ],
+    connectivity: [
+      {
+        category: "Transit & Connectivity",
+        items: [
+          { name: "Vijayawada Railway Station", time: "8 mins" },
+          { name: "Pandit Nehru Bus Station (PNBS)", time: "12 mins" },
+          { name: "Eluru Canal Road Corridor", time: "3 mins" },
+          { name: "NH-16 Chennai-Kolkata Highway", time: "10 mins" }
+        ]
+      },
+      {
+        category: "Education",
+        items: [
+          { name: "Prabhas College", time: "2 mins" },
+          { name: "Dr. KKR Gowtham Concept School", time: "5 mins" },
+          { name: "Nalanda Vidyaniketan", time: "8 mins" },
+          { name: "Siddhartha Academy Institutions", time: "12 mins" }
+        ]
+      },
+      {
+        category: "Commercial & Shopping",
+        items: [
+          { name: "KCP Godown Commercial Area", time: "2 mins" },
+          { name: "Besant Road Market", time: "10 mins" },
+          { name: "PVP Square Mall", time: "14 mins" },
+          { name: "Trendset Mall", time: "14 mins" }
+        ]
+      },
+      {
+        category: "Healthcare",
+        items: [
+          { name: "Andhra Hospitals (Bhavanipuram)", time: "10 mins" },
+          { name: "Time Hospital", time: "12 mins" },
+          { name: "Ramesh Hospitals", time: "15 mins" },
+          { name: "Ayush Hospital", time: "15 mins" }
+        ]
+      }
+    ],
+    constructionUpdates: [
+      {
+        title: "Elevation & Façade Finish in Progress",
+        date: "August 2024",
+        image: "/images/projects/blueberry-elevation.jpg",
+        status: "Ongoing"
+      },
+      {
+        title: "Internal Plastering & Joinery Works",
+        date: "June 2024",
+        image: "/images/projects/blueberry-1.jpg",
+        status: "Completed"
+      },
+      {
+        title: "RCC Framed Structure Completed",
+        date: "March 2024",
+        image: "/images/projects/blueberry-2.jpg",
+        status: "Completed"
+      }
+    ]
   },
 
   "apple": {
@@ -229,7 +324,75 @@ export const projectData: Record<string, Project> = {
       design: "D+D Architecture (Ramesh K, Visakhapatnam)",
       structural: "Anne Raghu Ram (Vijayawada)"
     },
-    siteAddress: "Near Mahadev Puram Colony Arch, 1st Lane, Manikya Nagar, Kanuru, Vijayawada"
+    siteAddress: "Near Mahadev Puram Colony Arch, 1st Lane, Manikya Nagar, Kanuru, Vijayawada",
+    reraNumber: "P04100003412",
+    buildingPermissionNo: "BA/2023/VMC/145",
+    metrics: [
+      { value: "1st Lane", label: "Manikya Nagar" },
+      { value: "1", label: "Tower" },
+      { value: "G+5", label: "Floors" },
+      { value: "100%", label: "Power Backup" },
+      { value: "10", label: "Residences (2 / Floor)" },
+      { value: "1445", label: "SFT 3 BHK" }
+    ],
+    connectivity: [
+      {
+        category: "Transit & Connectivity",
+        items: [
+          { name: "Bandar Road (NH-65)", time: "5 mins" },
+          { name: "Autonagar Bus Terminal", time: "6 mins" },
+          { name: "Benz Circle Junction", time: "10 mins" },
+          { name: "Gannavaram Airport", time: "22 mins" }
+        ]
+      },
+      {
+        category: "Education",
+        items: [
+          { name: "Akshara International School", time: "3 mins" },
+          { name: "Dhanekula Institute of Engineering", time: "6 mins" },
+          { name: "VR Siddhartha Engineering College", time: "8 mins" },
+          { name: "Delhi Public School (DPS)", time: "12 mins" }
+        ]
+      },
+      {
+        category: "Commercial & IT Hubs",
+        items: [
+          { name: "Autonagar Commercial Hub", time: "5 mins" },
+          { name: "D-Mart Kanuru", time: "6 mins" },
+          { name: "Trendset Mall & Cinepolis", time: "10 mins" },
+          { name: "Benz Circle Shopping Area", time: "12 mins" }
+        ]
+      },
+      {
+        category: "Healthcare",
+        items: [
+          { name: "Time Hospital Kanuru", time: "4 mins" },
+          { name: "Capital Hospital", time: "8 mins" },
+          { name: "Pinnamaneni Siddhartha Medical College", time: "12 mins" },
+          { name: "Aayush Hospitals", time: "14 mins" }
+        ]
+      }
+    ],
+    constructionUpdates: [
+      {
+        title: "Interior Finishing & Painting",
+        date: "September 2024",
+        image: "/images/projects/apple-elevation.jpg",
+        status: "Finishing"
+      },
+      {
+        title: "Flooring & Electrical Wiring",
+        date: "July 2024",
+        image: "/images/projects/apple-1.jpg",
+        status: "Completed"
+      },
+      {
+        title: "Roof Slab & Brickwork",
+        date: "April 2024",
+        image: "/images/projects/apple-2.jpg",
+        status: "Completed"
+      }
+    ]
   },
 
   "cherry": {
@@ -295,7 +458,75 @@ export const projectData: Record<string, Project> = {
       design: "D+D Architecture",
       structural: "Anne Raghu Ram"
     },
-    siteAddress: "Varalakshmi Puram, Kanuru, Vijayawada"
+    siteAddress: "Varalakshmi Puram, Kanuru, Vijayawada",
+    reraNumber: "P04100001920",
+    buildingPermissionNo: "BA/2022/VMC/072",
+    metrics: [
+      { value: "40' & 33'", label: "Wide Road Access" },
+      { value: "1", label: "Tower" },
+      { value: "G+5", label: "Floors" },
+      { value: "100%", label: "Power Backup" },
+      { value: "Ready", label: "To Move In" },
+      { value: "1625", label: "SFT 3 BHK" }
+    ],
+    connectivity: [
+      {
+        category: "Transit & Connectivity",
+        items: [
+          { name: "Varalakshmi Puram Main Road", time: "1 min" },
+          { name: "Bandar Road Corridor", time: "5 mins" },
+          { name: "Benz Circle Flyover", time: "8 mins" },
+          { name: "Ramavarappadu Ring", time: "10 mins" }
+        ]
+      },
+      {
+        category: "Education",
+        items: [
+          { name: "VR Siddhartha Engineering College", time: "4 mins" },
+          { name: "Chaitanya Techno School", time: "5 mins" },
+          { name: "Narayana Olympiad School", time: "7 mins" },
+          { name: "PB Siddhartha Arts & Science College", time: "10 mins" }
+        ]
+      },
+      {
+        category: "Commercial & Entertainment",
+        items: [
+          { name: "Cinepolis Power One Mall", time: "5 mins" },
+          { name: "D-Mart Bandar Road", time: "6 mins" },
+          { name: "Trendset Mall", time: "8 mins" },
+          { name: "APCOB & Banking Zone", time: "3 mins" }
+        ]
+      },
+      {
+        category: "Healthcare",
+        items: [
+          { name: "Time Hospital Kanuru", time: "3 mins" },
+          { name: "Sentini Hospitals", time: "9 mins" },
+          { name: "Nagarjuna Hospital", time: "10 mins" },
+          { name: "Ramesh Cardiac Centre", time: "12 mins" }
+        ]
+      }
+    ],
+    constructionUpdates: [
+      {
+        title: "Project Completed & Occupied",
+        date: "March 2024",
+        image: "/images/projects/cherry-elevation.jpg",
+        status: "Completed"
+      },
+      {
+        title: "Final Façade Lighting & Teak Joinery",
+        date: "January 2024",
+        image: "/images/projects/cherry-1.jpg",
+        status: "Completed"
+      },
+      {
+        title: "Vitrified Tile Flooring & Lifts",
+        date: "November 2023",
+        image: "/images/projects/cherry-2.jpg",
+        status: "Completed"
+      }
+    ]
   },
 
   "daffodils": {
@@ -383,6 +614,74 @@ export const projectData: Record<string, Project> = {
       design: "Anne Raghuram (Vijayawada)",
       interiors: "K. Ramesh (Visakhapatnam)"
     },
-    siteAddress: "Tadigadapa 100ft Road, Poranki, Vijayawada"
+    siteAddress: "Tadigadapa 100ft Road, Poranki, Vijayawada",
+    reraNumber: "P04100001550",
+    buildingPermissionNo: "BA/2022/VMC/034",
+    metrics: [
+      { value: "100 Ft", label: "Tadigadapa Road" },
+      { value: "1", label: "Tower" },
+      { value: "G+5", label: "Floors" },
+      { value: "100%", label: "Power Backup" },
+      { value: "Ready", label: "To Move In" },
+      { value: "1700 & 1730", label: "SFT 3 BHK" }
+    ],
+    connectivity: [
+      {
+        category: "Transit & Connectivity",
+        items: [
+          { name: "Tadigadapa 100 Feet Road", time: "0 min" },
+          { name: "Benz Circle Junction", time: "12 mins" },
+          { name: "Gannavaram International Airport", time: "18 mins" },
+          { name: "Vijayawada Central Railway Station", time: "20 mins" }
+        ]
+      },
+      {
+        category: "Education",
+        items: [
+          { name: "Shamrock International School", time: "5 mins" },
+          { name: "Sri Chaitanya Junior College", time: "6 mins" },
+          { name: "Dhanekula Engineering College", time: "8 mins" },
+          { name: "KCP Siddhartha Public School", time: "12 mins" }
+        ]
+      },
+      {
+        category: "Commercial & Retail",
+        items: [
+          { name: "Best Price Wholesale", time: "3 mins" },
+          { name: "D-Mart Poranki", time: "4 mins" },
+          { name: "PVP Square Mall", time: "15 mins" },
+          { name: "Trendset Mall", time: "15 mins" }
+        ]
+      },
+      {
+        category: "Healthcare",
+        items: [
+          { name: "Kamineni Hospital", time: "2 mins" },
+          { name: "Capital Hospital", time: "6 mins" },
+          { name: "Time Hospital Kanuru", time: "8 mins" },
+          { name: "Aayush Hospital", time: "14 mins" }
+        ]
+      }
+    ],
+    constructionUpdates: [
+      {
+        title: "Handed Over & Completed",
+        date: "October 2023",
+        image: "/images/projects/daffodils-elevation.jpg",
+        status: "Completed"
+      },
+      {
+        title: "Exterior Finish & Driveways",
+        date: "August 2023",
+        image: "/images/projects/daffodils-1.jpg",
+        status: "Completed"
+      },
+      {
+        title: "6-Passenger Automatic Lift Installation",
+        date: "June 2023",
+        image: "/images/projects/daffodils-2.jpg",
+        status: "Completed"
+      }
+    ]
   }
 };
