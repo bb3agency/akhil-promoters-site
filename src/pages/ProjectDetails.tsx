@@ -214,18 +214,6 @@ export const ProjectDetails: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* Floating Brand Badge at Bottom-Right */}
-        <div
-          className="hidden lg:flex absolute bottom-0 right-[3vw] z-[30] translate-y-1/2 items-center justify-center bg-white rounded-[12px] border border-[rgba(85,85,85,0.1)] shadow-[0_0_30px_0_rgba(0,0,0,0.08)] w-[10.563vw] h-[8.438vw] min-w-[160px] min-h-[128px] p-4"
-          aria-hidden="true"
-        >
-          <img
-            src="/images/logo.png"
-            alt="Akhil Promoters"
-            className="w-full h-full object-contain select-none pointer-events-none"
-          />
-        </div>
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
