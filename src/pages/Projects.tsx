@@ -188,8 +188,8 @@ export const Projects = () => {
                         <div>
                           <Link to={`/projects/${project.slug}`} className="block">
                             <h3
-                              className="text-2xl sm:text-[26px] font-serif font-semibold text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
-                              style={{ fontFamily: 'var(--font-display)' }}
+                              className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
+                              style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
                             >
                               {project.name}
                             </h3>

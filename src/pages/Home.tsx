@@ -73,14 +73,14 @@ export const Home = () => {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.95rem, 7vw, 5.5rem)',
-                fontWeight: 600,
+                fontWeight: 400,
                 lineHeight: 1.1,
                 letterSpacing: '-0.02em',
               }}
             >
               Homes built<br />
               with intent.<br />
-              <em style={{ fontStyle: 'italic', fontWeight: 500 }}>Made to last.</em>
+              <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Made to last.</em>
             </motion.h1>
 
             {/* Sub-copy */}
@@ -142,7 +142,7 @@ export const Home = () => {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 600,
+                fontWeight: 400,
                 lineHeight: 1.12,
                 letterSpacing: '-0.015em',
               }}
@@ -212,7 +212,7 @@ export const Home = () => {
               className="text-[#181714] text-3xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4"
               style={{
                 fontFamily: 'var(--font-display)',
-                fontWeight: 600,
+                fontWeight: 400,
                 lineHeight: 1.15,
                 letterSpacing: '-0.015em',
               }}
@@ -287,7 +287,7 @@ export const Home = () => {
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.85rem, 3.5vw, 3rem)',
-                fontWeight: 600,
+                fontWeight: 400,
                 lineHeight: 1.12,
                 letterSpacing: '-0.015em',
                 maxWidth: '560px',

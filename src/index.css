@@ -6,36 +6,36 @@
 ───────────────────────────────────────────── */
 @font-face {
   font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-Thin.otf') format('opentype');
-  font-weight: 100;
+  src: url('/fonts/tartuffo/Tartuffo-Regular.otf') format('opentype');
+  font-weight: 400;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-ThinItalic.otf') format('opentype');
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-LightItalic.otf') format('opentype');
-  font-weight: 300;
-  font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Tartuffo';
   src: url('/fonts/tartuffo/Tartuffo-Regular.otf') format('opentype');
-  font-weight: 400;
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Regular.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Regular.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Regular.otf') format('opentype');
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
@@ -48,28 +48,14 @@
 }
 @font-face {
   font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-MediumItalic.otf') format('opentype');
-  font-weight: 500;
+  src: url('/fonts/tartuffo/Tartuffo-RegularItalic.otf') format('opentype');
+  font-weight: 600;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Tartuffo';
-  src: url('/fonts/tartuffo/Tartuffo-BoldItalic.otf') format('opentype');
+  src: url('/fonts/tartuffo/Tartuffo-RegularItalic.otf') format('opentype');
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -144,12 +130,14 @@
     overflow-x: clip;
   }
 
-  /* Display headings — Tartuffo */
+  /* Display headings — Tartuffo Regular */
   h1, h2, h3, h4,
   .font-serif,
   .font-display {
     font-family: var(--font-display);
-    font-weight: 600;
+    font-weight: 400;
+    font-synthesis: none;
+    -webkit-font-synthesis: none;
     line-height: 1.15;
     letter-spacing: -0.015em;
   }
@@ -214,7 +202,7 @@ input[type="range"]::-moz-range-thumb {
   .type-display {
     font-family: var(--font-display);
     font-size: clamp(2.8rem, 6vw, 5.5rem);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.0;
     letter-spacing: -0.02em;
   }
@@ -223,7 +211,7 @@ input[type="range"]::-moz-range-thumb {
   .type-h1 {
     font-family: var(--font-display);
     font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.08;
     letter-spacing: -0.015em;
   }
@@ -232,7 +220,7 @@ input[type="range"]::-moz-range-thumb {
   .type-h2 {
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 2.5vw, 2.5rem);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.15;
   }
 
@@ -240,7 +228,7 @@ input[type="range"]::-moz-range-thumb {
   .type-h3 {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.2;
   }
 

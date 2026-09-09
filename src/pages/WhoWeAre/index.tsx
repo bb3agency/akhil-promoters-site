@@ -69,7 +69,7 @@ export const WhoWeAre = () => {
               className="text-white text-2xl sm:text-4xl md:text-5xl lg:text-6xl max-w-3xl mb-4 sm:mb-6 break-words"
               style={{
                 fontFamily: 'var(--font-display)',
-                fontWeight: 500,
+                fontWeight: 400,
                 lineHeight: 1.1,
               }}
             >
@@ -122,7 +122,7 @@ export const WhoWeAre = () => {
             <motion.h2
               variants={itemFadeUp}
               className="text-3xl sm:text-4xl text-[#181714]"
-              style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+              style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
             >
               Crafting Exceptional Homes Across Vijayawada
             </motion.h2>
@@ -242,7 +242,7 @@ export const WhoWeAre = () => {
             <motion.h2
               variants={itemFadeUp}
               className="text-3xl sm:text-4xl text-[#181714]"
-              style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+              style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
             >
               Our Vision &amp; Mission
             </motion.h2>
@@ -270,7 +270,7 @@ export const WhoWeAre = () => {
               </div>
               <h3
                 className="text-2xl text-[#181714] mb-3 group-hover:text-[#C8102E] transition-colors"
-                style={{ fontFamily: 'var(--font-display)', fontWeight: 600 }}
+                style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
               >
                 Our Vision
               </h3>
@@ -291,7 +291,7 @@ export const WhoWeAre = () => {
               </div>
               <h3
                 className="text-2xl text-[#181714] mb-3 group-hover:text-[#C8102E] transition-colors"
-                style={{ fontFamily: 'var(--font-display)', fontWeight: 600 }}
+                style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
               >
                 Our Mission
               </h3>
@@ -350,7 +350,7 @@ export const WhoWeAre = () => {
           <motion.h2
             variants={itemFadeUp}
             className="text-3xl sm:text-4xl text-[#181714]"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
           >
             Our Core Quality Pillars
           </motion.h2>
@@ -440,7 +440,7 @@ export const WhoWeAre = () => {
             <motion.h2
               variants={itemFadeUp}
               className="text-3xl sm:text-4xl text-white"
-              style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+              style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
             >
               Architects &amp; Structural Consultants
             </motion.h2>
@@ -532,7 +532,7 @@ export const WhoWeAre = () => {
           <motion.h2
             variants={itemFadeUp}
             className="text-3xl sm:text-4xl text-[#181714]"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
           >
             Branded Material Specifications
           </motion.h2>
@@ -591,7 +591,7 @@ export const WhoWeAre = () => {
           <motion.h2
             variants={itemFadeUp}
             className="text-3xl sm:text-4xl text-white max-w-xl mx-auto mb-6"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 500 }}
+            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
           >
             Experience the Akhil Promoters Difference
           </motion.h2>
