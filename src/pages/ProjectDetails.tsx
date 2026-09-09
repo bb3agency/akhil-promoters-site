@@ -11,16 +11,6 @@ import {
   MessageSquare,
   Maximize2,
   X,
-  Zap,
-  Car,
-  ArrowUpDown,
-  DoorClosed,
-  Layers,
-  PhoneCall,
-  Droplet,
-  Trees,
-  Sun,
-  ShieldCheck,
   CheckCircle2
 } from 'lucide-react';
 import { projectData, WHATSAPP_NUMBER, OFFICE_PHONE_1 } from '../data';
@@ -29,25 +19,9 @@ import { InquiryModal } from '../components/ui/InquiryModal';
 const NAV_ITEMS = [
   { id: 'overview', label: 'Overview' },
   { id: 'location', label: 'Location' },
-  { id: 'amenities', label: 'Amenities' },
   { id: 'plans', label: 'Plans' },
   { id: 'gallery', label: 'Gallery' },
   { id: 'specification', label: 'Specifications' },
-  { id: 'construction-updates', label: 'Construction Updates' },
-  { id: 'brochure', label: 'Brochure' },
-];
-
-const AMENITY_ICONS = [
-  { name: '100% Generator Backup', icon: Zap },
-  { name: 'Dedicated Covered Parking', icon: Car },
-  { name: 'Automatic Passenger Lift', icon: ArrowUpDown },
-  { name: 'Teak Wood Main Doors', icon: DoorClosed },
-  { name: 'Granite Corridors & Stairs', icon: Layers },
-  { name: 'Intercom Security System', icon: PhoneCall },
-  { name: 'Rainwater Harvesting', icon: Droplet },
-  { name: 'Landscaped Common Areas', icon: Trees },
-  { name: 'Solar & Common Lighting', icon: Sun },
-  { name: '24/7 Security & CCTV', icon: ShieldCheck },
 ];
 
 export const ProjectDetails: React.FC = () => {
@@ -70,10 +44,6 @@ export const ProjectDetails: React.FC = () => {
 
   // Specifications state
   const [selectedSpecKey, setSelectedSpecKey] = useState<string>('Structure');
-  const [specPageIndex, setSpecPageIndex] = useState<number>(0);
-
-  // Construction updates state
-  const [currentUpdateIndex, setCurrentUpdateIndex] = useState<number>(0);
 
   // Lightbox modal state
   const [lightboxImage, setLightboxImage] = useState<{ src: string; caption: string } | null>(null);
@@ -100,7 +70,7 @@ export const ProjectDetails: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (isScrollingRef.current) return;
-      const scrollPos = window.scrollY + 180;
+      const scrollPos = window.scrollY + 160;
       for (let i = NAV_ITEMS.length - 1; i >= 0; i--) {
         const item = NAV_ITEMS[i];
         const el = document.getElementById(item.id);
@@ -123,7 +93,7 @@ export const ProjectDetails: React.FC = () => {
     const element = document.getElementById(id);
     if (element) {
       isScrollingRef.current = true;
-      const topOffset = 110;
+      const topOffset = 126; // Header (68px) + subnav (~58px)
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - topOffset;
 
@@ -272,11 +242,11 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          2. STICKY SUB-NAV
+          2. STICKY SUB-NAV (Flush against Header with 0px gap!)
       ───────────────────────────────────────────────────────────── */}
       <nav
         aria-label="Project sections"
-        className="sticky top-[66px] md:top-[80px] z-[40] w-full bg-[#f5f1eb] border-b border-black/10 transition-[opacity,transform] duration-300 shadow-sm"
+        className="sticky top-[64px] sm:top-[68px] z-30 w-full bg-[#f5f1eb] border-b border-black/10 transition-[opacity,transform] duration-300 shadow-sm"
       >
         <div className="flex items-stretch gap-[22px] md:gap-[34px] lg:gap-[2.4vw] overflow-x-auto px-5 md:px-10 lg:px-[8.333vw] [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           {NAV_ITEMS.map((item) => {
@@ -287,7 +257,7 @@ export const ProjectDetails: React.FC = () => {
                 type="button"
                 onClick={() => scrollToSection(item.id)}
                 aria-current={isActive ? 'true' : 'false'}
-                className={`relative shrink-0 whitespace-nowrap font-bold uppercase tracking-[0.12em] transition-colors duration-300 text-[11px] md:text-[12px] lg:text-[0.833vw] py-[18px] md:py-[20px] lg:py-[1.25vw] ${
+                className={`relative shrink-0 whitespace-nowrap font-bold uppercase tracking-[0.12em] transition-colors duration-300 text-[11px] md:text-[12px] lg:text-[0.833vw] py-[18px] md:py-[20px] lg:py-[1.25vw] cursor-pointer ${
                   isActive ? 'text-[#ef493d]' : 'text-[#6d6d6d] hover:text-[#2a2828]'
                 }`}
               >
@@ -497,68 +467,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          5. AMENITIES SECTION (#amenities) [Light]
-      ───────────────────────────────────────────────────────────── */}
-      <section
-        id="amenities"
-        data-section="project-amenities-icons"
-        className="relative w-full bg-white pt-[30px] pb-[60px] lg:pt-[4.688vw] lg:pb-[4.688vw] overflow-hidden"
-      >
-        {/* Left vertical accent */}
-        <div
-          className="flex lg:absolute left-[12px] top-[30px] lg:left-[4.167vw] lg:top-[4.688vw] flex-col items-center gap-[8px] md:gap-[12px] lg:gap-[1.094vw] w-auto lg:w-[2.813vw] z-[5] max-lg:static max-lg:!w-full max-lg:flex-row max-lg:!justify-center max-lg:items-center max-lg:!gap-[8px] max-lg:mt-[15px] max-lg:mb-[18px]"
-          aria-hidden="true"
-        >
-          <span className="block w-px h-[28px] md:h-[36px] lg:h-[3.125vw] bg-[#ef493d] max-lg:!w-[28px] max-lg:!h-px" />
-          <span
-            className="font-medium capitalize whitespace-nowrap text-[#ef493d] text-[12px] md:text-[14px] lg:text-[1.25vw] max-lg:[writing-mode:horizontal-tb] lg:[writing-mode:vertical-rl] lg:rotate-180"
-          >
-            The Luxury Of Choice
-          </span>
-        </div>
-
-        <div className="px-5 md:px-12 lg:px-[9.375vw]">
-          <h2
-            className="capitalize text-[#333] leading-[1.08] tracking-[0.022em] text-center text-[34px] xs:text-[38px] sm:text-[48px] md:text-[64px] lg:text-[5vw]"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-          >
-            Modern Living, Elevated
-          </h2>
-          <p
-            className="mx-auto mt-[14px] lg:mt-[0.729vw] max-w-[760px] lg:max-w-[53.281vw] text-center text-[#555] text-[14px] leading-[24px] sm:text-[16px] sm:leading-[28px] lg:text-[0.938vw] lg:leading-[1.563vw]"
-          >
-            Engineered with uncompromising precision to ensure unmatched peace of mind, reliable power infrastructure, and supreme daily convenience.
-          </p>
-        </div>
-
-        {/* Circular Icon Badges Grid */}
-        <div className="mt-[36px] lg:mt-[3.021vw] w-full px-5 md:px-12 lg:px-[8.333vw]">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-8 gap-x-4 border-t border-l border-[#e5e1d8]">
-            {AMENITY_ICONS.map((amenity, idx) => {
-              const IconComp = amenity.icon;
-              return (
-                <div
-                  key={idx}
-                  className="flex flex-col items-center justify-center text-center p-[16px] sm:p-[20px] lg:p-[1.8vw] border-r border-b border-[#e5e1d8] hover:bg-[#faf8f5] transition-colors"
-                >
-                  <span className="relative flex items-center justify-center rounded-full bg-[#f7f5f0] border border-[#e5e1d8] w-[64px] h-[64px] sm:w-[76px] sm:h-[76px] lg:w-[5.938vw] lg:h-[5.938vw] text-[#ef493d] transition-transform duration-300 hover:scale-105 shadow-sm">
-                    <IconComp className="w-[28px] h-[28px] lg:w-[2.2vw] lg:h-[2.2vw]" strokeWidth={1.75} />
-                  </span>
-                  <span
-                    className="mt-[14px] sm:mt-[18px] lg:mt-[1.3vw] block uppercase text-[#16264a] tracking-[0.06em] leading-[1.3] text-[11px] sm:text-[12px] lg:text-[0.833vw]"
-                    style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-                  >
-                    {amenity.name}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          6. PLANS & LAYOUTS SECTION (#plans) [Light]
+          5. PLANS & LAYOUTS SECTION (#plans) [Light]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="plans"
@@ -597,7 +506,7 @@ export const ProjectDetails: React.FC = () => {
               type="button"
               role="tab"
               onClick={() => setActivePlanTab('floor')}
-              className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[120px] sm:min-w-[140px] lg:min-w-[8.594vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] ${
+              className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[120px] sm:min-w-[140px] lg:min-w-[8.594vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] cursor-pointer ${
                 activePlanTab === 'floor'
                   ? 'bg-[#333] text-white font-semibold'
                   : 'bg-transparent text-[#333] border-[0.7px] border-[#333] hover:bg-[#333]/5 font-normal'
@@ -609,7 +518,7 @@ export const ProjectDetails: React.FC = () => {
               type="button"
               role="tab"
               onClick={() => setActivePlanTab('master')}
-              className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[120px] sm:min-w-[140px] lg:min-w-[8.594vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] ${
+              className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[120px] sm:min-w-[140px] lg:min-w-[8.594vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] cursor-pointer ${
                 activePlanTab === 'master'
                   ? 'bg-[#333] text-white font-semibold'
                   : 'bg-transparent text-[#333] border-[0.7px] border-[#333] hover:bg-[#333]/5 font-normal'
@@ -622,7 +531,7 @@ export const ProjectDetails: React.FC = () => {
                 type="button"
                 role="tab"
                 onClick={() => setActivePlanTab('isometric')}
-                className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[120px] sm:min-w-[140px] lg:min-w-[8.594vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] ${
+                className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[120px] sm:min-w-[140px] lg:min-w-[8.594vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] cursor-pointer ${
                   activePlanTab === 'isometric'
                     ? 'bg-[#333] text-white font-semibold'
                     : 'bg-transparent text-[#333] border-[0.7px] border-[#333] hover:bg-[#333]/5 font-normal'
@@ -648,7 +557,7 @@ export const ProjectDetails: React.FC = () => {
                         key={fpIdx}
                         type="button"
                         onClick={() => setSelectedFloorPlanIndex(fpIdx)}
-                        className={`inline-flex items-center justify-center rounded-full h-[34px] sm:h-[42px] lg:h-[2.656vw] px-[16px] sm:px-[20px] lg:px-[1.302vw] text-[13px] sm:text-[15px] lg:text-[1.001vw] transition-colors ${
+                        className={`inline-flex items-center justify-center rounded-full h-[34px] sm:h-[42px] lg:h-[2.656vw] px-[16px] sm:px-[20px] lg:px-[1.302vw] text-[13px] sm:text-[15px] lg:text-[1.001vw] transition-colors cursor-pointer ${
                           selectedFloorPlanIndex === fpIdx
                             ? 'bg-[#ef493d] text-white font-medium shadow-sm'
                             : 'bg-white border border-[#333] text-[#333] hover:bg-[#ef493d]/10'
@@ -731,7 +640,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          7. GALLERY SECTION (#gallery) [Dark #2a2828]
+          6. GALLERY SECTION (#gallery) [Dark #2a2828]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="gallery"
@@ -774,7 +683,7 @@ export const ProjectDetails: React.FC = () => {
                   setGalleryFilter(filter);
                   setCurrentGalleryIndex(0);
                 }}
-                className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[100px] sm:min-w-[120px] lg:min-w-[7.083vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] ${
+                className={`inline-flex items-center justify-center transition-colors duration-300 h-[44px] sm:h-[50px] lg:h-[2.76vw] px-[18px] sm:px-[22px] lg:px-[1.354vw] min-w-[100px] sm:min-w-[120px] lg:min-w-[7.083vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] cursor-pointer ${
                   galleryFilter === filter
                     ? 'bg-white text-[#333] font-semibold'
                     : 'bg-transparent text-white border-[0.7px] border-white hover:bg-white/10 font-normal'
@@ -837,7 +746,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          8. SPECIFICATIONS SECTION (#specification) [Light]
+          7. SPECIFICATIONS SECTION (#specification) [Light]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="specification"
@@ -945,114 +854,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          9. CONSTRUCTION UPDATES SECTION (#construction-updates) [Light]
-      ───────────────────────────────────────────────────────────── */}
-      <section
-        id="construction-updates"
-        data-section="project-progress"
-        className="relative w-full bg-[#faf9f7] pt-[30px] pb-[80px] lg:pt-[4.688vw] lg:pb-[4.688vw] overflow-hidden"
-      >
-        {/* Left vertical accent */}
-        <div
-          className="flex lg:absolute left-[12px] top-[30px] lg:left-[4.167vw] lg:top-[4.688vw] flex-col items-center gap-[8px] md:gap-[12px] lg:gap-[1.094vw] w-auto lg:w-[2.813vw] z-[5] max-lg:static max-lg:!w-full max-lg:flex-row max-lg:!justify-center max-lg:items-center max-lg:!gap-[8px] max-lg:mt-[15px] max-lg:mb-[18px]"
-          aria-hidden="true"
-        >
-          <span className="block w-px h-[28px] md:h-[36px] lg:h-[3.125vw] bg-[#ef493d] max-lg:!w-[28px] max-lg:!h-px" />
-          <span
-            className="font-medium capitalize whitespace-nowrap text-[#ef493d] text-[12px] md:text-[14px] lg:text-[1.25vw] max-lg:[writing-mode:horizontal-tb] lg:[writing-mode:vertical-rl] lg:rotate-180"
-          >
-            Milestones In Motion
-          </span>
-        </div>
-
-        <div className="px-5 md:px-12 lg:px-[9.375vw]">
-          <h2
-            className="capitalize text-[#333] leading-[1.08] tracking-[0.022em] text-center text-[34px] xs:text-[38px] sm:text-[48px] md:text-[64px] lg:text-[5vw]"
-            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-          >
-            Crafting Dreams Into Reality
-          </h2>
-          <p
-            className="mx-auto mt-[14px] lg:mt-[0.729vw] max-w-[760px] lg:max-w-[49.948vw] text-center text-[#555] text-[14px] leading-[24px] sm:text-[16px] sm:leading-[28px] lg:text-[0.938vw] lg:leading-[1.563vw]"
-          >
-            Designed with superior construction quality to deliver safe, durable, and comfortable homes.
-          </p>
-
-          {/* Latest Milestone Date */}
-          {project.constructionUpdates.length > 0 && (
-            <div className="mt-[20px] lg:mt-[1.5vw] flex flex-wrap items-center justify-center gap-x-[16px] gap-y-[6px] lg:gap-x-[1.042vw] px-4 text-center">
-              <span className="text-[14px] font-semibold text-[#ef493d] sm:text-[16px] lg:text-[0.938vw] leading-[24px] lg:leading-[1.563vw]">
-                {project.constructionUpdates[currentUpdateIndex]?.date}
-              </span>
-            </div>
-          )}
-
-          {/* Construction Updates Slider */}
-          <div className="mt-[32px] lg:mt-[2.5vw] flex flex-col items-center gap-[36px] lg:gap-[3.333vw]">
-            <div className="relative w-full min-w-0 mx-auto max-w-[680px]">
-              {project.constructionUpdates.length > 0 && (
-                <figure className="flex flex-col bg-white rounded-[16px] p-4 sm:p-5 border border-[#e5e5e5] shadow-sm">
-                  <div
-                    className="relative w-full aspect-[657/520] lg:aspect-auto lg:h-[26vw] rounded-[12px] overflow-hidden bg-[#eee] cursor-zoom-in group"
-                    onClick={() =>
-                      setLightboxImage({
-                        src: project.constructionUpdates[currentUpdateIndex]?.image,
-                        caption: project.constructionUpdates[currentUpdateIndex]?.title
-                      })
-                    }
-                  >
-                    <img
-                      src={project.constructionUpdates[currentUpdateIndex]?.image}
-                      alt={project.constructionUpdates[currentUpdateIndex]?.title}
-                      className="w-full h-full object-cover object-center select-none transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                    <span className="absolute top-3 left-3 px-3 py-1 bg-[#ef493d] text-white text-xs font-semibold rounded-full shadow">
-                      {project.constructionUpdates[currentUpdateIndex]?.status}
-                    </span>
-                  </div>
-                  <figcaption className="mt-[16px] flex flex-col items-center justify-center text-center">
-                    <span
-                      className="capitalize text-[16px] leading-[22px] sm:text-[18px] sm:leading-[26px] lg:text-[1.146vw] text-[#333]"
-                      style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-                    >
-                      {project.constructionUpdates[currentUpdateIndex]?.title}
-                    </span>
-                  </figcaption>
-                </figure>
-              )}
-
-              {/* Prev / Next Arrows */}
-              <button
-                type="button"
-                aria-label="Previous progress photo"
-                onClick={() =>
-                  setCurrentUpdateIndex((prev) =>
-                    prev > 0 ? prev - 1 : project.constructionUpdates.length - 1
-                  )
-                }
-                className="absolute z-[5] top-1/2 -translate-y-1/2 left-[-16px] sm:left-[-24px] lg:left-[-1.5vw] inline-flex items-center justify-center rounded-full bg-[#ef493d] text-white shadow-[0_6px_16px_rgba(0,0,0,0.25)] w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] lg:w-[3.092vw] lg:h-[3.092vw] transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <ArrowLeft className="w-[18px] h-[18px] lg:w-[1.342vw] lg:h-[1.342vw]" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next progress photo"
-                onClick={() =>
-                  setCurrentUpdateIndex((prev) =>
-                    prev < project.constructionUpdates.length - 1 ? prev + 1 : 0
-                  )
-                }
-                className="absolute z-[5] top-1/2 -translate-y-1/2 right-[-16px] sm:right-[-24px] lg:right-[-1.5vw] inline-flex items-center justify-center rounded-full bg-[#ef493d] text-white shadow-[0_6px_16px_rgba(0,0,0,0.25)] w-[44px] h-[44px] sm:w-[52px] sm:h-[52px] lg:w-[3.092vw] lg:h-[3.092vw] transition-transform duration-300 hover:scale-105 active:scale-95 cursor-pointer"
-              >
-                <ArrowRight className="w-[18px] h-[18px] lg:w-[1.342vw] lg:h-[1.342vw]" />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          10A. THE HANDBOOK SECTION (#brochure) [Dark #2a2828]
+          8. THE HANDBOOK SECTION (#brochure) [Dark #2a2828]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="brochure"
@@ -1122,7 +924,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          10B. SECURE YOUR FUTURE / INQUIRY SECTION (#inquire) [Light]
+          9. SECURE YOUR FUTURE / INQUIRY SECTION (#inquire) [Light]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="inquire"
@@ -1256,7 +1058,7 @@ export const ProjectDetails: React.FC = () => {
                   <div className="flex items-center gap-[16px] lg:gap-[1.354vw] flex-wrap pt-2">
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center rounded-[2px] border border-[#ef493d] text-[#ef493d] capitalize h-[48px] sm:h-[54px] lg:h-[3.021vw] w-[180px] sm:w-[210px] lg:w-[11.667vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] font-medium transition-colors duration-300 hover:bg-[#ef493d] hover:text-white"
+                      className="inline-flex items-center justify-center rounded-[2px] border border-[#ef493d] text-[#ef493d] capitalize h-[48px] sm:h-[54px] lg:h-[3.021vw] w-[180px] sm:w-[210px] lg:w-[11.667vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] font-medium transition-colors duration-300 hover:bg-[#ef493d] hover:text-white cursor-pointer"
                     >
                       Submit Inquiry
                     </button>
@@ -1348,7 +1150,7 @@ export const ProjectDetails: React.FC = () => {
           type="button"
           onClick={() => setIsModalOpen(true)}
           aria-label="Download Brochure"
-          className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[20px] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105"
+          className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[20px] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105 cursor-pointer"
         >
           <Download className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] shrink-0" />
           <span className="truncate">Download Brochure</span>
