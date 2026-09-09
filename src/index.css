@@ -1,6 +1,81 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
+   AKHIL PROMOTERS — TARTUFFO FONT FAMILY
+   Luxury architectural display serif
+───────────────────────────────────────────── */
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Thin.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Tartuffo';
+  src: url('/fonts/tartuffo/Tartuffo-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ─────────────────────────────────────────────
    AKHIL PROMOTERS — DESIGN TOKENS
    Brand red: #C8102E (exact logo red)
    Warm dark: #181714
@@ -37,10 +112,10 @@
   --color-akhil-border:      #DDD9D1;
 
   /* Typography */
-  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-display: 'Tartuffo', Georgia, 'Times New Roman', serif;
   --font-sans:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   /* Legacy */
-  --font-serif:   'Playfair Display', Georgia, serif;
+  --font-serif:   'Tartuffo', Georgia, serif;
 }
 
 /* ─────────────────────────────────────────────
@@ -69,7 +144,7 @@
     overflow-x: clip;
   }
 
-  /* Display headings — Playfair Display */
+  /* Display headings — Tartuffo */
   h1, h2, h3, h4,
   .font-serif,
   .font-display {
@@ -212,10 +287,7 @@ input[type="range"]::-moz-range-thumb {
 
   /* ─── Section separators ─── */
   .section-rule {
-    width: 2rem;
-    height: 1px;
-    background-color: var(--color-brand);
-    display: inline-block;
+    display: none !important;
   }
 
   /* ─── Hide scrollbar ─── */
@@ -234,11 +306,8 @@ input[type="range"]::-moz-range-thumb {
     gap: 0.75rem;
   }
   .brand-rule::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: var(--color-brand);
+    display: none;
+    content: none;
   }
 
   /* ─── Legacy glass classes ─── */

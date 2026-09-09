@@ -61,9 +61,8 @@ export const Home = () => {
             {/* Eyebrow */}
             <motion.p
               variants={itemFadeUp}
-              className="type-label text-[#C8102E] flex items-center gap-2.5 sm:gap-3 mb-3 sm:mb-8 text-[11px] sm:text-xs font-semibold tracking-wider uppercase"
+              className="type-label text-[#C8102E] flex items-center mb-3 sm:mb-8 text-[11px] sm:text-xs font-semibold tracking-wider uppercase"
             >
-              <span className="section-rule w-6 sm:w-8" />
               Vijayawada · CREDAI Member
             </motion.p>
 
@@ -134,7 +133,7 @@ export const Home = () => {
             viewport={viewportConfig}
             className="lg:col-span-5"
           >
-            <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] brand-rule mb-4 sm:mb-6">
+            <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] mb-4 sm:mb-6">
               Akhil Promoters
             </motion.p>
             <motion.h2
@@ -192,27 +191,25 @@ export const Home = () => {
       {/* ─── 3D ARCHITECTURAL WALKTHROUGH SECTION ─────────── */}
       <motion.section
         {...sectionScrollProps}
-        className="py-16 md:py-24 bg-[#100F0D] text-white overflow-hidden border-t border-white/5"
+        className="py-0 bg-white text-[#181714] overflow-hidden"
       >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 pt-4 sm:pt-6 pb-6 sm:pb-8">
           <motion.div
             variants={staggerContainer(0.1)}
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
+            className="text-center max-w-3xl mx-auto mb-4 sm:mb-6"
           >
             <motion.p
               variants={itemFadeUp}
-              className="type-label text-[#C8102E] flex items-center justify-center gap-2 mb-3 sm:mb-4 text-[10px] sm:text-xs"
+              className="type-label text-[#C8102E] flex items-center justify-center mb-2 sm:mb-3 text-[10px] sm:text-xs"
             >
-              <span className="section-rule" />
               3D Spatial Perspective &amp; Flow
-              <span className="section-rule" />
             </motion.p>
             <motion.h2
               variants={itemFadeUp}
-              className="text-white text-3xl sm:text-4xl md:text-5xl font-serif mb-4"
+              className="text-[#181714] text-3xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontWeight: 600,
@@ -224,10 +221,10 @@ export const Home = () => {
             </motion.h2>
             <motion.p
               variants={itemFadeUp}
-              className="text-white/60 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto"
+              className="text-[#8A8580] text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto"
               style={{ fontFamily: 'var(--font-sans)' }}
             >
-              Watch our architectural floor plans transition from paper precision into three-dimensional living spaces — engineered with 100% Vaastu orientation, cross ventilation, and generous room proportions.
+              Watch our architectural floor plans transition from paper precision into three-dimensional living spaces — engineered with cross ventilation, optimal natural light, and generous room proportions.
             </motion.p>
           </motion.div>
 
@@ -237,7 +234,7 @@ export const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={viewportConfig}
-            className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black aspect-video max-w-5xl mx-auto group"
+            className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-black aspect-video max-w-5xl mx-auto group"
           >
             <video
               autoPlay
@@ -256,7 +253,7 @@ export const Home = () => {
             <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex flex-wrap items-center justify-between gap-2 sm:gap-3 pointer-events-none">
               <div className="flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-white/15 text-white text-[10px] sm:text-xs tracking-wider uppercase font-medium">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                3D Perspective · 100% Vaastu
+                3D Perspective
               </div>
               <div className="hidden sm:flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 text-white/80 text-[10px] sm:text-xs font-light">
                 3 BHK Architectural Layout Visualization
@@ -266,100 +263,12 @@ export const Home = () => {
         </div>
       </motion.section>
 
-      {/* ─── QUALITY COMMITMENT ─────────────────────────── */}
-      <motion.section
-        {...sectionScrollProps}
-        className="py-16 md:py-28 bg-[#181714] text-white overflow-hidden"
-      >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-
-            <motion.div
-              variants={fadeInUp(0.7, 0, 30)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportConfig}
-              className="lg:col-span-6 order-2 lg:order-1 flex justify-center"
-            >
-              <div className="w-full max-w-lg lg:max-w-none aspect-[3/2] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-[#1f1e1a] group">
-                <img
-                  src="/images/construction-standard.jpg"
-                  alt="Construction Standard — Architectural Craftsmanship"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={staggerContainer(0.08)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={viewportConfig}
-              className="lg:col-span-6 order-1 lg:order-2"
-            >
-              <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] brand-rule mb-6 sm:mb-8">
-                Construction Standard
-              </motion.p>
-              <motion.h2
-                variants={itemFadeUp}
-                className="text-white mb-6 sm:mb-8"
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(1.85rem, 3vw, 2.75rem)',
-                  fontWeight: 600,
-                  lineHeight: 1.12,
-                  letterSpacing: '-0.015em',
-                }}
-              >
-                No shortcuts.<br />No substitutions.
-              </motion.h2>
-              <motion.p
-                variants={itemFadeUp}
-                className="text-white/60 text-sm leading-[1.8] mb-8 sm:mb-10"
-                style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}
-              >
-                Seismic-resistant RCC frames, teak wood main doors, Finolex copper wiring, Jaquar fittings, and vitrified flooring — specified once and delivered without compromise.
-              </motion.p>
-
-              <motion.div variants={staggerContainer(0.08)} className="space-y-3.5 sm:space-y-4">
-                {[
-                  'Melamine-polished teak main doors & frames',
-                  'Vitrified tiles · Granite corridors · Anti-skid baths',
-                  'Johnson 6-passenger automatic elevator',
-                  'Generator backup — lift, motors & flat points',
-                ].map((item) => (
-                  <motion.div
-                    key={item}
-                    variants={itemFadeUp}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-start gap-3 text-xs sm:text-sm text-white/70 active:text-white transition-colors"
-                    style={{ fontFamily: 'var(--font-sans)' }}
-                  >
-                    <CheckCircle size={16} className="text-[#C8102E] flex-shrink-0 mt-0.5" />
-                    {item}
-                  </motion.div>
-                ))}
-              </motion.div>
-
-              <motion.div variants={itemFadeUp} className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-white/10">
-                <Link
-                  to="/who-we-are/story"
-                  className="type-label inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors group active:scale-[0.98]"
-                >
-                  Our quality standards <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
       {/* ─── SITE VISIT CTA ─────────────────────────────── */}
       <motion.section
         {...sectionScrollProps}
-        className="py-16 md:py-24 bg-[#F0EDE6] border-t border-[#E8E4DC] overflow-hidden"
+        className="py-0 bg-[#F0EDE6] border-t border-[#E8E4DC] overflow-hidden"
       >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 text-center">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 text-center py-6 sm:py-8">
           <motion.div
             variants={staggerContainer(0.1)}
             initial="hidden"
@@ -368,15 +277,13 @@ export const Home = () => {
           >
             <motion.p
               variants={itemFadeUp}
-              className="type-label text-[#C8102E] justify-center flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 text-[10px] sm:text-xs"
+              className="type-label text-[#C8102E] justify-center flex items-center mb-2 sm:mb-3 text-[10px] sm:text-xs"
             >
-              <span className="section-rule" />
               Vijayawada — Kanuru, Ayodhya Nagar & Poranki
-              <span className="section-rule" />
             </motion.p>
             <motion.h2
               variants={itemFadeUp}
-              className="text-[#181714] mb-4 sm:mb-6 mx-auto"
+              className="text-[#181714] mb-3 sm:mb-4 mx-auto"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.85rem, 3.5vw, 3rem)',
@@ -390,7 +297,7 @@ export const Home = () => {
             </motion.h2>
             <motion.p
               variants={itemFadeUp}
-              className="text-[#8A8580] text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-8 sm:mb-10"
+              className="text-[#8A8580] text-xs sm:text-sm leading-relaxed max-w-md mx-auto mb-5 sm:mb-6"
               style={{ fontFamily: 'var(--font-sans)', fontWeight: 300 }}
             >
               Our Vijayawada team is on hand to answer questions about any development.
@@ -404,7 +311,7 @@ export const Home = () => {
                 href={`https://wa.me/${WHATSAPP_NUMBER}`}
                 target="_blank"
                 rel="noreferrer"
-                className="type-label min-h-[48px] w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#DDD9D1] text-[#181714] hover:border-[#181714] active:bg-black/5 transition-colors text-center"
+                className="type-label min-h-[46px] w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 border border-[#DDD9D1] text-[#181714] hover:border-[#181714] active:bg-black/5 transition-colors text-center"
               >
                 <MessageSquare size={14} /> WhatsApp
               </motion.a>

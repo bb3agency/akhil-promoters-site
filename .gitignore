@@ -39,6 +39,7 @@ bun.lock
 !public/brochures/*.pdf
 !public/*.mp4
 /akhil-promoters-logo.png
+/tartuffo-font-family/
 
 # AI Studio artifacts
 assets/.aistudio/

@@ -58,7 +58,7 @@ export const WhoWeAre = () => {
               <span className="type-label text-[#C8102E] tracking-[0.25em] uppercase text-[10px] sm:text-xs">
                 WHO WE ARE
               </span>
-              <span className="w-8 h-px bg-[#C8102E]/60" />
+              <span className="text-white/30 text-[10px] sm:text-xs">·</span>
               <span className="type-label text-white/50 text-[10px] sm:text-xs uppercase">
                 CREDAI MEMBER BUILDER
               </span>
