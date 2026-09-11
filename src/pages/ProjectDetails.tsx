@@ -723,77 +723,7 @@ export const ProjectDetails: React.FC = () => {
       </section>
 
       {/* ─────────────────────────────────────────────────────────────
-          8. THE HANDBOOK SECTION (#brochure) [Dark #2a2828]
-      ───────────────────────────────────────────────────────────── */}
-      <section
-        id="brochure"
-        data-section="project-brochure"
-        className="relative w-full bg-[#2a2828] pt-[30px] pb-[60px] lg:pt-[4.167vw] lg:pb-[4.167vw] overflow-hidden text-white"
-      >
-        {/* Left vertical accent */}
-        <div
-          className="flex lg:absolute left-[12px] top-[30px] lg:left-[4.167vw] lg:top-[4.688vw] flex-col items-center gap-[8px] md:gap-[12px] lg:gap-[1.094vw] w-auto lg:w-[2.813vw] z-[5] max-lg:static max-lg:!w-full max-lg:flex-row max-lg:!justify-center max-lg:items-center max-lg:!gap-[8px] max-lg:mt-[15px] max-lg:mb-[18px]"
-          aria-hidden="true"
-        >
-          <span className="block w-px h-[28px] md:h-[36px] lg:h-[3.125vw] bg-white/70 max-lg:!w-[28px] max-lg:!h-px" />
-          <span
-            className="font-medium capitalize whitespace-nowrap text-white text-[12px] md:text-[14px] lg:text-[1.25vw] max-lg:[writing-mode:horizontal-tb] lg:[writing-mode:vertical-rl] lg:rotate-180"
-          >
-            Your Journey Starts Here
-          </span>
-        </div>
-
-        <div className="px-5 md:px-12 lg:pl-[9.375vw] lg:pr-[9.531vw]">
-          <div className="grid grid-cols-1 lg:grid-cols-[32.5vw_1fr] gap-[36px] lg:gap-[5.573vw] items-center">
-            {/* Left Photo card */}
-            <div className="relative w-full aspect-[624/599] lg:h-[31.198vw] lg:w-[32.5vw] rounded-[12px] overflow-hidden bg-black/40 shadow-xl">
-              <img
-                src={project.exteriorImage}
-                alt={`${project.name} Handbook`}
-                className="w-full h-full object-cover object-center select-none"
-              />
-            </div>
-
-            {/* Right Download CTA */}
-            <div className="flex flex-col items-start gap-[24px] lg:gap-[2.135vw] max-w-full lg:max-w-[43.021vw]">
-              <h2
-                className="capitalize text-white leading-[1.08] tracking-[0.022em] text-[34px] xs:text-[38px] sm:text-[48px] md:text-[64px] lg:text-[5vw]"
-                style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-              >
-                The {project.name} Handbook
-              </h2>
-              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-                Download the official architectural brochure and unit plan catalogue for comprehensive specifications, floor plans, and project approvals.
-              </p>
-
-              <div className="flex flex-wrap items-center gap-[12px] lg:gap-[1.042vw]">
-                {project.brochureUrl ? (
-                  <a
-                    href={project.brochureUrl}
-                    download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
-                    className="inline-flex items-center justify-between gap-[16px] border border-white text-white capitalize h-[48px] sm:h-[54px] lg:h-[3.021vw] w-[260px] sm:w-[290px] lg:w-[15.833vw] px-[20px] lg:px-[1.354vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] transition-colors duration-300 hover:bg-white hover:text-[#2a2828]"
-                  >
-                    <span>Download Brochure</span>
-                    <Download className="w-[18px] h-[18px] lg:w-[1.094vw] lg:h-[1.094vw]" />
-                  </a>
-                ) : (
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(true)}
-                    className="inline-flex items-center justify-between gap-[16px] border border-white text-white capitalize h-[48px] sm:h-[54px] lg:h-[3.021vw] w-[260px] sm:w-[290px] lg:w-[15.833vw] px-[20px] lg:px-[1.354vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] transition-colors duration-300 hover:bg-white hover:text-[#2a2828]"
-                  >
-                    <span>Download Brochure</span>
-                    <Download className="w-[18px] h-[18px] lg:w-[1.094vw] lg:h-[1.094vw]" />
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────────
-          9. SECURE YOUR FUTURE / INQUIRY SECTION (#inquire) [Light]
+          7. SECURE YOUR FUTURE / INQUIRY SECTION (#inquire) [Light]
       ───────────────────────────────────────────────────────────── */}
       <section
         id="inquire"
