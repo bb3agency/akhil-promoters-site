@@ -7,9 +7,7 @@ import {
   OFFICE_EMAIL,
   OFFICE_PHONE_1,
   OFFICE_PHONE_2,
-  LANDLINE_PHONE,
   WHATSAPP_NUMBER,
-  projectData,
 } from '../../data';
 import { staggerContainer, itemFadeUp, viewportConfig, sectionScrollProps, mobileTap, mobileButtonTap } from '../../utils/motion';
 
@@ -57,7 +55,7 @@ export const Footer = () => {
           >
 
             {/* Brand column */}
-            <motion.div variants={itemFadeUp} className="col-span-2 lg:col-span-4">
+            <motion.div variants={itemFadeUp} className="col-span-2 lg:col-span-5">
               <img
                 src="/images/logo-light.png"
                 alt="Akhil Promoters"
@@ -84,10 +82,10 @@ export const Footer = () => {
               </div>
             </motion.div>
 
-            {/* Navigation columns */}
-            <motion.div variants={itemFadeUp} className="col-span-1 lg:col-span-2">
+            {/* Navigation column */}
+            <motion.div variants={itemFadeUp} className="col-span-2 sm:col-span-1 lg:col-span-3">
               <p className="type-label text-[9px] text-[#C8102E] mb-2 sm:mb-5">Navigate</p>
-              <ul className="space-y-0.5 sm:space-y-3">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-y-0.5 sm:gap-y-0 sm:space-y-3">
                 {[
                   { name: 'Home', href: '/' },
                   { name: 'Who We Are', href: '/who-we-are' },
@@ -109,48 +107,8 @@ export const Footer = () => {
               </ul>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="col-span-1 lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-2 sm:mb-5">Projects</p>
-              <ul className="space-y-0.5 sm:space-y-3">
-                {Object.values(projectData).map((p) => (
-                  <li key={p.id}>
-                    <Link
-                      to={`/projects/${p.slug}`}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1 sm:py-1.5 active:text-[#C8102E] active:scale-[0.98]"
-                      style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
-                    >
-                      {p.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div variants={itemFadeUp} className="hidden lg:block lg:col-span-2">
-              <p className="type-label text-[9px] text-[#C8102E] mb-3 sm:mb-5">Company</p>
-              <ul className="space-y-1.5 sm:space-y-3">
-                {[
-                  { name: 'Who We Are', href: '/who-we-are' },
-                  { name: 'Our Projects', href: '/projects' },
-                  { name: 'Buyers Guide', href: '/buyers-guide' },
-                  { name: 'Support & Tools', href: '/support-services' },
-                  { name: 'Contact Us', href: '/contact' },
-                ].map((l) => (
-                  <li key={l.name}>
-                    <Link
-                      to={l.href}
-                      className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors block py-1.5 active:text-[#C8102E] active:scale-[0.98]"
-                      style={{ fontFamily: 'var(--font-sans)', fontWeight: 400 }}
-                    >
-                      {l.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
             {/* Office address */}
-            <motion.div variants={itemFadeUp} className="col-span-2 sm:col-span-2 lg:col-span-2">
+            <motion.div variants={itemFadeUp} className="col-span-2 sm:col-span-1 lg:col-span-4">
               <p className="type-label text-[9px] text-[#C8102E] mb-2 sm:mb-5">Office</p>
               <div className="space-y-2.5 sm:space-y-3.5">
                 <div className="flex items-start gap-2 sm:gap-2.5">
