@@ -28,11 +28,15 @@ const ProjectCard: React.FC<{
   const displayStatus =
     project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase();
 
+  // Normalize configuration string for uniform pill size (e.g., cleans up verbose East/West Facing tags)
+  const shortConfig =
+    project.configurations[0]?.replace(/East Facing\s*|West Facing\s*/i, '').trim() || '3 BHK';
+
   return (
     <motion.div
       whileHover={{ y: -6, transition: { duration: 0.25 } }}
       whileTap={mobileCardTap}
-      className="w-[300px] xs:w-[340px] sm:w-[380px] md:w-[410px] lg:w-[420px] shrink-0 bg-white rounded-3xl p-4 sm:p-5 border border-[#E5E5E5] hover:border-gray-300 hover:shadow-xl transition-all duration-300 flex flex-col group"
+      className="w-[320px] xs:w-[350px] sm:w-[410px] md:w-[430px] lg:w-[440px] shrink-0 bg-white rounded-3xl p-5 sm:p-6 border border-[#E5E5E5] hover:border-gray-300 hover:shadow-xl transition-all duration-300 flex flex-col group"
     >
       {/* Top Image with Status Pill */}
       <Link
@@ -45,7 +49,7 @@ const ProjectCard: React.FC<{
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
         />
         <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
-          <span className="px-4 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
+          <span className="px-3.5 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
             {displayStatus}
           </span>
         </div>
@@ -85,16 +89,18 @@ const ProjectCard: React.FC<{
           </p>
         </div>
 
-        {/* Bottom Chips: Configuration & Area & Brochure */}
-        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 mt-auto">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
-            <BedDouble size={14} className="text-gray-500 stroke-[1.6]" />
-            <span>{project.configurations[0] || '3 BHK'}</span>
-          </div>
+        {/* Bottom Chips: Configuration & Area & Brochure - Clean single row with balanced padding */}
+        <div className="flex items-center justify-between gap-2 pt-3 sm:pt-3.5 border-t border-[#F0EDE6] mt-auto">
+          <div className="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium shrink-0">
+              <BedDouble size={13} className="text-gray-500 stroke-[1.6]" />
+              <span>{shortConfig}</span>
+            </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
-            <Maximize2 size={13} className="text-gray-500 stroke-[1.6]" />
-            <span>{project.area}</span>
+            <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium shrink-0">
+              <Maximize2 size={12} className="text-gray-500 stroke-[1.6]" />
+              <span>{project.area}</span>
+            </div>
           </div>
 
           {project.brochureUrl ? (
@@ -102,10 +108,10 @@ const ProjectCard: React.FC<{
               whileTap={mobileTap}
               href={project.brochureUrl}
               download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors shrink-0"
               title={`Download ${project.name} brochure`}
             >
-              <Download size={13} className="text-gray-500 stroke-[1.6]" />
+              <Download size={12} className="text-gray-500 stroke-[1.6]" />
               <span>Brochure</span>
             </motion.a>
           ) : (
@@ -113,10 +119,10 @@ const ProjectCard: React.FC<{
               whileTap={mobileTap}
               type="button"
               onClick={() => onOpenBrochure(project.name)}
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors shrink-0 cursor-pointer"
               title={`Request ${project.name} brochure`}
             >
-              <Download size={13} className="text-gray-500 stroke-[1.6]" />
+              <Download size={12} className="text-gray-500 stroke-[1.6]" />
               <span>Brochure</span>
             </motion.button>
           )}
@@ -419,13 +425,8 @@ export const Home = () => {
               </motion.p>
             </div>
 
-            {/* Header Action & Pause Hint */}
+            {/* Header Action */}
             <div className="flex items-center gap-3 shrink-0">
-              <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 border border-[#DDD9D1] text-[#8A8580] text-[11px] font-medium">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E] animate-pulse" />
-                <span>Hover to pause</span>
-              </div>
-
               <Link
                 to="/projects"
                 className="type-label min-h-[42px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#DDD9D1] bg-white text-[#181714] hover:border-[#181714] hover:bg-[#181714] hover:text-white transition-all text-xs font-medium rounded-full shadow-xs"
