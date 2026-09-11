@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
   ArrowRight,
+  ArrowLeft,
   ArrowUpRight,
   MessageSquare,
   BedDouble,
@@ -18,29 +19,44 @@ import {
   viewportConfig,
   sectionScrollProps,
   mobileTap,
-  mobileCardTap,
 } from '../utils/motion';
 
 const ProjectCard: React.FC<{
   project: Project;
+  isMain: boolean;
   onOpenBrochure: (name: string) => void;
-}> = ({ project, onOpenBrochure }) => {
+}> = ({ project, isMain, onOpenBrochure }) => {
   const displayStatus =
     project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase();
 
-  // Normalize configuration string for uniform pill size (e.g., cleans up verbose East/West Facing tags)
+  // Normalize configuration string for uniform pill size
   const shortConfig =
     project.configurations[0]?.replace(/East Facing\s*|West Facing\s*/i, '').trim() || '3 BHK';
 
   return (
-    <motion.div
-      whileHover={{ y: -6, transition: { duration: 0.25 } }}
-      whileTap={mobileCardTap}
-      className="w-[320px] xs:w-[350px] sm:w-[410px] md:w-[430px] lg:w-[440px] shrink-0 bg-white rounded-3xl p-5 sm:p-6 border border-[#E5E5E5] hover:border-gray-300 hover:shadow-xl transition-all duration-300 flex flex-col group"
+    <div
+      className={`relative w-[310px] xs:w-[340px] sm:w-[390px] md:w-[415px] lg:w-[430px] shrink-0 bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 flex flex-col group ${
+        isMain
+          ? 'border-gray-300 shadow-2xl ring-1 ring-black/5'
+          : 'border-[#E5E5E5] shadow-lg hover:border-gray-300'
+      }`}
     >
+      {/* If not main card, transparent overlay to allow clicking card to select it */}
+      {!isMain && (
+        <div
+          className="absolute inset-0 z-20 cursor-pointer rounded-3xl bg-black/0 hover:bg-black/[0.02] transition-colors"
+          title={`View ${project.name}`}
+          aria-label={`View ${project.name}`}
+        />
+      )}
+
       {/* Top Image with Status Pill */}
       <Link
-        to={`/projects/${project.slug}`}
+        to={isMain ? `/projects/${project.slug}` : '#'}
+        onClick={(e) => {
+          if (!isMain) e.preventDefault();
+        }}
+        tabIndex={isMain ? 0 : -1}
         className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
       >
         <img
@@ -61,7 +77,14 @@ const ProjectCard: React.FC<{
           {/* Title & Circular Arrow Action Row */}
           <div className="flex items-start justify-between gap-3 mb-2">
             <div>
-              <Link to={`/projects/${project.slug}`} className="block">
+              <Link
+                to={isMain ? `/projects/${project.slug}` : '#'}
+                onClick={(e) => {
+                  if (!isMain) e.preventDefault();
+                }}
+                tabIndex={isMain ? 0 : -1}
+                className="block"
+              >
                 <h3
                   className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
                   style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
@@ -75,8 +98,16 @@ const ProjectCard: React.FC<{
             </div>
 
             <Link
-              to={`/projects/${project.slug}`}
-              className="w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] transition-all duration-300 shadow-xs active:scale-95"
+              to={isMain ? `/projects/${project.slug}` : '#'}
+              onClick={(e) => {
+                if (!isMain) e.preventDefault();
+              }}
+              tabIndex={isMain ? 0 : -1}
+              className={`w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-xs ${
+                isMain
+                  ? 'group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] active:scale-95'
+                  : 'opacity-70'
+              }`}
               aria-label={`View ${project.name} details`}
             >
               <ArrowUpRight size={18} strokeWidth={1.8} />
@@ -106,8 +137,9 @@ const ProjectCard: React.FC<{
           {project.brochureUrl ? (
             <motion.a
               whileTap={mobileTap}
-              href={project.brochureUrl}
-              download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
+              href={isMain ? project.brochureUrl : undefined}
+              download={isMain ? `Akhil-Promoters-${project.name}-Brochure.pdf` : undefined}
+              tabIndex={isMain ? 0 : -1}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors shrink-0"
               title={`Download ${project.name} brochure`}
             >
@@ -118,7 +150,10 @@ const ProjectCard: React.FC<{
             <motion.button
               whileTap={mobileTap}
               type="button"
-              onClick={() => onOpenBrochure(project.name)}
+              onClick={() => {
+                if (isMain) onOpenBrochure(project.name);
+              }}
+              tabIndex={isMain ? 0 : -1}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors shrink-0 cursor-pointer"
               title={`Request ${project.name} brochure`}
             >
@@ -128,17 +163,92 @@ const ProjectCard: React.FC<{
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState('Blueberry');
+  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+
+  const projects = Object.values(projectData);
+
+  const nextProject = () => {
+    setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevProject = () => {
+    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  // Auto-advance every 2 seconds with pause on hover
+  useEffect(() => {
+    if (isCarouselPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+    }, 2000);
+
+    return () => clearInterval(timer);
+  }, [isCarouselPaused, projects.length]);
 
   const handleOpenBrochureModal = (projName: string) => {
     setSelectedProject(projName);
     setIsModalOpen(true);
+  };
+
+  const getCurveStyle = (index: number) => {
+    let diff = (index - currentProjectIndex + projects.length) % projects.length;
+    if (diff === 3) diff = -1;
+
+    if (diff === 0) {
+      // Main Card: elevated, slightly bigger, center stage
+      return {
+        transform: 'translate(-50%, -50%) scale(1.06) translateY(-8px) rotateY(0deg) rotateZ(0deg)',
+        zIndex: 30,
+        opacity: 1,
+        pointerEvents: 'auto' as const,
+        filter: 'drop-shadow(0 25px 35px rgba(0,0,0,0.14))',
+      };
+    } else if (diff === -1) {
+      // Left Card: curved down and tilted inward
+      return {
+        transform:
+          'translate(calc(-50% - min(370px, 66vw)), -50%) scale(0.88) translateY(24px) rotateY(14deg) rotateZ(-2deg)',
+        zIndex: 20,
+        opacity: 0.72,
+        pointerEvents: 'auto' as const,
+        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.96)',
+        cursor: 'pointer',
+      };
+    } else if (diff === 1) {
+      // Right Card: curved down and tilted inward
+      return {
+        transform:
+          'translate(calc(-50% + min(370px, 66vw)), -50%) scale(0.88) translateY(24px) rotateY(-14deg) rotateZ(2deg)',
+        zIndex: 20,
+        opacity: 0.72,
+        pointerEvents: 'auto' as const,
+        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.96)',
+        cursor: 'pointer',
+      };
+    } else {
+      // Back Card (smooth circle rotation)
+      return {
+        transform: 'translate(-50%, -50%) scale(0.72) translateY(55px)',
+        zIndex: 10,
+        opacity: 0,
+        pointerEvents: 'none' as const,
+        filter: 'none',
+      };
+    }
+  };
+
+  const handleCardSelect = (diff: number) => {
+    if (diff === -1) prevProject();
+    if (diff === 1) nextProject();
   };
 
   return (
@@ -390,12 +500,12 @@ export const Home = () => {
         </div>
       </motion.section>
 
-      {/* ─── 4. FEATURED DEVELOPMENTS (CONTINUOUS MARQUEE) ─── */}
+      {/* ─── 4. FEATURED DEVELOPMENTS (CURVED 3D CAROUSEL) ── */}
       <motion.section
         {...sectionScrollProps}
         className="py-14 sm:py-18 md:py-24 bg-[#F7F5F0] border-t border-[#E8E4DC] overflow-hidden"
       >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 mb-8 sm:mb-12">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 mb-6 sm:mb-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <motion.p
@@ -425,11 +535,28 @@ export const Home = () => {
               </motion.p>
             </div>
 
-            {/* Header Action */}
-            <div className="flex items-center gap-3 shrink-0">
+            {/* Header Action: Prev/Next & All Projects */}
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+              <button
+                type="button"
+                onClick={prevProject}
+                aria-label="Previous project"
+                className="w-10 h-10 rounded-full border border-[#DDD9D1] bg-white hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-[#181714] transition-all shadow-xs active:scale-95 cursor-pointer"
+              >
+                <ArrowLeft size={16} />
+              </button>
+              <button
+                type="button"
+                onClick={nextProject}
+                aria-label="Next project"
+                className="w-10 h-10 rounded-full border border-[#DDD9D1] bg-white hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-[#181714] transition-all shadow-xs active:scale-95 cursor-pointer"
+              >
+                <ArrowRight size={16} />
+              </button>
+
               <Link
                 to="/projects"
-                className="type-label min-h-[42px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#DDD9D1] bg-white text-[#181714] hover:border-[#181714] hover:bg-[#181714] hover:text-white transition-all text-xs font-medium rounded-full shadow-xs"
+                className="type-label min-h-[42px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#DDD9D1] bg-white text-[#181714] hover:border-[#181714] hover:bg-[#181714] hover:text-white transition-all text-xs font-medium rounded-full shadow-xs ml-1"
               >
                 <span>All Projects</span>
                 <ArrowRight size={13} />
@@ -438,35 +565,64 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* Side-to-side Continuous Marquee Track (Right to Left, Pauses on Hover) */}
-        <div className="relative w-full overflow-hidden">
-          {/* Subtle edge fade overlays for smooth entry and exit */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-r from-[#F7F5F0] to-transparent z-10" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-l from-[#F7F5F0] to-transparent z-10" />
+        {/* 3D Curved Showcase Container (Pauses on Hover, auto-advances every 2s) */}
+        <div
+          className="relative w-full h-[580px] sm:h-[620px] md:h-[650px] overflow-hidden select-none"
+          style={{ perspective: '1200px' }}
+          onMouseEnter={() => setIsCarouselPaused(true)}
+          onMouseLeave={() => setIsCarouselPaused(false)}
+          onTouchStart={() => setIsCarouselPaused(true)}
+          onTouchEnd={() => setIsCarouselPaused(false)}
+        >
+          {/* Subtle edge fade overlays */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-28 bg-gradient-to-r from-[#F7F5F0] to-transparent z-40" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-28 bg-gradient-to-l from-[#F7F5F0] to-transparent z-40" />
 
-          <div className="animate-marquee-left py-4">
-            {/* First track set */}
-            <div className="flex items-stretch gap-5 sm:gap-6 lg:gap-7 pr-5 sm:pr-6 lg:pr-7 shrink-0">
-              {[...Object.values(projectData), ...Object.values(projectData)].map((project, idx) => (
+          {/* Cards positioned along the 3D curve */}
+          {projects.map((project, idx) => {
+            const style = getCurveStyle(idx);
+            let diff = (idx - currentProjectIndex + projects.length) % projects.length;
+            if (diff === 3) diff = -1;
+            const isMain = diff === 0;
+
+            return (
+              <div
+                key={project.id}
+                onClick={() => handleCardSelect(diff)}
+                style={{
+                  ...style,
+                  transition: 'transform 650ms cubic-bezier(0.25, 1, 0.5, 1), opacity 650ms ease, filter 650ms ease',
+                }}
+                className="absolute top-1/2 left-1/2 will-change-transform"
+              >
                 <ProjectCard
-                  key={`track1-${project.id}-${idx}`}
                   project={project}
+                  isMain={isMain}
                   onOpenBrochure={handleOpenBrochureModal}
                 />
-              ))}
-            </div>
+              </div>
+            );
+          })}
+        </div>
 
-            {/* Second duplicate set for seamless infinite loop */}
-            <div className="flex items-stretch gap-5 sm:gap-6 lg:gap-7 pr-5 sm:pr-6 lg:pr-7 shrink-0" aria-hidden="true">
-              {[...Object.values(projectData), ...Object.values(projectData)].map((project, idx) => (
-                <ProjectCard
-                  key={`track2-${project.id}-${idx}`}
-                  project={project}
-                  onOpenBrochure={handleOpenBrochureModal}
-                />
-              ))}
-            </div>
-          </div>
+        {/* Curved Carousel Pagination Indicators */}
+        <div className="flex items-center justify-center gap-2 mt-4 sm:mt-6">
+          {projects.map((proj, idx) => {
+            const isActive = idx === currentProjectIndex;
+            return (
+              <button
+                key={proj.id}
+                type="button"
+                onClick={() => setCurrentProjectIndex(idx)}
+                aria-label={`Go to ${proj.name}`}
+                className={`transition-all duration-300 rounded-full cursor-pointer ${
+                  isActive
+                    ? 'w-8 h-2 bg-[#C8102E]'
+                    : 'w-2 h-2 bg-[#DDD9D1] hover:bg-[#8A8580]'
+                }`}
+              />
+            );
+          })}
         </div>
       </motion.section>
 
