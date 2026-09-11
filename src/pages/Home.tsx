@@ -1,16 +1,15 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
   ArrowRight,
-  ArrowLeft,
   ArrowUpRight,
   MessageSquare,
   BedDouble,
   Maximize2,
   Download,
 } from 'lucide-react';
-import { WHATSAPP_NUMBER, projectData } from '../data';
+import { WHATSAPP_NUMBER, projectData, Project } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
   staggerContainer,
@@ -22,17 +21,114 @@ import {
   mobileCardTap,
 } from '../utils/motion';
 
+const ProjectCard: React.FC<{
+  project: Project;
+  onOpenBrochure: (name: string) => void;
+}> = ({ project, onOpenBrochure }) => {
+  const displayStatus =
+    project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase();
+
+  return (
+    <motion.div
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      whileTap={mobileCardTap}
+      className="w-[300px] xs:w-[340px] sm:w-[380px] md:w-[410px] lg:w-[420px] shrink-0 bg-white rounded-3xl p-4 sm:p-5 border border-[#E5E5E5] hover:border-gray-300 hover:shadow-xl transition-all duration-300 flex flex-col group"
+    >
+      {/* Top Image with Status Pill */}
+      <Link
+        to={`/projects/${project.slug}`}
+        className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
+      >
+        <img
+          src={project.heroImage}
+          alt={project.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
+        />
+        <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
+          <span className="px-4 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
+            {displayStatus}
+          </span>
+        </div>
+      </Link>
+
+      {/* Card Content */}
+      <div className="flex-1 flex flex-col justify-between">
+        <div>
+          {/* Title & Circular Arrow Action Row */}
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <div>
+              <Link to={`/projects/${project.slug}`} className="block">
+                <h3
+                  className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
+                  style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
+                >
+                  {project.name}
+                </h3>
+              </Link>
+              <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
+                {project.location}
+              </p>
+            </div>
+
+            <Link
+              to={`/projects/${project.slug}`}
+              className="w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] transition-all duration-300 shadow-xs active:scale-95"
+              aria-label={`View ${project.name} details`}
+            >
+              <ArrowUpRight size={18} strokeWidth={1.8} />
+            </Link>
+          </div>
+
+          {/* Overview Description */}
+          <p className="text-xs sm:text-[13px] text-gray-600 font-sans leading-relaxed line-clamp-2 mt-2.5 mb-4 sm:mb-5">
+            {project.overview}
+          </p>
+        </div>
+
+        {/* Bottom Chips: Configuration & Area & Brochure */}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 mt-auto">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
+            <BedDouble size={14} className="text-gray-500 stroke-[1.6]" />
+            <span>{project.configurations[0] || '3 BHK'}</span>
+          </div>
+
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
+            <Maximize2 size={13} className="text-gray-500 stroke-[1.6]" />
+            <span>{project.area}</span>
+          </div>
+
+          {project.brochureUrl ? (
+            <motion.a
+              whileTap={mobileTap}
+              href={project.brochureUrl}
+              download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto"
+              title={`Download ${project.name} brochure`}
+            >
+              <Download size={13} className="text-gray-500 stroke-[1.6]" />
+              <span>Brochure</span>
+            </motion.a>
+          ) : (
+            <motion.button
+              whileTap={mobileTap}
+              type="button"
+              onClick={() => onOpenBrochure(project.name)}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto cursor-pointer"
+              title={`Request ${project.name} brochure`}
+            >
+              <Download size={13} className="text-gray-500 stroke-[1.6]" />
+              <span>Brochure</span>
+            </motion.button>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState('Blueberry');
-  const projectsScrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollProjects = (direction: 'left' | 'right') => {
-    if (projectsScrollRef.current) {
-      const scrollAmount = direction === 'left' ? -420 : 420;
-      projectsScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    }
-  };
 
   const handleOpenBrochureModal = (projName: string) => {
     setSelectedProject(projName);
@@ -288,7 +384,7 @@ export const Home = () => {
         </div>
       </motion.section>
 
-      {/* ─── 4. FEATURED DEVELOPMENTS (SIDE-TO-SIDE SHOWCASE) ─ */}
+      {/* ─── 4. FEATURED DEVELOPMENTS (CONTINUOUS MARQUEE) ─── */}
       <motion.section
         {...sectionScrollProps}
         className="py-14 sm:py-18 md:py-24 bg-[#F7F5F0] border-t border-[#E8E4DC] overflow-hidden"
@@ -323,144 +419,52 @@ export const Home = () => {
               </motion.p>
             </div>
 
-            {/* Navigation & Controls */}
+            {/* Header Action & Pause Hint */}
             <div className="flex items-center gap-3 shrink-0">
+              <div className="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/70 border border-[#DDD9D1] text-[#8A8580] text-[11px] font-medium">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#C8102E] animate-pulse" />
+                <span>Hover to pause</span>
+              </div>
+
               <Link
                 to="/projects"
-                className="type-label min-h-[42px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#DDD9D1] bg-white text-[#181714] hover:border-[#181714] hover:bg-[#181714] hover:text-white transition-all text-xs font-medium rounded-full shadow-xs mr-1"
+                className="type-label min-h-[42px] inline-flex items-center gap-2 px-5 py-2.5 border border-[#DDD9D1] bg-white text-[#181714] hover:border-[#181714] hover:bg-[#181714] hover:text-white transition-all text-xs font-medium rounded-full shadow-xs"
               >
                 <span>All Projects</span>
                 <ArrowRight size={13} />
               </Link>
-
-              <button
-                type="button"
-                onClick={() => scrollProjects('left')}
-                aria-label="Previous project"
-                className="w-10 h-10 rounded-full border border-[#DDD9D1] bg-white hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-[#181714] transition-all shadow-xs active:scale-95 cursor-pointer"
-              >
-                <ArrowLeft size={16} />
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollProjects('right')}
-                aria-label="Next project"
-                className="w-10 h-10 rounded-full border border-[#DDD9D1] bg-white hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-[#181714] transition-all shadow-xs active:scale-95 cursor-pointer"
-              >
-                <ArrowRight size={16} />
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Side-to-side Projects Scroll Track */}
-        <div className="w-full overflow-hidden">
-          <div
-            ref={projectsScrollRef}
-            className="flex items-stretch gap-5 sm:gap-6 lg:gap-7 overflow-x-auto scroll-smooth pb-6 pt-2 px-4 sm:px-6 lg:px-10 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory"
-          >
-            {Object.values(projectData).map((project) => {
-              const displayStatus =
-                project.status.charAt(0).toUpperCase() + project.status.slice(1).toLowerCase();
+        {/* Side-to-side Continuous Marquee Track (Right to Left, Pauses on Hover) */}
+        <div className="relative w-full overflow-hidden">
+          {/* Subtle edge fade overlays for smooth entry and exit */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-r from-[#F7F5F0] to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-l from-[#F7F5F0] to-transparent z-10" />
 
-              return (
-                <motion.div
-                  key={project.id}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                  whileTap={mobileCardTap}
-                  className="w-[300px] xs:w-[340px] sm:w-[380px] md:w-[410px] lg:w-[420px] shrink-0 snap-start bg-white rounded-3xl p-4 sm:p-5 border border-[#E5E5E5] hover:border-gray-300 hover:shadow-xl transition-all duration-300 flex flex-col group"
-                >
-                  {/* Top Image with Status Pill */}
-                  <Link
-                    to={`/projects/${project.slug}`}
-                    className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
-                  >
-                    <img
-                      src={project.heroImage}
-                      alt={project.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
-                    />
-                    <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
-                      <span className="px-4 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
-                        {displayStatus}
-                      </span>
-                    </div>
-                  </Link>
+          <div className="animate-marquee-left py-4">
+            {/* First track set */}
+            <div className="flex items-stretch gap-5 sm:gap-6 lg:gap-7 pr-5 sm:pr-6 lg:pr-7 shrink-0">
+              {[...Object.values(projectData), ...Object.values(projectData)].map((project, idx) => (
+                <ProjectCard
+                  key={`track1-${project.id}-${idx}`}
+                  project={project}
+                  onOpenBrochure={handleOpenBrochureModal}
+                />
+              ))}
+            </div>
 
-                  {/* Card Content */}
-                  <div className="flex-1 flex flex-col justify-between">
-                    <div>
-                      {/* Title & Circular Arrow Action Row */}
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <div>
-                          <Link to={`/projects/${project.slug}`} className="block">
-                            <h3
-                              className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
-                              style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-                            >
-                              {project.name}
-                            </h3>
-                          </Link>
-                          <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
-                            {project.location}
-                          </p>
-                        </div>
-
-                        <Link
-                          to={`/projects/${project.slug}`}
-                          className="w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] transition-all duration-300 shadow-xs active:scale-95"
-                          aria-label={`View ${project.name} details`}
-                        >
-                          <ArrowUpRight size={18} strokeWidth={1.8} />
-                        </Link>
-                      </div>
-
-                      {/* Overview Description */}
-                      <p className="text-xs sm:text-[13px] text-gray-600 font-sans leading-relaxed line-clamp-2 mt-2.5 mb-4 sm:mb-5">
-                        {project.overview}
-                      </p>
-                    </div>
-
-                    {/* Bottom Chips: Configuration & Area & Brochure */}
-                    <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1 mt-auto">
-                      <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
-                        <BedDouble size={14} className="text-gray-500 stroke-[1.6]" />
-                        <span>{project.configurations[0] || '3 BHK'}</span>
-                      </div>
-
-                      <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] text-gray-700 text-[11px] sm:text-xs font-medium">
-                        <Maximize2 size={13} className="text-gray-500 stroke-[1.6]" />
-                        <span>{project.area}</span>
-                      </div>
-
-                      {project.brochureUrl ? (
-                        <motion.a
-                          whileTap={mobileTap}
-                          href={project.brochureUrl}
-                          download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto"
-                          title={`Download ${project.name} brochure`}
-                        >
-                          <Download size={13} className="text-gray-500 stroke-[1.6]" />
-                          <span>Brochure</span>
-                        </motion.a>
-                      ) : (
-                        <motion.button
-                          whileTap={mobileTap}
-                          type="button"
-                          onClick={() => handleOpenBrochureModal(project.name)}
-                          className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#F4F3EF] hover:bg-[#E8E6E0] text-gray-700 text-[11px] sm:text-xs font-medium transition-colors ml-auto cursor-pointer"
-                          title={`Request ${project.name} brochure`}
-                        >
-                          <Download size={13} className="text-gray-500 stroke-[1.6]" />
-                          <span>Brochure</span>
-                        </motion.button>
-                      )}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+            {/* Second duplicate set for seamless infinite loop */}
+            <div className="flex items-stretch gap-5 sm:gap-6 lg:gap-7 pr-5 sm:pr-6 lg:pr-7 shrink-0" aria-hidden="true">
+              {[...Object.values(projectData), ...Object.values(projectData)].map((project, idx) => (
+                <ProjectCard
+                  key={`track2-${project.id}-${idx}`}
+                  project={project}
+                  onOpenBrochure={handleOpenBrochureModal}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>

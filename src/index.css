@@ -326,3 +326,31 @@ input[type="range"]::-moz-range-thumb {
 section[id], div[id] {
   scroll-margin-top: 120px;
 }
+
+/* ─── Continuous Marquee Animation (Right to Left, Pause on Hover) ─── */
+@keyframes marquee-scroll-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-left {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-left 45s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-left:hover,
+.animate-marquee-left:focus-within {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left {
+    animation-play-state: paused;
+  }
+}
