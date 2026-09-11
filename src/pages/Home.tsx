@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import {
@@ -170,75 +170,151 @@ const ProjectCard: React.FC<{
 export const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProject, setSelectedProject] = useState('Blueberry');
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
+  const [slots, setSlots] = useState<number[]>([0, 1, 2, -1]);
+  const [teleportingIdx, setTeleportingIdx] = useState<number | null>(null);
   const [isCarouselPaused, setIsCarouselPaused] = useState(false);
+
+  const isTransitioningRef = useRef(false);
+  const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const cleanupTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const projects = Object.values(projectData);
 
-  const nextProject = () => {
-    setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
-  };
+  const slideNext = useCallback(() => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
 
-  const prevProject = () => {
-    setCurrentProjectIndex((prev) => (prev - 1 + projects.length) % projects.length);
-  };
+    // Animate slots left along the semi-circular arc
+    setSlots((prev) => prev.map((s) => s - 1));
+
+    // After 650ms slide transition, the card at slot -2 teleports invisibly to +2
+    transitionTimeoutRef.current = setTimeout(() => {
+      setSlots((currentSlots) => {
+        const exitedIdx = currentSlots.findIndex((s) => s === -2);
+        if (exitedIdx !== -1) {
+          setTeleportingIdx(exitedIdx);
+          const nextSlots = [...currentSlots];
+          nextSlots[exitedIdx] = 2;
+          return nextSlots;
+        }
+        return currentSlots;
+      });
+
+      cleanupTimeoutRef.current = setTimeout(() => {
+        setTeleportingIdx(null);
+        isTransitioningRef.current = false;
+      }, 50);
+    }, 650);
+  }, []);
+
+  const slidePrev = useCallback(() => {
+    if (isTransitioningRef.current) return;
+    isTransitioningRef.current = true;
+
+    // Invisible card at Far Right (+2) teleports to Far Left (-2) first
+    setSlots((currentSlots) => {
+      const farRightIdx = currentSlots.findIndex((s) => s === 2);
+      if (farRightIdx !== -1) {
+        setTeleportingIdx(farRightIdx);
+        const prepSlots = [...currentSlots];
+        prepSlots[farRightIdx] = -2;
+        return prepSlots;
+      }
+      return currentSlots;
+    });
+
+    // Animate all slots right along the semi-circular arc
+    transitionTimeoutRef.current = setTimeout(() => {
+      setTeleportingIdx(null);
+      setSlots((prev) => prev.map((s) => s + 1));
+
+      cleanupTimeoutRef.current = setTimeout(() => {
+        isTransitioningRef.current = false;
+      }, 650);
+    }, 40);
+  }, []);
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (transitionTimeoutRef.current) clearTimeout(transitionTimeoutRef.current);
+      if (cleanupTimeoutRef.current) clearTimeout(cleanupTimeoutRef.current);
+    };
+  }, []);
 
   // Auto-advance every 2 seconds with pause on hover
   useEffect(() => {
     if (isCarouselPaused) return;
 
     const timer = setInterval(() => {
-      setCurrentProjectIndex((prev) => (prev + 1) % projects.length);
+      slideNext();
     }, 2000);
 
     return () => clearInterval(timer);
-  }, [isCarouselPaused, projects.length]);
+  }, [isCarouselPaused, slideNext]);
 
   const handleOpenBrochureModal = (projName: string) => {
     setSelectedProject(projName);
     setIsModalOpen(true);
   };
 
-  const getCurveStyle = (index: number) => {
-    let diff = (index - currentProjectIndex + projects.length) % projects.length;
-    if (diff === 3) diff = -1;
-
-    if (diff === 0) {
-      // Main Card: elevated, slightly bigger, center stage
+  const getSlotStyle = (slot: number) => {
+    if (slot === 0) {
+      // Main Card: elevated at the apex of the semi-circle, enlarged, center stage
       return {
-        transform: 'translate(-50%, -50%) scale(1.06) translateY(-8px) rotateY(0deg) rotateZ(0deg)',
+        transform:
+          'translate(-50%, -50%) scale(1.08) translateY(-14px) rotateY(0deg) rotateZ(0deg)',
         zIndex: 30,
         opacity: 1,
         pointerEvents: 'auto' as const,
         filter: 'drop-shadow(0 25px 35px rgba(0,0,0,0.14))',
       };
-    } else if (diff === -1) {
-      // Left Card: curved down and tilted inward
+    } else if (slot === -1) {
+      // Left Card: down along the semi-circular curve, tilted inward along arc
       return {
         transform:
-          'translate(calc(-50% - min(370px, 66vw)), -50%) scale(0.88) translateY(24px) rotateY(14deg) rotateZ(-2deg)',
+          'translate(calc(-50% - min(460px, 74vw)), -50%) scale(0.88) translateY(28px) rotateY(8deg) rotateZ(-4deg)',
         zIndex: 20,
-        opacity: 0.72,
+        opacity: 0.88,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.96)',
+        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.97)',
         cursor: 'pointer',
       };
-    } else if (diff === 1) {
-      // Right Card: curved down and tilted inward
+    } else if (slot === 1) {
+      // Right Card: down along the semi-circular curve, tilted inward along arc
       return {
         transform:
-          'translate(calc(-50% + min(370px, 66vw)), -50%) scale(0.88) translateY(24px) rotateY(-14deg) rotateZ(2deg)',
+          'translate(calc(-50% + min(460px, 74vw)), -50%) scale(0.88) translateY(28px) rotateY(-8deg) rotateZ(4deg)',
         zIndex: 20,
-        opacity: 0.72,
+        opacity: 0.88,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.96)',
+        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.97)',
         cursor: 'pointer',
+      };
+    } else if (slot === -2) {
+      // Far Left: outer perimeter of semi-circle (faded out, ready to loop)
+      return {
+        transform:
+          'translate(calc(-50% - min(920px, 148vw)), -50%) scale(0.72) translateY(80px) rotateY(14deg) rotateZ(-12deg)',
+        zIndex: 10,
+        opacity: 0,
+        pointerEvents: 'none' as const,
+        filter: 'none',
+      };
+    } else if (slot === 2) {
+      // Far Right: outer perimeter of semi-circle (faded out, ready to enter)
+      return {
+        transform:
+          'translate(calc(-50% + min(920px, 148vw)), -50%) scale(0.72) translateY(80px) rotateY(-14deg) rotateZ(12deg)',
+        zIndex: 10,
+        opacity: 0,
+        pointerEvents: 'none' as const,
+        filter: 'none',
       };
     } else {
-      // Back Card (smooth circle rotation)
       return {
-        transform: 'translate(-50%, -50%) scale(0.72) translateY(55px)',
-        zIndex: 10,
+        transform: 'translate(-50%, -50%) scale(0.6)',
+        zIndex: 0,
         opacity: 0,
         pointerEvents: 'none' as const,
         filter: 'none',
@@ -246,9 +322,25 @@ export const Home = () => {
     }
   };
 
-  const handleCardSelect = (diff: number) => {
-    if (diff === -1) prevProject();
-    if (diff === 1) nextProject();
+  const handleCardClick = (slot: number) => {
+    if (slot === -1) {
+      slidePrev();
+    } else if (slot === 1) {
+      slideNext();
+    }
+  };
+
+  const currentMainIndex = slots.findIndex((s) => s === 0);
+
+  const handleDotClick = (targetIdx: number) => {
+    if (isTransitioningRef.current) return;
+    if (targetIdx === currentMainIndex) return;
+    const targetSlot = slots[targetIdx];
+    if (targetSlot === 1 || targetSlot === 2) {
+      slideNext();
+    } else if (targetSlot === -1 || targetSlot === -2) {
+      slidePrev();
+    }
   };
 
   return (
@@ -539,7 +631,7 @@ export const Home = () => {
             <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <button
                 type="button"
-                onClick={prevProject}
+                onClick={slidePrev}
                 aria-label="Previous project"
                 className="w-10 h-10 rounded-full border border-[#DDD9D1] bg-white hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-[#181714] transition-all shadow-xs active:scale-95 cursor-pointer"
               >
@@ -547,7 +639,7 @@ export const Home = () => {
               </button>
               <button
                 type="button"
-                onClick={nextProject}
+                onClick={slideNext}
                 aria-label="Next project"
                 className="w-10 h-10 rounded-full border border-[#DDD9D1] bg-white hover:border-[#C8102E] hover:text-[#C8102E] flex items-center justify-center text-[#181714] transition-all shadow-xs active:scale-95 cursor-pointer"
               >
@@ -565,9 +657,9 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* 3D Curved Showcase Container (Pauses on Hover, auto-advances every 2s) */}
+        {/* 3D Semi-Circle Showcase Container (Pauses on Hover, auto-advances every 2s) */}
         <div
-          className="relative w-full h-[580px] sm:h-[620px] md:h-[650px] overflow-hidden select-none"
+          className="relative w-full h-[600px] sm:h-[640px] md:h-[680px] overflow-hidden select-none"
           style={{ perspective: '1200px' }}
           onMouseEnter={() => setIsCarouselPaused(true)}
           onMouseLeave={() => setIsCarouselPaused(false)}
@@ -575,23 +667,25 @@ export const Home = () => {
           onTouchEnd={() => setIsCarouselPaused(false)}
         >
           {/* Subtle edge fade overlays */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-28 bg-gradient-to-r from-[#F7F5F0] to-transparent z-40" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-28 bg-gradient-to-l from-[#F7F5F0] to-transparent z-40" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-r from-[#F7F5F0] to-transparent z-40" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-l from-[#F7F5F0] to-transparent z-40" />
 
-          {/* Cards positioned along the 3D curve */}
+          {/* Cards positioned along the semi-circular arc */}
           {projects.map((project, idx) => {
-            const style = getCurveStyle(idx);
-            let diff = (idx - currentProjectIndex + projects.length) % projects.length;
-            if (diff === 3) diff = -1;
-            const isMain = diff === 0;
+            const slot = slots[idx];
+            const style = getSlotStyle(slot);
+            const isMain = slot === 0;
+            const isTeleporting = teleportingIdx === idx;
 
             return (
               <div
                 key={project.id}
-                onClick={() => handleCardSelect(diff)}
+                onClick={() => handleCardClick(slot)}
                 style={{
                   ...style,
-                  transition: 'transform 650ms cubic-bezier(0.25, 1, 0.5, 1), opacity 650ms ease, filter 650ms ease',
+                  transition: isTeleporting
+                    ? 'none'
+                    : 'transform 650ms cubic-bezier(0.25, 1, 0.5, 1), opacity 650ms ease, filter 650ms ease',
                 }}
                 className="absolute top-1/2 left-1/2 will-change-transform"
               >
@@ -608,12 +702,12 @@ export const Home = () => {
         {/* Curved Carousel Pagination Indicators */}
         <div className="flex items-center justify-center gap-2 mt-4 sm:mt-6">
           {projects.map((proj, idx) => {
-            const isActive = idx === currentProjectIndex;
+            const isActive = idx === currentMainIndex;
             return (
               <button
                 key={proj.id}
                 type="button"
-                onClick={() => setCurrentProjectIndex(idx)}
+                onClick={() => handleDotClick(idx)}
                 aria-label={`Go to ${proj.name}`}
                 className={`transition-all duration-300 rounded-full cursor-pointer ${
                   isActive
