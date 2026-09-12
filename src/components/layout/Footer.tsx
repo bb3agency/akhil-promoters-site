@@ -25,19 +25,12 @@ export const Footer = () => {
       >
         {/* ─── Architectural Background ───────── */}
         <div className="absolute inset-0 pointer-events-none z-0 flex items-end justify-center overflow-hidden">
-          {/* Mobile Viewport Background */}
-          <img
-            src="/images/footer-mobile-building.png"
-            alt=""
-            aria-hidden="true"
-            className="block sm:hidden w-full max-w-[360px] h-auto object-contain object-bottom opacity-20 select-none"
-          />
-          {/* Desktop Viewport Background */}
+          {/* Architectural Skyline Background (Desktop & Mobile Synced) */}
           <img
             src="/images/footer-skyline.png"
             alt=""
             aria-hidden="true"
-            className="hidden sm:block w-full max-w-[1800px] h-auto object-contain object-bottom opacity-20 select-none"
+            className="w-full max-w-[1800px] h-auto object-contain object-bottom opacity-20 select-none"
           />
           {/* Subtle gradient blend */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#2A2828]/60 via-transparent to-[#2A2828]/90" />

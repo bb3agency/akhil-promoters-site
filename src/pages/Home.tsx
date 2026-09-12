@@ -4,7 +4,6 @@ import { motion } from 'motion/react';
 import {
   ArrowRight,
   ArrowLeft,
-  ArrowUpRight,
   MessageSquare,
   BedDouble,
   Maximize2,
@@ -74,44 +73,26 @@ const ProjectCard: React.FC<{
       {/* Card Content */}
       <div className="flex-1 flex flex-col justify-between">
         <div>
-          {/* Title & Circular Arrow Action Row */}
-          <div className="flex items-start justify-between gap-3 mb-2">
-            <div>
-              <Link
-                to={isMain ? `/projects/${project.slug}` : '#'}
-                onClick={(e) => {
-                  if (!isMain) e.preventDefault();
-                }}
-                tabIndex={isMain ? 0 : -1}
-                className="block"
-              >
-                <h3
-                  className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
-                  style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-                >
-                  {project.name}
-                </h3>
-              </Link>
-              <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
-                {project.location}
-              </p>
-            </div>
-
+          {/* Title & Location */}
+          <div className="mb-2">
             <Link
               to={isMain ? `/projects/${project.slug}` : '#'}
               onClick={(e) => {
                 if (!isMain) e.preventDefault();
               }}
               tabIndex={isMain ? 0 : -1}
-              className={`w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 transition-all duration-300 shadow-xs ${
-                isMain
-                  ? 'group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] active:scale-95'
-                  : 'opacity-70'
-              }`}
-              aria-label={`View ${project.name} details`}
+              className="block"
             >
-              <ArrowUpRight size={18} strokeWidth={1.8} />
+              <h3
+                className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
+                style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
+              >
+                {project.name}
+              </h3>
             </Link>
+            <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
+              {project.location}
+            </p>
           </div>
 
           {/* Overview Description */}

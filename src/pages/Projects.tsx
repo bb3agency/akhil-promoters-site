@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { Search, ArrowUpRight, Download, BedDouble, Maximize2 } from 'lucide-react';
+import { Search, Download, BedDouble, Maximize2 } from 'lucide-react';
 import { projectData } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
@@ -183,29 +183,19 @@ export const Projects = () => {
                   {/* Card Content */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
-                      {/* Title & Circular Arrow Action Row */}
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <div>
-                          <Link to={`/projects/${project.slug}`} className="block">
-                            <h3
-                              className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
-                              style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
-                            >
-                              {project.name}
-                            </h3>
-                          </Link>
-                          <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
-                            {project.location}
-                          </p>
-                        </div>
-
-                        <Link
-                          to={`/projects/${project.slug}`}
-                          className="w-10 h-10 rounded-full border border-red-300 text-[#C8102E] flex items-center justify-center flex-shrink-0 group-hover:bg-[#C8102E] group-hover:text-white group-hover:border-[#C8102E] transition-all duration-300 shadow-xs active:scale-95"
-                          aria-label={`View ${project.name} details`}
-                        >
-                          <ArrowUpRight size={18} strokeWidth={1.8} />
+                      {/* Title & Location */}
+                      <div className="mb-2">
+                        <Link to={`/projects/${project.slug}`} className="block">
+                          <h3
+                            className="text-2xl sm:text-[26px] font-serif font-normal text-[#C8102E] leading-tight tracking-tight hover:opacity-90 transition-opacity"
+                            style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
+                          >
+                            {project.name}
+                          </h3>
                         </Link>
+                        <p className="text-xs sm:text-[13px] text-[#8A8580] font-sans mt-1 font-normal">
+                          {project.location}
+                        </p>
                       </div>
 
                       {/* Overview Description */}
