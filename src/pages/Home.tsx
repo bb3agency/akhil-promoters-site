@@ -260,52 +260,47 @@ export const Home = () => {
 
   const getSlotStyle = (slot: number) => {
     if (slot === 0) {
-      // Main Card: elevated at the apex of the semi-circle, enlarged, center stage
+      // Main Card: center stage, aligned straight on the same horizontal line
       return {
-        transform:
-          'translate(-50%, -50%) scale(1.08) translateY(-14px) rotateY(0deg) rotateZ(0deg)',
+        transform: 'translate(-50%, -50%)',
         zIndex: 30,
         opacity: 1,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 25px 35px rgba(0,0,0,0.14))',
+        filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.12))',
       };
     } else if (slot === -1) {
-      // Left Card: down along the semi-circular curve, tilted inward along arc
+      // Left Card: aligned horizontally on the same line, no tilt
       return {
-        transform:
-          'translate(calc(-50% - min(460px, 74vw)), -50%) scale(0.88) translateY(28px) rotateY(8deg) rotateZ(-4deg)',
+        transform: 'translate(calc(-50% - min(460px, 74vw)), -50%)',
         zIndex: 20,
-        opacity: 0.88,
+        opacity: 1,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.97)',
+        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08))',
         cursor: 'pointer',
       };
     } else if (slot === 1) {
-      // Right Card: down along the semi-circular curve, tilted inward along arc
+      // Right Card: aligned horizontally on the same line, no tilt
       return {
-        transform:
-          'translate(calc(-50% + min(460px, 74vw)), -50%) scale(0.88) translateY(28px) rotateY(-8deg) rotateZ(4deg)',
+        transform: 'translate(calc(-50% + min(460px, 74vw)), -50%)',
         zIndex: 20,
-        opacity: 0.88,
+        opacity: 1,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08)) brightness(0.97)',
+        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08))',
         cursor: 'pointer',
       };
     } else if (slot === -2) {
-      // Far Left: outer perimeter of semi-circle (faded out, ready to loop)
+      // Far Left: outer position (faded out, ready to loop)
       return {
-        transform:
-          'translate(calc(-50% - min(920px, 148vw)), -50%) scale(0.72) translateY(80px) rotateY(14deg) rotateZ(-12deg)',
+        transform: 'translate(calc(-50% - min(920px, 148vw)), -50%)',
         zIndex: 10,
         opacity: 0,
         pointerEvents: 'none' as const,
         filter: 'none',
       };
     } else if (slot === 2) {
-      // Far Right: outer perimeter of semi-circle (faded out, ready to enter)
+      // Far Right: outer position (faded out, ready to enter)
       return {
-        transform:
-          'translate(calc(-50% + min(920px, 148vw)), -50%) scale(0.72) translateY(80px) rotateY(-14deg) rotateZ(12deg)',
+        transform: 'translate(calc(-50% + min(920px, 148vw)), -50%)',
         zIndex: 10,
         opacity: 0,
         pointerEvents: 'none' as const,
@@ -313,7 +308,7 @@ export const Home = () => {
       };
     } else {
       return {
-        transform: 'translate(-50%, -50%) scale(0.6)',
+        transform: 'translate(-50%, -50%)',
         zIndex: 0,
         opacity: 0,
         pointerEvents: 'none' as const,
@@ -657,10 +652,9 @@ export const Home = () => {
           </div>
         </div>
 
-        {/* 3D Semi-Circle Showcase Container (Pauses on Hover, auto-advances every 2s) */}
+        {/* Showcase Container (Pauses on Hover, auto-advances every 2s) */}
         <div
           className="relative w-full h-[600px] sm:h-[640px] md:h-[680px] overflow-hidden select-none"
-          style={{ perspective: '1200px' }}
           onMouseEnter={() => setIsCarouselPaused(true)}
           onMouseLeave={() => setIsCarouselPaused(false)}
           onTouchStart={() => setIsCarouselPaused(true)}
@@ -670,7 +664,7 @@ export const Home = () => {
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-r from-[#F7F5F0] to-transparent z-40" />
           <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-l from-[#F7F5F0] to-transparent z-40" />
 
-          {/* Cards positioned along the semi-circular arc */}
+          {/* Cards positioned in a straight line */}
           {projects.map((project, idx) => {
             const slot = slots[idx];
             const style = getSlotStyle(slot);
