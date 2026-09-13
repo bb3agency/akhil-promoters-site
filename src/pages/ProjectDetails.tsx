@@ -104,21 +104,28 @@ export const ProjectDetails: React.FC = () => {
       <section
         id="project-detail-banner"
         data-section="project-detail-banner"
-        className="relative w-full bg-[#2a2828] h-[100svh] min-h-[560px] lg:h-[56.25vw] lg:min-h-0 overflow-hidden"
+        className="relative w-full bg-[#181714] min-h-[500px] max-sm:h-[75svh] sm:h-[85svh] lg:h-[56.25vw] lg:min-h-0 overflow-hidden"
       >
         {/* Cinematic Background Image */}
-        <div className="absolute inset-0 overflow-hidden">
-          <picture>
+        <div className="absolute inset-0 overflow-hidden bg-[#181714]">
+          {/* Ambient blurred backdrop so mobile viewport has soft contextual frame instead of extreme cropping */}
+          <img
+            src={project.heroImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 select-none brightness-50"
+          />
+          <picture className="relative z-0 w-full h-full flex items-center justify-center">
             <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
             <img
               src={project.heroImage}
               alt={project.name}
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full object-cover object-center select-none brightness-90"
+              className="w-full h-full max-sm:object-contain object-cover object-center select-none brightness-90"
             />
           </picture>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent from-[20%] via-[55%] to-black to-[100%]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent from-[15%] via-[50%] to-black/95 to-[100%] z-[1]" />
         </div>
 
         {/* Hero Content Container */}
@@ -261,15 +268,22 @@ export const ProjectDetails: React.FC = () => {
 
           <div className="mt-[40px] lg:mt-[3.646vw] grid grid-cols-1 lg:grid-cols-[38.229vw_1fr] gap-[36px] lg:gap-[6.771vw] items-start">
             {/* Left architectural photo */}
-            <div className="relative w-full aspect-[734/701] lg:h-[36.510vw] lg:w-[38.229vw] overflow-hidden rounded-[12px] shadow-sm bg-[#f5f1eb]">
-              <picture>
+            <div className="relative w-full aspect-[16/10] sm:aspect-[734/701] lg:h-[36.510vw] lg:w-[38.229vw] overflow-hidden rounded-[12px] shadow-sm bg-[#f5f1eb] flex items-center justify-center">
+              {/* Ambient backdrop */}
+              <img
+                src={project.exteriorImage}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
+              />
+              <picture className="relative z-10 w-full h-full flex items-center justify-center">
                 <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                 <img
                   src={project.exteriorImage}
                   alt={`${project.name} overview`}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center select-none"
+                  className="w-full h-full object-contain sm:object-cover sm:object-center select-none"
                 />
               </picture>
             </div>
@@ -403,7 +417,7 @@ export const ProjectDetails: React.FC = () => {
                   <img
                     src={project.locationMapImage}
                     alt={`${project.name} location map`}
-                    className="w-full h-full object-cover select-none transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="w-full h-full object-contain p-1 sm:p-2 select-none"
                   />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors flex items-end p-4">
                     <span className="px-3 py-1.5 bg-white/90 text-black text-xs font-semibold rounded-md shadow flex items-center gap-1.5">
@@ -554,7 +568,7 @@ export const ProjectDetails: React.FC = () => {
                     alt={`${project.name} layout plan`}
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-contain select-none transition-transform duration-500 group-hover:scale-[1.02]"
+                    className="w-full h-full object-contain select-none"
                   />
                   <span className="absolute bottom-3 right-3 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white text-xs rounded-full flex items-center gap-1.5 opacity-90 transition-opacity">
                     <Maximize2 className="w-3.5 h-3.5" /> Enlarge
@@ -638,15 +652,21 @@ export const ProjectDetails: React.FC = () => {
 
           <div className="mt-[40px] lg:mt-[3.385vw] grid grid-cols-1 lg:grid-cols-[43.021vw_1fr] gap-[24px] lg:gap-[3.802vw] items-start">
             {/* Left showcase photo */}
-            <div className="relative w-full aspect-[826/656] lg:h-[34.167vw] lg:w-[43.021vw] overflow-hidden rounded-[12px] bg-[#eee] shadow-sm">
-              <picture>
+            <div className="relative w-full aspect-[16/10] sm:aspect-[826/656] lg:h-[34.167vw] lg:w-[43.021vw] overflow-hidden rounded-[12px] bg-[#eee] shadow-sm flex items-center justify-center">
+              <img
+                src={project.exteriorImage}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
+              />
+              <picture className="relative z-0 w-full h-full flex items-center justify-center">
                 <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                 <img
                   src={project.exteriorImage}
                   alt="Specifications craftsmanship"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center select-none"
+                  className="w-full h-full object-contain sm:object-cover sm:object-center select-none"
                 />
               </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6 sm:p-8">

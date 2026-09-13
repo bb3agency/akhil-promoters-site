@@ -166,19 +166,26 @@ export const Projects = () => {
                   {/* Top Image with Status Pill */}
                   <Link
                     to={`/projects/${project.slug}`}
-                    className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
+                    className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5 flex items-center justify-center"
                   >
-                    <picture>
+                    {/* Ambient backdrop to frame buildings cleanly without zoom cropping */}
+                    <img
+                      src={project.heroImage}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
+                    />
+                    <picture className="relative z-10 w-full h-full flex items-center justify-center">
                       <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                       <img
                         src={project.heroImage}
                         alt={project.name}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-contain select-none transition-opacity duration-300 group-hover:opacity-95"
                       />
                     </picture>
-                    <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
+                    <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20">
                       <span className="px-4 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
                         {displayStatus}
                       </span>
