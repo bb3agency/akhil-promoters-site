@@ -58,11 +58,16 @@ const ProjectCard: React.FC<{
         tabIndex={isMain ? 0 : -1}
         className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
       >
-        <img
-          src={project.heroImage}
-          alt={project.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
-        />
+        <picture>
+          <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
+          <img
+            src={project.heroImage}
+            alt={project.name}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 select-none"
+          />
+        </picture>
         <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
           <span className="px-3.5 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
             {displayStatus}
@@ -158,6 +163,7 @@ export const Home = () => {
   const isTransitioningRef = useRef(false);
   const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const cleanupTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const touchStartXRef = useRef<number | null>(null);
 
   const projects = Object.values(projectData);
 
@@ -252,7 +258,7 @@ export const Home = () => {
     } else if (slot === -1) {
       // Left Card: aligned horizontally on the same line, no tilt
       return {
-        transform: 'translate(calc(-50% - min(460px, 74vw)), -50%)',
+        transform: 'translate(calc(-50% - min(460px, 92vw)), -50%)',
         zIndex: 20,
         opacity: 1,
         pointerEvents: 'auto' as const,
@@ -262,7 +268,7 @@ export const Home = () => {
     } else if (slot === 1) {
       // Right Card: aligned horizontally on the same line, no tilt
       return {
-        transform: 'translate(calc(-50% + min(460px, 74vw)), -50%)',
+        transform: 'translate(calc(-50% + min(460px, 92vw)), -50%)',
         zIndex: 20,
         opacity: 1,
         pointerEvents: 'auto' as const,
@@ -272,7 +278,7 @@ export const Home = () => {
     } else if (slot === -2) {
       // Far Left: outer position (faded out, ready to loop)
       return {
-        transform: 'translate(calc(-50% - min(920px, 148vw)), -50%)',
+        transform: 'translate(calc(-50% - min(920px, 184vw)), -50%)',
         zIndex: 10,
         opacity: 0,
         pointerEvents: 'none' as const,
@@ -281,7 +287,7 @@ export const Home = () => {
     } else if (slot === 2) {
       // Far Right: outer position (faded out, ready to enter)
       return {
-        transform: 'translate(calc(-50% + min(920px, 148vw)), -50%)',
+        transform: 'translate(calc(-50% + min(920px, 184vw)), -50%)',
         zIndex: 10,
         opacity: 0,
         pointerEvents: 'none' as const,
@@ -476,18 +482,28 @@ export const Home = () => {
             className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4"
           >
             <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden rounded-sm group">
-              <img
-                src="/images/projects/apple.jpg"
-                alt="Apple residences, Kanuru"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/images/projects/apple.webp" />
+                <img
+                  src="/images/projects/apple.jpg"
+                  alt="Apple residences, Kanuru"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </picture>
             </motion.div>
             <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group">
-              <img
-                src="/images/projects/cherry.jpg"
-                alt="Cherry residences, Kanuru"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
+              <picture>
+                <source type="image/webp" srcSet="/images/projects/cherry.webp" />
+                <img
+                  src="/images/projects/cherry.jpg"
+                  alt="Cherry residences, Kanuru"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </picture>
             </motion.div>
           </motion.div>
         </div>
@@ -638,8 +654,22 @@ export const Home = () => {
           className="relative w-full h-[600px] sm:h-[640px] md:h-[680px] overflow-hidden select-none"
           onMouseEnter={() => setIsCarouselPaused(true)}
           onMouseLeave={() => setIsCarouselPaused(false)}
-          onTouchStart={() => setIsCarouselPaused(true)}
-          onTouchEnd={() => setIsCarouselPaused(false)}
+          onTouchStart={(e) => {
+            setIsCarouselPaused(true);
+            touchStartXRef.current = e.touches[0].clientX;
+          }}
+          onTouchEnd={(e) => {
+            setIsCarouselPaused(false);
+            if (touchStartXRef.current !== null) {
+              const diffX = e.changedTouches[0].clientX - touchStartXRef.current;
+              if (diffX > 45) {
+                slidePrev();
+              } else if (diffX < -45) {
+                slideNext();
+              }
+              touchStartXRef.current = null;
+            }
+          }}
         >
           {/* Subtle edge fade overlays */}
           <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-8 sm:w-16 lg:w-24 bg-gradient-to-r from-[#F7F5F0] to-transparent z-40" />

@@ -168,11 +168,16 @@ export const Projects = () => {
                     to={`/projects/${project.slug}`}
                     className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
                   >
-                    <img
-                      src={project.heroImage}
-                      alt={project.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
+                    <picture>
+                      <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
+                      <img
+                        src={project.heroImage}
+                        alt={project.name}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </picture>
                     <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4">
                       <span className="px-4 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
                         {displayStatus}

@@ -30,6 +30,8 @@ export const Footer = () => {
             src="/images/footer-skyline.png"
             alt=""
             aria-hidden="true"
+            loading="lazy"
+            decoding="async"
             className="w-full max-w-[1800px] h-auto object-contain object-bottom opacity-20 select-none"
           />
           {/* Subtle gradient blend */}

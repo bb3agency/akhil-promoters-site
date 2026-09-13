@@ -125,6 +125,10 @@ export const GlobalHeader = () => {
               <img
                 src={logoSrc}
                 alt="Akhil Promoters"
+                width={180}
+                height={48}
+                fetchPriority="high"
+                decoding="async"
                 className="h-9 sm:h-11 md:h-12 w-auto object-contain transition-all duration-200"
               />
             </Link>
@@ -231,7 +235,7 @@ export const GlobalHeader = () => {
           >
             {/* Mobile header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 shrink-0">
-              <img src="/images/logo-light.png" alt="Akhil Promoters" className="h-8 sm:h-9 w-auto object-contain" />
+              <img src="/images/logo-light.png" alt="Akhil Promoters" width={140} height={36} decoding="async" className="h-8 sm:h-9 w-auto object-contain" />
               <motion.button
                 whileTap={mobileButtonTap}
                 onClick={() => setMobileOpen(false)}

@@ -132,11 +132,16 @@ export const ProjectDetails: React.FC = () => {
       >
         {/* Cinematic Background Image */}
         <div className="absolute inset-0 overflow-hidden">
-          <img
-            src={project.heroImage}
-            alt={project.name}
-            className="w-full h-full object-cover object-center select-none brightness-90"
-          />
+          <picture>
+            <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
+            <img
+              src={project.heroImage}
+              alt={project.name}
+              fetchPriority="high"
+              decoding="async"
+              className="w-full h-full object-cover object-center select-none brightness-90"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent from-[20%] via-[55%] to-black to-[100%]" />
         </div>
 
@@ -281,11 +286,16 @@ export const ProjectDetails: React.FC = () => {
           <div className="mt-[40px] lg:mt-[3.646vw] grid grid-cols-1 lg:grid-cols-[38.229vw_1fr] gap-[36px] lg:gap-[6.771vw] items-start">
             {/* Left architectural photo */}
             <div className="relative w-full aspect-[734/701] lg:h-[36.510vw] lg:w-[38.229vw] overflow-hidden rounded-[12px] shadow-sm bg-[#f5f1eb]">
-              <img
-                src={project.exteriorImage}
-                alt={`${project.name} overview`}
-                className="w-full h-full object-cover object-center select-none"
-              />
+              <picture>
+                <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
+                <img
+                  src={project.exteriorImage}
+                  alt={`${project.name} overview`}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center select-none"
+                />
+              </picture>
             </div>
 
             {/* Right text & metrics */}
@@ -566,6 +576,8 @@ export const ProjectDetails: React.FC = () => {
                         : project.exteriorImage
                     }
                     alt={`${project.name} layout plan`}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain select-none transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                   <span className="absolute bottom-3 right-3 px-3 py-1.5 bg-black/60 hover:bg-black/80 text-white text-xs rounded-full flex items-center gap-1.5 opacity-90 transition-opacity">
@@ -651,11 +663,16 @@ export const ProjectDetails: React.FC = () => {
           <div className="mt-[40px] lg:mt-[3.385vw] grid grid-cols-1 lg:grid-cols-[43.021vw_1fr] gap-[24px] lg:gap-[3.802vw] items-start">
             {/* Left showcase photo */}
             <div className="relative w-full aspect-[826/656] lg:h-[34.167vw] lg:w-[43.021vw] overflow-hidden rounded-[12px] bg-[#eee] shadow-sm">
-              <img
-                src={project.exteriorImage}
-                alt="Specifications craftsmanship"
-                className="w-full h-full object-cover object-center select-none"
-              />
+              <picture>
+                <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
+                <img
+                  src={project.exteriorImage}
+                  alt="Specifications craftsmanship"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center select-none"
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6 sm:p-8">
                 <div className="text-white">
                   <span className="text-xs uppercase tracking-widest text-[#ef493d] font-bold">Quality Benchmark</span>
@@ -939,7 +956,7 @@ export const ProjectDetails: React.FC = () => {
           href={project.brochureUrl}
           download={`Akhil-Promoters-${project.name}-Brochure.pdf`}
           aria-label="Download Brochure"
-          className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[20px] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105"
+          className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[max(20px,env(safe-area-inset-bottom))] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105"
         >
           <Download className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] shrink-0" />
           <span className="truncate">Download Brochure</span>
@@ -949,7 +966,7 @@ export const ProjectDetails: React.FC = () => {
           type="button"
           onClick={() => setIsModalOpen(true)}
           aria-label="Download Brochure"
-          className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[20px] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105 cursor-pointer"
+          className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[max(20px,env(safe-area-inset-bottom))] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105 cursor-pointer"
         >
           <Download className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] shrink-0" />
           <span className="truncate">Download Brochure</span>
