@@ -8,8 +8,7 @@ import {
   Phone,
   MessageSquare,
   Maximize2,
-  X,
-  CheckCircle2
+  X
 } from 'lucide-react';
 import { projectData, WHATSAPP_NUMBER, OFFICE_PHONE_1 } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
@@ -43,15 +42,6 @@ export const ProjectDetails: React.FC = () => {
 
   // Inquiry modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [inquiryForm, setInquiryForm] = useState({
-    name: '',
-    countryCode: '+91',
-    phone: '',
-    email: '',
-    configuration: '',
-    message: '',
-  });
 
   const isScrollingRef = useRef(false);
 
@@ -101,21 +91,7 @@ export const ProjectDetails: React.FC = () => {
     }
   };
 
-  const handleInquirySubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setInquiryForm({
-        name: '',
-        countryCode: '+91',
-        phone: '',
-        email: '',
-        configuration: '',
-        message: '',
-      });
-    }, 3500);
-  };
+
 
   // Specs keys
   const specKeys = Object.keys(project.specifications);
@@ -774,114 +750,32 @@ export const ProjectDetails: React.FC = () => {
           </p>
 
           <div className="mt-[40px] lg:mt-[3.125vw] grid grid-cols-1 lg:grid-cols-[31.771vw_1fr] gap-[40px] lg:gap-[8.281vw] items-start lg:divide-x lg:divide-[#33333322]">
-            {/* Left Inquiry Form */}
-            <form onSubmit={handleInquirySubmit} className="flex flex-col gap-[28px] lg:gap-[2.344vw] w-full">
-              {formSubmitted ? (
-                <div className="p-6 bg-green-50 border border-green-200 rounded-lg text-center">
-                  <CheckCircle2 className="w-10 h-10 text-green-600 mx-auto mb-2" />
-                  <h4 className="text-green-800 font-semibold text-lg">Inquiry Received!</h4>
-                  <p className="text-green-700 text-sm mt-1">Our sales team will contact you shortly.</p>
-                </div>
-              ) : (
-                <>
-                  <label className="flex flex-col gap-[14px] lg:gap-[1.302vw] w-full">
-                    <div className="flex items-center gap-[10px] lg:gap-[0.521vw] w-full">
-                      <input
-                        type="text"
-                        required
-                        placeholder="Full Name*"
-                        value={inquiryForm.name}
-                        onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })}
-                        className="flex-1 bg-transparent outline-none border-none text-[#333] placeholder:text-[#888] text-[15px] sm:text-[18px] lg:text-[1.094vw] leading-[26px] sm:leading-[30px]"
-                      />
-                    </div>
-                    <div className="h-px w-full bg-[#33333322]" />
-                  </label>
+            {/* Left Inquiry Action Card */}
+            <div className="flex flex-col justify-between gap-[24px] lg:gap-[1.8vw] w-full bg-[#faf9f7] p-6 sm:p-8 lg:p-[2.2vw] rounded-[8px] border border-[#eee]">
+              <div className="flex flex-col gap-3">
+                <span className="text-xs uppercase tracking-widest text-[#ef493d] font-bold">Direct Developer Assistance</span>
+                <h3
+                  className="text-[#333] text-[24px] sm:text-[30px] lg:text-[1.8vw] leading-[1.2]"
+                  style={{ fontFamily: 'var(--font-display)', fontWeight: 400 }}
+                >
+                  Inquire About {project.name}
+                </h3>
+                <p className="text-[#555] text-[14px] sm:text-[16px] lg:text-[0.938vw] leading-relaxed">
+                  Interested in pricing, floor plans, or booking a private site visit for {project.name}? Click below to submit your inquiry directly to our sales advisors.
+                </p>
+              </div>
 
-                  <label className="flex flex-col gap-[14px] lg:gap-[1.302vw] w-full">
-                    <div className="flex items-center gap-[10px] lg:gap-[0.521vw] w-full">
-                      <div className="relative inline-flex items-center shrink-0 w-[4.75rem] lg:w-[5vw] text-[#333] text-[15px] sm:text-[18px] lg:text-[1.094vw]">
-                        <select
-                          aria-label="Country code"
-                          value={inquiryForm.countryCode}
-                          onChange={(e) => setInquiryForm({ ...inquiryForm, countryCode: e.target.value })}
-                          className="w-full appearance-none bg-transparent outline-none border-none cursor-pointer pr-[14px] font-medium"
-                        >
-                          <option value="+91">🇮🇳 +91</option>
-                          <option value="+1">🇺🇸 +1</option>
-                          <option value="+44">🇬🇧 +44</option>
-                          <option value="+971">🇦🇪 +971</option>
-                        </select>
-                        <ChevronDown className="pointer-events-none absolute right-0 w-[12px] h-[12px] opacity-60" />
-                      </div>
-                      <input
-                        type="tel"
-                        required
-                        placeholder="Phone Number*"
-                        value={inquiryForm.phone}
-                        onChange={(e) => setInquiryForm({ ...inquiryForm, phone: e.target.value })}
-                        className="flex-1 bg-transparent outline-none border-none text-[#333] placeholder:text-[#888] text-[15px] sm:text-[18px] lg:text-[1.094vw] leading-[26px] sm:leading-[30px]"
-                      />
-                    </div>
-                    <div className="h-px w-full bg-[#33333322]" />
-                  </label>
-
-                  <label className="flex flex-col gap-[14px] lg:gap-[1.302vw] w-full">
-                    <div className="flex items-center gap-[10px] lg:gap-[0.521vw] w-full">
-                      <input
-                        type="email"
-                        required
-                        placeholder="Email Address*"
-                        value={inquiryForm.email}
-                        onChange={(e) => setInquiryForm({ ...inquiryForm, email: e.target.value })}
-                        className="flex-1 bg-transparent outline-none border-none text-[#333] placeholder:text-[#888] text-[15px] sm:text-[18px] lg:text-[1.094vw] leading-[26px] sm:leading-[30px]"
-                      />
-                    </div>
-                    <div className="h-px w-full bg-[#33333322]" />
-                  </label>
-
-                  <label className="flex flex-col gap-[14px] lg:gap-[1.302vw] w-full">
-                    <div className="relative flex items-center">
-                      <select
-                        required
-                        value={inquiryForm.configuration}
-                        onChange={(e) => setInquiryForm({ ...inquiryForm, configuration: e.target.value })}
-                        className="appearance-none w-full bg-transparent outline-none border-none text-[#333] text-[15px] sm:text-[18px] lg:text-[1.094vw] leading-[26px] sm:leading-[30px] pr-[24px] cursor-pointer"
-                      >
-                        <option value="" disabled>Interested Configuration*</option>
-                        {project.configurations.map((cfg, cIdx) => (
-                          <option key={cIdx} value={cfg}>{cfg}</option>
-                        ))}
-                      </select>
-                      <ChevronDown className="pointer-events-none absolute right-0 text-[#5f5f5f] w-[16px] h-[16px] lg:w-[1.094vw] lg:h-[1.094vw]" />
-                    </div>
-                    <div className="h-px w-full bg-[#33333322]" />
-                  </label>
-
-                  <label className="flex flex-col gap-[14px] lg:gap-[1.302vw] w-full">
-                    <div className="flex items-center gap-[10px] lg:gap-[0.521vw] w-full">
-                      <input
-                        type="text"
-                        placeholder="Message"
-                        value={inquiryForm.message}
-                        onChange={(e) => setInquiryForm({ ...inquiryForm, message: e.target.value })}
-                        className="flex-1 bg-transparent outline-none border-none text-[#333] placeholder:text-[#888] text-[15px] sm:text-[18px] lg:text-[1.094vw] leading-[26px] sm:leading-[30px]"
-                      />
-                    </div>
-                    <div className="h-px w-full bg-[#33333322]" />
-                  </label>
-
-                  <div className="flex items-center gap-[16px] lg:gap-[1.354vw] flex-wrap pt-2">
-                    <button
-                      type="submit"
-                      className="inline-flex items-center justify-center rounded-[2px] border border-[#ef493d] text-[#ef493d] capitalize h-[48px] sm:h-[54px] lg:h-[3.021vw] w-[180px] sm:w-[210px] lg:w-[11.667vw] text-[14px] sm:text-[16px] lg:text-[0.938vw] font-medium transition-colors duration-300 hover:bg-[#ef493d] hover:text-white cursor-pointer"
-                    >
-                      Submit Inquiry
-                    </button>
-                  </div>
-                </>
-              )}
-            </form>
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 rounded-[2px] border border-[#ef493d] bg-[#ef493d] hover:bg-[#d63d32] text-white h-[48px] sm:h-[54px] lg:h-[3.021vw] px-8 text-[15px] sm:text-[16px] lg:text-[0.938vw] font-medium tracking-wide transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>Inquire</span>
+                </button>
+              </div>
+            </div>
 
             {/* Right Regulatory & Official Project Information */}
             <div className="flex flex-col gap-[36px] lg:gap-[4.2vw] w-full lg:pl-[3.385vw]">
