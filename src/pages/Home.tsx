@@ -617,7 +617,7 @@ export const Home = () => {
         {...sectionScrollProps}
         className="py-14 sm:py-18 md:py-24 bg-[#F7F5F0] border-t border-[#E8E4DC] overflow-hidden"
       >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 mb-6 sm:mb-10">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 mb-2 sm:mb-3">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <motion.p
@@ -679,7 +679,7 @@ export const Home = () => {
 
         {/* Showcase Container (Pauses on Hover, auto-advances every 2s) */}
         <div
-          className="relative w-full h-[600px] sm:h-[640px] md:h-[680px] overflow-hidden select-none"
+          className="relative w-full h-[520px] sm:h-[550px] md:h-[580px] overflow-hidden select-none"
           onMouseEnter={() => setIsCarouselPaused(true)}
           onMouseLeave={() => setIsCarouselPaused(false)}
           onTouchStart={(e) => {
@@ -720,7 +720,7 @@ export const Home = () => {
                     ? 'none'
                     : 'transform 650ms cubic-bezier(0.25, 1, 0.5, 1), opacity 650ms ease, filter 650ms ease',
                 }}
-                className="absolute top-1/2 left-1/2 will-change-transform"
+                className="absolute top-[48%] left-1/2 will-change-transform"
               >
                 <ProjectCard
                   project={project}
