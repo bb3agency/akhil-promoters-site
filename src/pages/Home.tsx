@@ -34,10 +34,10 @@ const ProjectCard: React.FC<{
 
   return (
     <div
-      className={`relative w-[310px] xs:w-[340px] sm:w-[390px] md:w-[415px] lg:w-[430px] shrink-0 bg-white rounded-3xl p-5 sm:p-6 border transition-all duration-500 flex flex-col group ${
+      className={`relative w-[310px] xs:w-[340px] sm:w-[390px] md:w-[415px] lg:w-[430px] shrink-0 rounded-3xl p-5 sm:p-6 border transition-all duration-500 flex flex-col group ${
         isMain
-          ? 'border-gray-300 shadow-2xl ring-1 ring-black/5'
-          : 'border-[#E5E5E5] shadow-lg hover:border-gray-300'
+          ? 'bg-white border-[#C8102E]/40 shadow-2xl ring-2 ring-[#C8102E]/25'
+          : 'bg-[#FAF9F6]/95 border-[#E5E5E5] shadow-md hover:border-gray-300'
       }`}
     >
       {/* If not main card, transparent overlay to allow clicking card to select it */}
@@ -75,8 +75,17 @@ const ProjectCard: React.FC<{
             className="w-full h-full object-contain select-none transition-opacity duration-300 group-hover:opacity-95"
           />
         </picture>
-        <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20">
-          <span className="px-3.5 py-1.5 bg-[#7CA5C2]/85 backdrop-blur-md text-white text-[11px] sm:text-xs font-medium rounded-full shadow-xs border border-white/20">
+        <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5">
+          {isMain && (
+            <span className="px-3 py-1 bg-[#C8102E] text-white text-[10px] sm:text-[11px] font-semibold uppercase tracking-wider rounded-full shadow-md">
+              Featured
+            </span>
+          )}
+          <span className={`px-3.5 py-1.5 backdrop-blur-md text-[11px] sm:text-xs font-medium rounded-full shadow-xs border ${
+            isMain
+              ? 'bg-[#7CA5C2] text-white border-white/30 font-semibold'
+              : 'bg-[#7CA5C2]/60 text-white/90 border-white/10'
+          }`}>
             {displayStatus}
           </span>
         </div>
@@ -254,38 +263,38 @@ export const Home = () => {
 
   const getSlotStyle = (slot: number) => {
     if (slot === 0) {
-      // Main Card: center stage, aligned straight on the same horizontal line
+      // Main Card: center stage, highlighted prominently, straight horizontal line
       return {
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate(-50%, -50%) scale(1.05)',
         zIndex: 30,
         opacity: 1,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 20px 30px rgba(0,0,0,0.12))',
+        filter: 'drop-shadow(0 25px 45px rgba(0,0,0,0.16)) drop-shadow(0 10px 25px rgba(200,16,46,0.10))',
       };
     } else if (slot === -1) {
-      // Left Card: aligned horizontally on the same line, no tilt
+      // Left Card: aligned horizontally, subdued/dimmed, smaller scale, no tilt
       return {
-        transform: 'translate(calc(-50% - min(460px, 92vw)), -50%)',
+        transform: 'translate(calc(-50% - min(460px, 92vw)), -50%) scale(0.90)',
         zIndex: 20,
-        opacity: 1,
+        opacity: 0.45,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08))',
+        filter: 'drop-shadow(0 8px 18px rgba(0,0,0,0.05)) brightness(0.96)',
         cursor: 'pointer',
       };
     } else if (slot === 1) {
-      // Right Card: aligned horizontally on the same line, no tilt
+      // Right Card: aligned horizontally, subdued/dimmed, smaller scale, no tilt
       return {
-        transform: 'translate(calc(-50% + min(460px, 92vw)), -50%)',
+        transform: 'translate(calc(-50% + min(460px, 92vw)), -50%) scale(0.90)',
         zIndex: 20,
-        opacity: 1,
+        opacity: 0.45,
         pointerEvents: 'auto' as const,
-        filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.08))',
+        filter: 'drop-shadow(0 8px 18px rgba(0,0,0,0.05)) brightness(0.96)',
         cursor: 'pointer',
       };
     } else if (slot === -2) {
       // Far Left: outer position (faded out, ready to loop)
       return {
-        transform: 'translate(calc(-50% - min(920px, 184vw)), -50%)',
+        transform: 'translate(calc(-50% - min(920px, 184vw)), -50%) scale(0.80)',
         zIndex: 10,
         opacity: 0,
         pointerEvents: 'none' as const,
@@ -294,7 +303,7 @@ export const Home = () => {
     } else if (slot === 2) {
       // Far Right: outer position (faded out, ready to enter)
       return {
-        transform: 'translate(calc(-50% + min(920px, 184vw)), -50%)',
+        transform: 'translate(calc(-50% + min(920px, 184vw)), -50%) scale(0.80)',
         zIndex: 10,
         opacity: 0,
         pointerEvents: 'none' as const,
@@ -302,7 +311,7 @@ export const Home = () => {
       };
     } else {
       return {
-        transform: 'translate(-50%, -50%)',
+        transform: 'translate(-50%, -50%) scale(0.80)',
         zIndex: 0,
         opacity: 0,
         pointerEvents: 'none' as const,
