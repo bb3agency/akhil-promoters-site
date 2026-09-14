@@ -10,7 +10,7 @@ import {
   Maximize2,
   X
 } from 'lucide-react';
-import { projectData, WHATSAPP_NUMBER, OFFICE_PHONE_1 } from '../data';
+import { projectData, WHATSAPP_NUMBER, OFFICE_PHONE_1, getProjectFocalPosition } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 
 const NAV_ITEMS = [
@@ -114,6 +114,7 @@ export const ProjectDetails: React.FC = () => {
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 select-none brightness-50"
+            style={{ objectPosition: getProjectFocalPosition(project.id, 'hero-mobile') }}
           />
           <picture className="relative z-0 w-full h-full flex items-center justify-center">
             {project.heroImageMobile && (
@@ -135,7 +136,8 @@ export const ProjectDetails: React.FC = () => {
               alt={project.name}
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full max-sm:object-cover sm:object-cover object-center select-none brightness-90"
+              className="w-full h-full max-sm:object-cover sm:object-cover select-none brightness-90"
+              style={{ objectPosition: getProjectFocalPosition(project.id, 'hero-mobile') }}
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent from-[15%] via-[50%] to-black/95 to-[100%] z-[1]" />
@@ -283,26 +285,14 @@ export const ProjectDetails: React.FC = () => {
             {/* Left architectural photo */}
             <div className="relative w-full aspect-[16/10] sm:aspect-[734/701] lg:h-[36.510vw] lg:w-[38.229vw] overflow-hidden rounded-[12px] shadow-sm bg-[#f5f1eb]">
               <picture className="w-full h-full">
-                {project.exteriorImageMobile && (
-                  <>
-                    <source
-                      media="(max-width: 640px)"
-                      type="image/webp"
-                      srcSet={project.exteriorImageMobile.replace(/\.(jpg|jpeg|png)$/, '.webp')}
-                    />
-                    <source
-                      media="(max-width: 640px)"
-                      srcSet={project.exteriorImageMobile}
-                    />
-                  </>
-                )}
                 <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                 <img
                   src={project.exteriorImage}
                   alt={`${project.name} overview`}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center select-none"
+                  className="w-full h-full object-cover select-none"
+                  style={{ objectPosition: getProjectFocalPosition(project.id, 'card') }}
                 />
               </picture>
             </div>
@@ -673,26 +663,14 @@ export const ProjectDetails: React.FC = () => {
             {/* Left showcase photo */}
             <div className="relative w-full aspect-[16/10] sm:aspect-[826/656] lg:h-[34.167vw] lg:w-[43.021vw] overflow-hidden rounded-[12px] bg-[#eee] shadow-sm">
               <picture className="w-full h-full">
-                {project.exteriorImageMobile && (
-                  <>
-                    <source
-                      media="(max-width: 640px)"
-                      type="image/webp"
-                      srcSet={project.exteriorImageMobile.replace(/\.(jpg|jpeg|png)$/, '.webp')}
-                    />
-                    <source
-                      media="(max-width: 640px)"
-                      srcSet={project.exteriorImageMobile}
-                    />
-                  </>
-                )}
                 <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                 <img
                   src={project.exteriorImage}
                   alt="Specifications craftsmanship"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover object-center select-none"
+                  className="w-full h-full object-cover select-none"
+                  style={{ objectPosition: getProjectFocalPosition(project.id, 'card') }}
                 />
               </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6 sm:p-8">

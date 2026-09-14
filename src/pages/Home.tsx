@@ -9,7 +9,7 @@ import {
   Maximize2,
   Download,
 } from 'lucide-react';
-import { WHATSAPP_NUMBER, projectData, Project } from '../data';
+import { WHATSAPP_NUMBER, projectData, Project, getProjectFocalPosition } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
   staggerContainer,
@@ -65,7 +65,8 @@ const ProjectCard: React.FC<{
             alt={project.name}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-cover object-center select-none transition-opacity duration-300 group-hover:opacity-95"
+            className="w-full h-full object-cover select-none transition-opacity duration-300 group-hover:opacity-95"
+            style={{ objectPosition: getProjectFocalPosition(project.id, 'card') }}
           />
         </picture>
         <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5">

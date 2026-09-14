@@ -693,3 +693,19 @@ export const projectData: Record<string, Project> = {
     ]
   }
 };
+
+
+export const getProjectFocalPosition = (projectId: string, context: 'hero-mobile' | 'card' = 'card'): string => {
+  switch (projectId.toLowerCase()) {
+    case 'apple':
+      return '72% center';
+    case 'daffodils':
+      return context === 'hero-mobile' ? '58% center' : '62% center';
+    case 'cherry':
+      return context === 'hero-mobile' ? '54% center' : '56% center';
+    case 'blueberry':
+      return '50% center';
+    default:
+      return 'center center';
+  }
+};

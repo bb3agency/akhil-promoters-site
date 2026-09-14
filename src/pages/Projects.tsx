@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Search, Download, BedDouble, Maximize2 } from 'lucide-react';
-import { projectData } from '../data';
+import { projectData, getProjectFocalPosition } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
   staggerContainer,
@@ -175,7 +175,8 @@ export const Projects = () => {
                         alt={project.name}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-cover object-center select-none transition-opacity duration-300 group-hover:opacity-95"
+                        className="w-full h-full object-cover select-none transition-opacity duration-300 group-hover:opacity-95"
+                        style={{ objectPosition: getProjectFocalPosition(project.id, 'card') }}
                       />
                     </picture>
                     <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20">
