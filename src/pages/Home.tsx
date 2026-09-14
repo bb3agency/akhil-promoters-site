@@ -251,8 +251,10 @@ export const Home = () => {
   }, [isCarouselPaused, slideNext]);
 
   const handleOpenBrochureModal = (projName: string) => {
-    setSelectedProject(projName);
-    setIsModalOpen(true);
+    const text = encodeURIComponent(
+      `Hello Akhil Promoters, please share the official project brochure and pricing sheet for ${projName}.`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
   };
 
   const getSlotStyle = (slot: number) => {

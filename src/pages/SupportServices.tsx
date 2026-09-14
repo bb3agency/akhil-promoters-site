@@ -1,3 +1,4 @@
+import { WHATSAPP_NUMBER } from '../data';
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Calculator, Grid, Globe, MapPin, ShieldCheck, ArrowRight } from 'lucide-react';
@@ -210,13 +211,17 @@ export const SupportServices = () => {
                 </div>
               </div>
 
-              <motion.button
+              <motion.a
                 whileTap={mobileTap}
-                onClick={() => setIsModalOpen(true)}
-                className="w-full min-h-[46px] py-3.5 px-4 bg-akhil-red hover:bg-akhil-red-hover active:bg-[#900B20] text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md"
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                  'Hello Akhil Promoters, I would like assistance with Home Loan options for your residential properties.'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full min-h-[46px] py-3.5 px-4 bg-akhil-red hover:bg-akhil-red-hover active:bg-[#900B20] text-white text-xs font-bold tracking-widest uppercase rounded-xl transition-all shadow-md flex items-center justify-center cursor-pointer"
               >
                 Apply for Home Loan Assistance
-              </motion.button>
+              </motion.a>
             </motion.div>
           </div>
         </motion.section>

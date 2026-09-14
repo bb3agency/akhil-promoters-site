@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Search, Download, BedDouble, Maximize2 } from 'lucide-react';
-import { projectData, getProjectFocalPosition } from '../data';
+import { projectData, getProjectFocalPosition, WHATSAPP_NUMBER } from '../data';
 import { InquiryModal } from '../components/ui/InquiryModal';
 import {
   staggerContainer,
@@ -37,8 +37,10 @@ export const Projects = () => {
   });
 
   const handleOpenBrochureModal = (projName: string) => {
-    setSelectedProject(projName);
-    setIsModalOpen(true);
+    const text = encodeURIComponent(
+      `Hello Akhil Promoters, please share the official project brochure and pricing sheet for ${projName}.`
+    );
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, '_blank');
   };
 
   return (

@@ -204,14 +204,17 @@ export const ProjectDetails: React.FC = () => {
                     <span>Brochure</span>
                   </a>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={() => setIsModalOpen(true)}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-colors"
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                      `Hello Akhil Promoters, please share the official project brochure and pricing sheet for ${project.name}.`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-white/10 hover:bg-white/20 text-white border border-white/30 text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-colors cursor-pointer"
                   >
                     <Download className="w-4 h-4" />
                     <span>Brochure</span>
-                  </button>
+                  </a>
                 )}
               </div>
             </div>
@@ -790,14 +793,17 @@ export const ProjectDetails: React.FC = () => {
               </div>
 
               <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                    `Hello Akhil Promoters, I would like to inquire about ${project.name} (${project.siteArea || project.location}). Please share pricing, floor plans, and availability details.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 rounded-[2px] border border-[#ef493d] bg-[#ef493d] hover:bg-[#d63d32] text-white h-[48px] sm:h-[54px] lg:h-[3.021vw] px-8 text-[15px] sm:text-[16px] lg:text-[0.938vw] font-medium tracking-wide transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Inquire</span>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -880,15 +886,18 @@ export const ProjectDetails: React.FC = () => {
           <span className="truncate">Download Brochure</span>
         </a>
       ) : (
-        <button
-          type="button"
-          onClick={() => setIsModalOpen(true)}
-          aria-label="Download Brochure"
+        <a
+          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+            `Hello Akhil Promoters, please share the official project brochure and pricing sheet for ${project.name}.`
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Request Brochure on WhatsApp"
           className="fixed z-[70] right-[12px] sm:right-[16px] lg:right-[1.25vw] bottom-[max(20px,env(safe-area-inset-bottom))] sm:bottom-[24px] lg:bottom-[1.25vw] inline-flex items-center justify-center gap-[8px] sm:gap-[10px] lg:gap-[0.521vw] rounded-full bg-[#ef493d] hover:bg-[#d83a2f] text-white shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] h-[44px] sm:h-[48px] lg:h-[3.021vw] px-[18px] sm:px-[20px] lg:px-[1.25vw] max-w-[calc(100vw-24px)] capitalize text-[13px] sm:text-[14px] lg:text-[0.938vw] font-medium transition-all hover:scale-105 cursor-pointer"
         >
           <Download className="w-[16px] h-[16px] sm:w-[18px] sm:h-[18px] shrink-0" />
           <span className="truncate">Download Brochure</span>
-        </button>
+        </a>
       )}
 
       {/* ─────────────────────────────────────────────────────────────
