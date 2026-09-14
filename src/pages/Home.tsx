@@ -56,23 +56,16 @@ const ProjectCard: React.FC<{
           if (!isMain) e.preventDefault();
         }}
         tabIndex={isMain ? 0 : -1}
-        className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5 flex items-center justify-center"
+        className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
       >
-        {/* Ambient backdrop to frame buildings cleanly without zoom cropping */}
-        <img
-          src={project.heroImage}
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
-        />
-        <picture className="relative z-10 w-full h-full flex items-center justify-center">
+        <picture className="w-full h-full">
           <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
           <img
             src={project.heroImage}
             alt={project.name}
             loading="lazy"
             decoding="async"
-            className="w-full h-full object-contain select-none transition-opacity duration-300 group-hover:opacity-95"
+            className="w-full h-full object-cover object-center select-none transition-opacity duration-300 group-hover:opacity-95"
           />
         </picture>
         <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20 flex items-center gap-1.5">
@@ -497,39 +490,27 @@ export const Home = () => {
             viewport={viewportConfig}
             className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4"
           >
-            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden rounded-sm group relative flex items-center justify-center bg-[#1f1e1d]">
-              <img
-                src="/images/projects/apple.jpg"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover blur-md opacity-30 select-none"
-              />
-              <picture className="relative z-10 w-full h-full flex items-center justify-center">
+            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden rounded-sm group">
+              <picture className="w-full h-full">
                 <source type="image/webp" srcSet="/images/projects/apple.webp" />
                 <img
                   src="/images/projects/apple.jpg"
                   alt="Apple residences, Kanuru"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain transition-opacity duration-300"
+                  className="w-full h-full object-cover object-center select-none transition-opacity duration-300"
                 />
               </picture>
             </motion.div>
-            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group relative flex items-center justify-center bg-[#1f1e1d]">
-              <img
-                src="/images/projects/cherry-9x16.jpg"
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover blur-md opacity-30 select-none"
-              />
-              <picture className="relative z-10 w-full h-full flex items-center justify-center">
+            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group">
+              <picture className="w-full h-full">
                 <source type="image/webp" srcSet="/images/projects/cherry-9x16.webp" />
                 <img
                   src="/images/projects/cherry-9x16.jpg"
                   alt="Cherry residences, Kanuru"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover select-none transition-opacity duration-300"
+                  className="w-full h-full object-cover object-center select-none transition-opacity duration-300"
                 />
               </picture>
             </motion.div>

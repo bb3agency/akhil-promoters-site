@@ -166,23 +166,16 @@ export const Projects = () => {
                   {/* Top Image with Status Pill */}
                   <Link
                     to={`/projects/${project.slug}`}
-                    className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5 flex items-center justify-center"
+                    className="block relative aspect-[16/10] bg-[#F0EDE6] rounded-2xl overflow-hidden mb-4 sm:mb-5"
                   >
-                    {/* Ambient backdrop to frame buildings cleanly without zoom cropping */}
-                    <img
-                      src={project.heroImage}
-                      alt=""
-                      aria-hidden="true"
-                      className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
-                    />
-                    <picture className="relative z-10 w-full h-full flex items-center justify-center">
+                    <picture className="w-full h-full">
                       <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                       <img
                         src={project.heroImage}
                         alt={project.name}
                         loading="lazy"
                         decoding="async"
-                        className="w-full h-full object-contain select-none transition-opacity duration-300 group-hover:opacity-95"
+                        className="w-full h-full object-cover object-center select-none transition-opacity duration-300 group-hover:opacity-95"
                       />
                     </picture>
                     <div className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 z-20">

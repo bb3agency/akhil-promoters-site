@@ -281,15 +281,8 @@ export const ProjectDetails: React.FC = () => {
 
           <div className="mt-[40px] lg:mt-[3.646vw] grid grid-cols-1 lg:grid-cols-[38.229vw_1fr] gap-[36px] lg:gap-[6.771vw] items-start">
             {/* Left architectural photo */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[734/701] lg:h-[36.510vw] lg:w-[38.229vw] overflow-hidden rounded-[12px] shadow-sm bg-[#f5f1eb] flex items-center justify-center">
-              {/* Ambient backdrop */}
-              <img
-                src={project.exteriorImage}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
-              />
-              <picture className="relative z-10 w-full h-full flex items-center justify-center">
+            <div className="relative w-full aspect-[16/10] sm:aspect-[734/701] lg:h-[36.510vw] lg:w-[38.229vw] overflow-hidden rounded-[12px] shadow-sm bg-[#f5f1eb]">
+              <picture className="w-full h-full">
                 {project.exteriorImageMobile && (
                   <>
                     <source
@@ -309,7 +302,7 @@ export const ProjectDetails: React.FC = () => {
                   alt={`${project.name} overview`}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain sm:object-cover sm:object-center select-none"
+                  className="w-full h-full object-cover object-center select-none"
                 />
               </picture>
             </div>
@@ -678,14 +671,8 @@ export const ProjectDetails: React.FC = () => {
 
           <div className="mt-[40px] lg:mt-[3.385vw] grid grid-cols-1 lg:grid-cols-[43.021vw_1fr] gap-[24px] lg:gap-[3.802vw] items-start">
             {/* Left showcase photo */}
-            <div className="relative w-full aspect-[16/10] sm:aspect-[826/656] lg:h-[34.167vw] lg:w-[43.021vw] overflow-hidden rounded-[12px] bg-[#eee] shadow-sm flex items-center justify-center">
-              <img
-                src={project.exteriorImage}
-                alt=""
-                aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
-              />
-              <picture className="relative z-0 w-full h-full flex items-center justify-center">
+            <div className="relative w-full aspect-[16/10] sm:aspect-[826/656] lg:h-[34.167vw] lg:w-[43.021vw] overflow-hidden rounded-[12px] bg-[#eee] shadow-sm">
+              <picture className="w-full h-full">
                 {project.exteriorImageMobile && (
                   <>
                     <source
@@ -705,7 +692,7 @@ export const ProjectDetails: React.FC = () => {
                   alt="Specifications craftsmanship"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain sm:object-cover sm:object-center select-none"
+                  className="w-full h-full object-cover object-center select-none"
                 />
               </picture>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-6 sm:p-8">
