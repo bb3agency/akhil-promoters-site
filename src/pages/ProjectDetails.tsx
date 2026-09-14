@@ -110,19 +110,32 @@ export const ProjectDetails: React.FC = () => {
         <div className="absolute inset-0 overflow-hidden bg-[#181714]">
           {/* Ambient blurred backdrop so mobile viewport has soft contextual frame instead of extreme cropping */}
           <img
-            src={project.heroImage}
+            src={project.heroImageMobile || project.heroImage}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover blur-2xl opacity-40 select-none brightness-50"
           />
           <picture className="relative z-0 w-full h-full flex items-center justify-center">
+            {project.heroImageMobile && (
+              <>
+                <source
+                  media="(max-width: 640px)"
+                  type="image/webp"
+                  srcSet={project.heroImageMobile.replace(/\.(jpg|jpeg|png)$/, '.webp')}
+                />
+                <source
+                  media="(max-width: 640px)"
+                  srcSet={project.heroImageMobile}
+                />
+              </>
+            )}
             <source type="image/webp" srcSet={project.heroImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
             <img
               src={project.heroImage}
               alt={project.name}
               fetchPriority="high"
               decoding="async"
-              className="w-full h-full max-sm:object-contain object-cover object-center select-none brightness-90"
+              className="w-full h-full max-sm:object-cover sm:object-cover object-center select-none brightness-90"
             />
           </picture>
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent from-[15%] via-[50%] to-black/95 to-[100%] z-[1]" />
@@ -277,6 +290,19 @@ export const ProjectDetails: React.FC = () => {
                 className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
               />
               <picture className="relative z-10 w-full h-full flex items-center justify-center">
+                {project.exteriorImageMobile && (
+                  <>
+                    <source
+                      media="(max-width: 640px)"
+                      type="image/webp"
+                      srcSet={project.exteriorImageMobile.replace(/\.(jpg|jpeg|png)$/, '.webp')}
+                    />
+                    <source
+                      media="(max-width: 640px)"
+                      srcSet={project.exteriorImageMobile}
+                    />
+                  </>
+                )}
                 <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                 <img
                   src={project.exteriorImage}
@@ -660,6 +686,19 @@ export const ProjectDetails: React.FC = () => {
                 className="absolute inset-0 w-full h-full object-cover blur-lg opacity-25 select-none"
               />
               <picture className="relative z-0 w-full h-full flex items-center justify-center">
+                {project.exteriorImageMobile && (
+                  <>
+                    <source
+                      media="(max-width: 640px)"
+                      type="image/webp"
+                      srcSet={project.exteriorImageMobile.replace(/\.(jpg|jpeg|png)$/, '.webp')}
+                    />
+                    <source
+                      media="(max-width: 640px)"
+                      srcSet={project.exteriorImageMobile}
+                    />
+                  </>
+                )}
                 <source type="image/webp" srcSet={project.exteriorImage.replace(/\.(jpg|jpeg|png)$/, '.webp')} />
                 <img
                   src={project.exteriorImage}

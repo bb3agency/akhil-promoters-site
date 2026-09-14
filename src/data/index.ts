@@ -55,12 +55,14 @@ export interface Project {
   status: "ONGOING" | "COMPLETED" | "UPCOMING";
   category: "Apartments" | "Villas" | "Commercial";
   heroImage: string;
+  heroImageMobile?: string;
   tagline: string;
   configurations: string[];
   siteArea: string;
   unitCount: string;
   overview: string;
   exteriorImage: string;
+  exteriorImageMobile?: string;
   isometricImage?: string;
   floorPlanImage?: string;
   locationMapImage?: string;
@@ -406,7 +408,9 @@ export const projectData: Record<string, Project> = {
     status: "COMPLETED",
     category: "Apartments",
     heroImage: "/images/projects/cherry-elevation.jpg",
+    heroImageMobile: "/images/projects/cherry-elevation-mobile.jpg",
     exteriorImage: "/images/projects/cherry-elevation.jpg",
+    exteriorImageMobile: "/images/projects/cherry-elevation-mobile.jpg",
     floorPlanImage: "/images/projects/cherry-floorplan.jpg",
     tagline: "1625 SFT 3 BHK Luxury Residences @ Kanuru",
     configurations: ["3 BHK (1625 SFT)"],
@@ -449,7 +453,8 @@ export const projectData: Record<string, Project> = {
     },
     gallery: [
       { id: "g1", title: "Cherry Building Elevation", category: "Exterior", image: "/images/projects/cherry-elevation.jpg" },
-      { id: "g2", title: "Floor Plan Layout", category: "Floor Plan", image: "/images/projects/cherry-floorplan.jpg" }
+      { id: "g2", title: "Floor Plan Layout", category: "Floor Plan", image: "/images/projects/cherry-floorplan.jpg" },
+      { id: "g3", title: "Vertical Elevation View", category: "Architecture", image: "/images/projects/cherry-elevation-mobile.jpg" }
     ],
     highlights: ["800x800mm Premium Tiles", "UPVC Mosquito Mesh Windows", "Near Benz Circle", "Completed Project"],
     amenities: ["Intercom", "Generator Backup", "Lift with Granite Cladding", "Car Parking"],
@@ -540,7 +545,9 @@ export const projectData: Record<string, Project> = {
     status: "COMPLETED",
     category: "Apartments",
     heroImage: "/images/projects/daffodils-elevation.jpg",
+    heroImageMobile: "/images/projects/daffodils-elevation-mobile.jpg",
     exteriorImage: "/images/projects/daffodils-elevation.jpg",
+    exteriorImageMobile: "/images/projects/daffodils-elevation-mobile.jpg",
     floorPlanImage: "/images/projects/daffodils-floorplan.jpg",
     locationMapImage: "/images/projects/daffodils-map.jpg",
     tagline: "1700 & 1730 SFT 3 BHK Premium Residences @ Tadigadapa",
@@ -605,7 +612,8 @@ export const projectData: Record<string, Project> = {
     gallery: [
       { id: "g1", title: "Daffodils Elevation", category: "Exterior", image: "/images/projects/daffodils-elevation.jpg" },
       { id: "g2", title: "Floor Plan Layouts", category: "Floor Plan", image: "/images/projects/daffodils-floorplan.jpg" },
-      { id: "g3", title: "Location Map", category: "Location", image: "/images/projects/daffodils-map.jpg" }
+      { id: "g3", title: "Location Map", category: "Location", image: "/images/projects/daffodils-map.jpg" },
+      { id: "g4", title: "Vertical Tower Elevation", category: "Architecture", image: "/images/projects/daffodils-elevation-mobile.jpg" }
     ],
     highlights: ["800x800mm Vitrified Tiles", "Tadigadapa 100ft Road Access", "Clear Legal Title", "Six Passenger Lift", "Full Generator Backup"],
     amenities: ["Intercom Facility", "Dedicated Covered Parking", "Rainwater Harvesting", "24/7 Security & Power Backup"],

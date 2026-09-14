@@ -517,19 +517,19 @@ export const Home = () => {
             </motion.div>
             <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group relative flex items-center justify-center bg-[#1f1e1d]">
               <img
-                src="/images/projects/cherry.jpg"
+                src="/images/projects/cherry-9x16.jpg"
                 alt=""
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-cover blur-md opacity-30 select-none"
               />
               <picture className="relative z-10 w-full h-full flex items-center justify-center">
-                <source type="image/webp" srcSet="/images/projects/cherry.webp" />
+                <source type="image/webp" srcSet="/images/projects/cherry-9x16.webp" />
                 <img
-                  src="/images/projects/cherry.jpg"
+                  src="/images/projects/cherry-9x16.jpg"
                   alt="Cherry residences, Kanuru"
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-contain transition-opacity duration-300"
+                  className="w-full h-full object-cover select-none transition-opacity duration-300"
                 />
               </picture>
             </motion.div>
