@@ -35,19 +35,19 @@ export const Footer = () => {
             className="hidden sm:block w-full max-w-[1800px] h-auto object-contain object-bottom opacity-20 select-none"
           />
           {/* Architectural Building Sketch for Mobile Viewport */}
-          <picture className="block sm:hidden w-full h-full flex items-end justify-center">
-            <source srcSet="/images/footer-mobile-building.webp" type="image/webp" />
+          <picture className="block sm:hidden absolute inset-0 w-full h-full">
+            <source srcSet="/images/footer-mobile-building.webp?v=2" type="image/webp" />
             <img
-              src="/images/footer-mobile-building.png"
+              src="/images/footer-mobile-building.png?v=2"
               alt=""
               aria-hidden="true"
               loading="lazy"
               decoding="async"
-              className="w-auto h-auto max-h-[85%] max-w-[85%] object-contain object-bottom opacity-25 select-none mx-auto"
+              className="w-full h-full object-cover object-bottom opacity-30 select-none"
             />
           </picture>
           {/* Subtle gradient blend */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#2A2828]/60 via-transparent to-[#2A2828]/90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#2A2828]/70 via-[#2A2828]/20 to-[#2A2828]/60 sm:to-[#2A2828]/90 pointer-events-none" />
         </div>
 
         <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
