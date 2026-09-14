@@ -351,7 +351,7 @@ export const Home = () => {
             preload="auto"
             className="block sm:hidden w-full h-full object-cover opacity-60"
           >
-            <source src="/hero-bg-mobile.mp4" type="video/mp4" />
+            <source src="/hero-bg-mobile.mp4?v=2" type="video/mp4" />
           </video>
 
           {/* Desktop Viewport Video */}
