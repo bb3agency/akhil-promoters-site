@@ -376,12 +376,12 @@ export const Home = () => {
             variants={staggerContainer(0.14, 0.1)}
             initial="hidden"
             animate="visible"
-            className="max-w-[680px]"
+            className="max-w-[680px] mx-auto sm:mx-0 text-center sm:text-left"
           >
             {/* Eyebrow */}
             <motion.p
               variants={itemFadeUp}
-              className="type-label text-[#C8102E] flex items-center mb-3 sm:mb-8 text-[11px] sm:text-xs font-semibold tracking-wider uppercase"
+              className="type-label text-[#C8102E] flex items-center justify-center sm:justify-start mb-3 sm:mb-8 text-[11px] sm:text-xs font-semibold tracking-wider uppercase"
             >
               Vijayawada · CREDAI Member
             </motion.p>
@@ -389,7 +389,7 @@ export const Home = () => {
             {/* Headline */}
             <motion.h1
               variants={itemFadeUp}
-              className="text-overlay mb-3.5 sm:mb-8 text-white break-words drop-shadow-sm"
+              className="text-overlay mb-3.5 sm:mb-8 text-white break-words drop-shadow-sm text-center sm:text-left"
               style={{
                 fontFamily: 'var(--font-display)',
                 fontSize: 'clamp(1.95rem, 7vw, 5.5rem)',
@@ -406,7 +406,7 @@ export const Home = () => {
             {/* CTAs */}
             <motion.div
               variants={itemFadeUp}
-              className="flex items-start justify-start w-auto pt-2 sm:pt-3"
+              className="flex items-center justify-center sm:items-start sm:justify-start w-full sm:w-auto pt-2 sm:pt-3"
             >
               <Link
                 to="/projects"
