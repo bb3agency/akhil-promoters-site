@@ -403,26 +403,17 @@ export const Home = () => {
               <em style={{ fontStyle: 'italic', fontWeight: 400 }}>Made to last.</em>
             </motion.h1>
 
-            {/* Sub-copy */}
-            <motion.p
-              variants={itemFadeUp}
-              className="text-white/80 text-xs sm:text-base md:text-lg font-light leading-relaxed mb-6 sm:mb-12 max-w-[480px]"
-              style={{ fontFamily: 'var(--font-sans)' }}
-            >
-              Thoughtfully designed 3 BHK residences in Kanuru, Ayodhya Nagar & Poranki — where architecture meets everyday life.
-            </motion.p>
-
             {/* CTAs */}
             <motion.div
               variants={itemFadeUp}
-              className="flex flex-col sm:flex-row items-stretch sm:items-start gap-3 sm:gap-4 w-full sm:w-auto"
+              className="flex items-start justify-start w-auto pt-2 sm:pt-3"
             >
               <Link
                 to="/projects"
-                className="type-label min-h-[46px] sm:min-h-[48px] inline-flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-all duration-200 group text-center active:bg-[#900B20] active:scale-[0.96] rounded-sm text-xs sm:text-sm font-semibold tracking-wider uppercase shadow-lg shadow-black/20"
+                className="type-label inline-flex items-center justify-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#C8102E] hover:bg-[#A50D24] text-white transition-all duration-200 group text-center active:bg-[#900B20] active:scale-[0.96] rounded-sm text-[11px] sm:text-xs font-semibold tracking-wider uppercase shadow-md shadow-black/20"
               >
-                View Residences
-                <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-200" />
+                <span>View Residences</span>
+                <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-200" />
               </Link>
             </motion.div>
           </motion.div>
