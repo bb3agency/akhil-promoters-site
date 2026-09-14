@@ -431,160 +431,7 @@ export const Home = () => {
         </motion.div>
       </section>
 
-      {/* ─── BRIEF INTRODUCTION ──────────────────────────── */}
-      <motion.section
-        {...sectionScrollProps}
-        className="py-16 md:py-28 max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 overflow-hidden"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
-          <motion.div
-            variants={staggerContainer(0.12)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="lg:col-span-5"
-          >
-            <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] mb-4 sm:mb-6">
-              Akhil Promoters
-            </motion.p>
-            <motion.h2
-              variants={itemFadeUp}
-              className="mb-6 text-[#181714]"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
-                fontWeight: 400,
-                lineHeight: 1.12,
-                letterSpacing: '-0.015em',
-              }}
-            >
-              Two decades of<br />considered craft.
-            </motion.h2>
-            <motion.p variants={itemFadeUp} className="type-body mb-8">
-              We design homes around how people actually live — light, space, material, and proportion taken seriously. Every Akhil Promoters project is CREDAI certified, fully documented, and built by the same architectural team throughout.
-            </motion.p>
-            <motion.div variants={itemFadeUp}>
-              <Link
-                to="/who-we-are/story"
-                className="type-label inline-flex items-center gap-2 text-[#181714] hover:text-[#C8102E] transition-colors group"
-              >
-                About the company
-                <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            variants={staggerContainer(0.15)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4"
-          >
-            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden rounded-sm group">
-              <picture className="w-full h-full">
-                <source type="image/webp" srcSet="/images/projects/apple.webp" />
-                <img
-                  src="/images/projects/apple.jpg"
-                  alt="Apple residences, Kanuru"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover object-center select-none transition-opacity duration-300"
-                />
-              </picture>
-            </motion.div>
-            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group">
-              <picture className="w-full h-full">
-                <source type="image/webp" srcSet="/images/projects/cherry-9x16.webp" />
-                <img
-                  src="/images/projects/cherry-9x16.jpg"
-                  alt="Cherry residences, Kanuru"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover object-center select-none transition-opacity duration-300"
-                />
-              </picture>
-            </motion.div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* ─── 3D ARCHITECTURAL WALKTHROUGH SECTION ─────────── */}
-      <motion.section
-        {...sectionScrollProps}
-        className="py-0 bg-white text-[#181714] overflow-hidden"
-      >
-        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 pt-4 sm:pt-6 pb-6 sm:pb-8">
-          <motion.div
-            variants={staggerContainer(0.1)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="text-center max-w-3xl mx-auto mb-4 sm:mb-6"
-          >
-            <motion.p
-              variants={itemFadeUp}
-              className="type-label text-[#C8102E] flex items-center justify-center mb-2 sm:mb-3 text-[10px] sm:text-xs"
-            >
-              3D Spatial Perspective &amp; Flow
-            </motion.p>
-            <motion.h2
-              variants={itemFadeUp}
-              className="text-[#181714] text-3xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4"
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontWeight: 400,
-                lineHeight: 1.15,
-                letterSpacing: '-0.015em',
-              }}
-            >
-              Every square foot planned with purpose.
-            </motion.h2>
-            <motion.p
-              variants={itemFadeUp}
-              className="text-[#8A8580] text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto"
-              style={{ fontFamily: 'var(--font-sans)' }}
-            >
-              Watch our architectural floor plans transition from paper precision into three-dimensional living spaces — engineered with cross ventilation, optimal natural light, and generous room proportions.
-            </motion.p>
-          </motion.div>
-
-          {/* Cinematic Video Player Showcase */}
-          <motion.div
-            variants={fadeInUp(0.7, 0.15, 30)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewportConfig}
-            className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-black aspect-video max-w-5xl mx-auto group"
-          >
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source src="/floorplan-3d-walkthrough.mp4" type="video/mp4" />
-            </video>
-
-            {/* Subtle cinematic gradient vignette along the edges */}
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/20" />
-
-            {/* Floating details overlay */}
-            <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex flex-wrap items-center justify-between gap-2 sm:gap-3 pointer-events-none">
-              <div className="flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-white/15 text-white text-[10px] sm:text-xs tracking-wider uppercase font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                3D Perspective
-              </div>
-              <div className="hidden sm:flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 text-white/80 text-[10px] sm:text-xs font-light">
-                3 BHK Architectural Layout Visualization
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      {/* ─── 4. FEATURED DEVELOPMENTS (CURVED 3D CAROUSEL) ── */}
+      {/* ─── FEATURED DEVELOPMENTS (CURVED 3D CAROUSEL) ── */}
       <motion.section
         {...sectionScrollProps}
         className="py-14 sm:py-18 md:py-24 bg-[#F7F5F0] border-t border-[#E8E4DC] overflow-hidden"
@@ -722,6 +569,161 @@ export const Home = () => {
               />
             );
           })}
+        </div>
+      </motion.section>
+
+      {/* ─── 3D ARCHITECTURAL WALKTHROUGH SECTION ─────────── */}
+      <motion.section
+        {...sectionScrollProps}
+        className="py-0 bg-white text-[#181714] overflow-hidden"
+      >
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10 pt-4 sm:pt-6 pb-6 sm:pb-8">
+          <motion.div
+            variants={staggerContainer(0.1)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="text-center max-w-3xl mx-auto mb-4 sm:mb-6"
+          >
+            <motion.p
+              variants={itemFadeUp}
+              className="type-label text-[#C8102E] flex items-center justify-center mb-2 sm:mb-3 text-[10px] sm:text-xs"
+            >
+              3D Spatial Perspective &amp; Flow
+            </motion.p>
+            <motion.h2
+              variants={itemFadeUp}
+              className="text-[#181714] text-3xl sm:text-4xl md:text-5xl font-serif mb-3 sm:mb-4"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 400,
+                lineHeight: 1.15,
+                letterSpacing: '-0.015em',
+              }}
+            >
+              Every square foot planned with purpose.
+            </motion.h2>
+            <motion.p
+              variants={itemFadeUp}
+              className="text-[#8A8580] text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto"
+              style={{ fontFamily: 'var(--font-sans)' }}
+            >
+              Watch our architectural floor plans transition from paper precision into three-dimensional living spaces — engineered with cross ventilation, optimal natural light, and generous room proportions.
+            </motion.p>
+          </motion.div>
+
+          {/* Cinematic Video Player Showcase */}
+          <motion.div
+            variants={fadeInUp(0.7, 0.15, 30)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="relative rounded-2xl overflow-hidden border border-gray-200 shadow-xl bg-black aspect-video max-w-5xl mx-auto group"
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/floorplan-3d-walkthrough.mp4" type="video/mp4" />
+            </video>
+
+            {/* Subtle cinematic gradient vignette along the edges */}
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+
+            {/* Floating details overlay */}
+            <div className="absolute bottom-3 sm:bottom-6 left-3 sm:left-6 right-3 sm:right-6 flex flex-wrap items-center justify-between gap-2 sm:gap-3 pointer-events-none">
+              <div className="flex items-center gap-2 bg-black/70 backdrop-blur-md px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full border border-white/15 text-white text-[10px] sm:text-xs tracking-wider uppercase font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                3D Perspective
+              </div>
+              <div className="hidden sm:flex items-center gap-2 bg-black/60 backdrop-blur-md px-3.5 py-2 rounded-full border border-white/15 text-white/80 text-[10px] sm:text-xs font-light">
+                3 BHK Architectural Layout Visualization
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* ─── BRIEF INTRODUCTION ──────────────────────────── */}
+      <motion.section
+        {...sectionScrollProps}
+        className="py-16 md:py-28 bg-[#F7F5F0] border-t border-[#E8E4DC] overflow-hidden"
+      >
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-center">
+          <motion.div
+            variants={staggerContainer(0.12)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="lg:col-span-5"
+          >
+            <motion.p variants={itemFadeUp} className="type-label text-[#C8102E] mb-4 sm:mb-6">
+              Akhil Promoters
+            </motion.p>
+            <motion.h2
+              variants={itemFadeUp}
+              className="mb-6 text-[#181714]"
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(2rem, 3.5vw, 3rem)',
+                fontWeight: 400,
+                lineHeight: 1.12,
+                letterSpacing: '-0.015em',
+              }}
+            >
+              Two decades of<br />considered craft.
+            </motion.h2>
+            <motion.p variants={itemFadeUp} className="type-body mb-8">
+              We design homes around how people actually live — light, space, material, and proportion taken seriously. Every Akhil Promoters project is CREDAI certified, fully documented, and built by the same architectural team throughout.
+            </motion.p>
+            <motion.div variants={itemFadeUp}>
+              <Link
+                to="/who-we-are/story"
+                className="type-label inline-flex items-center gap-2 text-[#181714] hover:text-[#C8102E] transition-colors group"
+              >
+                About the company
+                <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            variants={staggerContainer(0.15)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportConfig}
+            className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4"
+          >
+            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden rounded-sm group">
+              <picture className="w-full h-full">
+                <source type="image/webp" srcSet="/images/projects/apple.webp" />
+                <img
+                  src="/images/projects/apple.jpg"
+                  alt="Apple residences, Kanuru"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center select-none transition-opacity duration-300"
+                />
+              </picture>
+            </motion.div>
+            <motion.div variants={itemFadeUp} className="aspect-[3/4] overflow-hidden mt-6 sm:mt-10 rounded-sm group">
+              <picture className="w-full h-full">
+                <source type="image/webp" srcSet="/images/projects/cherry-9x16.webp" />
+                <img
+                  src="/images/projects/cherry-9x16.jpg"
+                  alt="Cherry residences, Kanuru"
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover object-center select-none transition-opacity duration-300"
+                />
+              </picture>
+            </motion.div>
+          </motion.div>
+          </div>
         </div>
       </motion.section>
 
